@@ -21,7 +21,7 @@ public class Subscription_plan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long plan_id;
 
-    @Column(name = "name", nullable = false, length = 50)
+    @Column(name = "name", nullable = false, unique = true, length = 50)
     private String name;
 
     @Column(name = "price", nullable = false)
