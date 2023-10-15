@@ -2,6 +2,7 @@ package com.example.workpryct_dbp.Domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
@@ -11,13 +12,14 @@ import java.util.Set;
 @Table(name = "users")
 @Getter
 @Setter
+@NoArgsConstructor
 public class User {
     // ---------------------------------------------------------------------------------------------
     // Any User Attributes (Client or Worker)
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_user;
+    private Long user_id;
 
     @Column(name = "username", nullable = false, length = 25, unique = true)
     private String username;
@@ -37,9 +39,9 @@ public class User {
     @Column(name = "location", nullable = false, length = 300)
     private String location;
 
-    // @OneToOne
-    // @Column(name = "profile_picture", nullable = true, length = 300)
-    // private Img profile_picture; // Entity Img
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @Column(name = "profile_picture")
+    private Img profile_picture; // Entity Img
 
     @Column(name = "registration_date", nullable = false)
     private Date registration_date;
@@ -50,9 +52,10 @@ public class User {
     @Column(name = "is_premium", nullable = false)
     private Boolean is_premium;
 
-    // @OneToOne
-    // @Column(name = "plan", nullable = false)
-    // private Subscription_plan plan; // Entity Subscription_plan
+    @ManyToOne
+    @JoinColumn(name = "plan_id", referencedColumnName = "plan_id")
+    @Column(name = "plan", nullable = false)
+    private Subscription_plan plan; // Entity Subscription_plan
 
     // ---------------------------------------------------------------------------------------------
     // Worker Attributes
@@ -91,14 +94,13 @@ public class User {
     // private Set<Service_requests> service_requests; // Entity Service_requests
 
     // ---------------------------------------------------------------------------------------------
-    // Constructors
-
-    public User() {}
+    // Constructors (Constructor Default implemented with Lombok)
 
     public User( String username, String email, Long phone, String name, String password,
-                 String location, Date registration_date, /*Img profile_picture,*/
-                 Boolean is_worker, Boolean is_premium/*, Subscription_plan plan*/ )
+                 String location, Date registration_date, Img profile_picture,
+                 Boolean is_worker, Boolean is_premium, Subscription_plan plan )
     {
+
         this.username = username;
         this.email = email;
         this.phone = phone;
@@ -106,20 +108,22 @@ public class User {
         this.password = password;
         this.location = location;
         this.registration_date = registration_date;
-        // this.profile_picture = profile_picture;
+        this.profile_picture = profile_picture;
         this.is_worker = is_worker;
         this.is_premium = is_premium;
-        // this.plan = plan;
-    }
+        this.plan = plan;
+
+    } // Constructor Basic (Client)
 
     public User( String username, String email, Long phone, String name, String password,
-                 String location, Date registration_date, /*Img profile_picture,*/
-                 Boolean is_worker, Boolean is_premium, /*Subscription_plan plan,*/
+                 String location, Date registration_date, Img profile_picture,
+                 Boolean is_worker, Boolean is_premium, Subscription_plan plan,
                  String description, Double rating, Double hour_price, Boolean is_available,
                  Boolean is_verified, String type_national_id, Long national_id
                  /*, Set<Review> reviews, Set<Work_services> Offered_services,
                    Set<Service_requests> service_requests*/ )
     {
+
         this.username = username;
         this.email = email;
         this.phone = phone;
@@ -127,10 +131,10 @@ public class User {
         this.password = password;
         this.location = location;
         this.registration_date = registration_date;
-        // this.profile_picture = profile_picture;
+        this.profile_picture = profile_picture;
         this.is_worker = is_worker;
         this.is_premium = is_premium;
-        // this.plan = plan;
+        this.plan = plan;
         this.description = description;
         this.rating = rating;
         this.hour_price = hour_price;
@@ -141,7 +145,8 @@ public class User {
         // this.reviews = reviews;
         // this.Offered_services = Offered_services;
         // this.service_requests = service_requests;
-    }
+
+    } // Constructor complete (Worker)
 
     // ---------------------------------------------------------------------------------------------
     // Getters and Setters (Implemented with Lombok)
