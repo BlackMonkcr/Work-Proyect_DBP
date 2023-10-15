@@ -21,7 +21,7 @@ public class Img {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long img_id;
 
-    @Column(name = "url", nullable = false, length = 250)
+    @Column(name = "url", nullable = false, unique = true, length = 250)
     private String url;
 
     @Column(name = "alt", nullable = false, length = 50)
@@ -41,11 +41,12 @@ public class Img {
     // ---------------------------------------------------------------------------------------------
     // Constructors (Constructor Default implemented with Lombok)
 
-    public Img(String url, String alt, String description, Date upload_date) {
+    public Img(String url, String alt, String description, Date upload_date, User user) {
         this.url = url;
         this.alt = alt;
         this.description = description;
         this.upload_date = upload_date;
+        this.user = user;
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -40,7 +39,6 @@ public class User {
     private String location;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    @Column(name = "profile_picture")
     private Img profile_picture; // Entity Img
 
     @Column(name = "registration_date", nullable = false)
@@ -54,8 +52,7 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "plan_id", referencedColumnName = "plan_id")
-    @Column(name = "plan", nullable = false)
-    private Subscription_plan plan; // Entity Subscription_plan
+    private Plan plan; // Entity Plan
 
     // ---------------------------------------------------------------------------------------------
     // Worker Attributes
@@ -98,7 +95,7 @@ public class User {
 
     public User( String username, String email, Long phone, String name, String password,
                  String location, Date registration_date, Img profile_picture,
-                 Boolean is_worker, Boolean is_premium, Subscription_plan plan )
+                 Boolean is_worker, Boolean is_premium)
     {
 
         this.username = username;
@@ -117,7 +114,7 @@ public class User {
 
     public User( String username, String email, Long phone, String name, String password,
                  String location, Date registration_date, Img profile_picture,
-                 Boolean is_worker, Boolean is_premium, Subscription_plan plan,
+                 Boolean is_worker, Boolean is_premium, Plan plan,
                  String description, Double rating, Double hour_price, Boolean is_available,
                  Boolean is_verified, String type_national_id, Long national_id
                  /*, Set<Review> reviews, Set<Work_services> Offered_services,

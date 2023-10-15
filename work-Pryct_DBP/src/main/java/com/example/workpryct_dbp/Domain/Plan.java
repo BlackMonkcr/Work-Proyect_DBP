@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 import java.util.Set;
 
 @Entity
-@Table(name = "subscription_plans")
+@Table(name = "plans")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Subscription_plan {
+public class Plan {
     // ---------------------------------------------------------------------------------------------
     // Subscription_plan Attributes
 
@@ -30,14 +30,13 @@ public class Subscription_plan {
     @Column(name = "description", nullable = false, length = 500)
     private String description;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "plan")
     private Set<User> users;
 
     // ---------------------------------------------------------------------------------------------
     // Constructors (Constructor Default implemented with Lombok)
 
-    public Subscription_plan(String name, Double price, String description) {
+    public Plan(String name, Double price, String description) {
         this.name = name;
         this.price = price;
         this.description = description;
