@@ -13,9 +13,12 @@ import java.util.Set;
 @Service
 public class PlanService {
     private final PlanRepository planRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public PlanService(PlanRepository planRepository) {
+    public PlanService(PlanRepository planRepository,
+                       UserRepository userRepository) {
+        this.userRepository = userRepository;
         this.planRepository = planRepository;
     }
 

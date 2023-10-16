@@ -26,6 +26,7 @@ public class SubscriptionService {
         Set<User> users = planToUpdate.getUsers();
         users.add(userAdd);
         userAdd.setPlan(planToUpdate);
+        userAdd.setIs_premium(true);
         planToUpdate.setUsers(users);
         userRepository.save(userAdd);
         planRepository.save(planToUpdate);
@@ -37,6 +38,7 @@ public class SubscriptionService {
         Set<User> users = planToUpdate.getUsers();
         users.remove(userRemove);
         userRemove.setPlan(null);
+        userRemove.setIs_premium(false);
         planToUpdate.setUsers(users);
         userRepository.save(userRemove);
         planRepository.save(planToUpdate);

@@ -1,7 +1,8 @@
 package com.example.workpryct_dbp.Domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,7 @@ public class Plan {
     @Column(name = "description", nullable = false, length = 500)
     private String description;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "plan")
     private Set<User> users;
 

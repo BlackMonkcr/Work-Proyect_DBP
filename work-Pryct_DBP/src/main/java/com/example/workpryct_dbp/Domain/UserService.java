@@ -6,6 +6,7 @@ import com.example.workpryct_dbp.Infrastructure.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -21,20 +22,20 @@ public class UserService {
         return userRepository.findAll();
     } // Returns all users
 
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElseThrow();
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
     } // False if not found (with id)
 
-    public User getUserByUsername(String username) {
-        return userRepository.findByUsername(username).orElseThrow();
+    public Optional<User> getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     } // False if not found (with username)
 
-    public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email).orElseThrow();
+    public Optional<User> getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     } // False if not found (with email)
 
-    public User getUserByPhone(Long phone) {
-        return userRepository.findByPhone(phone).orElseThrow();
+    public Optional<User> getUserByPhone(Long phone) {
+        return userRepository.findByPhone(phone);
     } // False if not found (with phone)
 
     public User createUser(User user) {

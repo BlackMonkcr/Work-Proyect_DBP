@@ -1,6 +1,8 @@
 package com.example.workpryct_dbp.Domain;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -50,6 +52,7 @@ public class User {
     @Column(name = "is_premium", nullable = false)
     private Boolean is_premium;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "plan_id", referencedColumnName = "plan_id")
     private Plan plan; // Entity Plan

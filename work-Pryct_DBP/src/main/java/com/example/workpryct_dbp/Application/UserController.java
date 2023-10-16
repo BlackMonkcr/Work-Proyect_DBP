@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.workpryct_dbp.Domain.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -25,12 +26,25 @@ public class UserController {
     } // Returns all users
 
     @GetMapping("/id")
-    public User getUserById(@RequestParam Long id) {
-        return userService.getUserById(id);
+    public Optional<User> getUserById(@RequestParam Long id) {
+        if (userService.getUserById(id).isEmpty()) {
+            return Optional.empty();
+        } else {
+            return userService.getUserById(id);
+        }
     } // False if not found (with id)
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
         return new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
     } // Returns created user
+
+    @GetMapping("/plan")
+    public ResponseEntity<Plan> getPlanByUser(@RequestParam Long user_id) {
+        if (userService.getUserById(user_id).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(userService.getUserById(user_id).get().getPlan(), HttpStatus.OK);
+        }
+    } // Returns plan by user
 }
