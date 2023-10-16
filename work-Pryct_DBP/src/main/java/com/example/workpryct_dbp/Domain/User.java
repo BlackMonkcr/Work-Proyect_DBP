@@ -110,9 +110,7 @@ public class User {
         this.registration_date = registration_date;
         this.profile_picture = profile_picture;
         this.is_worker = is_worker;
-        this.is_premium = is_premium;
-        this.plan = plan;
-
+        this.is_premium = false;
     } // Constructor Basic (Client)
 
     public User( String username, String email, Long phone, String name, String password,

@@ -43,4 +43,22 @@ public class SubscriptionService {
         userRepository.save(userRemove);
         planRepository.save(planToUpdate);
     } // Unsubscribes user from plan
+
+    public void changePlan(Long plan_id, Long user_id) {
+        Plan planChange = planRepository.findById(plan_id).orElseThrow();
+        User userChange = userRepository.findById(user_id).orElseThrow();
+        Set<User> users = userChange.getPlan().getUsers();
+
+        users.remove(userChange);
+        userChange.getPlan().setUsers(users);
+        userChange.setPlan(planChange);
+
+        users = planChange.getUsers();
+        users.add(userChange);
+        planChange.setUsers(users);
+        userChange.setIs_premium(true);
+
+        userRepository.save(userChange);
+        planRepository.save(planChange);
+    } // Unsubscribes user from plan
 }
