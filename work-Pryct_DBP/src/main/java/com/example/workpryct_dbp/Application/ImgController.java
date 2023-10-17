@@ -24,7 +24,7 @@ public class ImgController {
         return new ResponseEntity<>(imgService.getAllImg(), HttpStatus.OK);
     } // Returns all Img
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<Img> getImgById(@RequestParam Long id) {
         if (imgService.getImgById(id).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -74,4 +74,14 @@ public class ImgController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     } // Deletes plan
+
+    @GetMapping("/user")
+    public ResponseEntity<User> getUserByImg(@RequestParam Long img_id) {
+        if (imgService.getImgById(img_id).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(imgService.getUserByImg(img_id), HttpStatus.OK);
+        }
+    } // Returns user who uploaded img
+
 }

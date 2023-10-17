@@ -47,4 +47,13 @@ public class UserController {
             return new ResponseEntity<>(userService.getUserById(user_id).get().getPlan(), HttpStatus.OK);
         }
     } // Returns plan by user
+
+    @GetMapping("/profile-picture")
+    public ResponseEntity<Img> getProfilePhotoByUser(@RequestParam Long user_id) {
+        if (userService.getUserById(user_id).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(userService.getUserById(user_id).get().getProfile_picture(), HttpStatus.OK);
+        }
+    } // Returns profile photo by user
 }

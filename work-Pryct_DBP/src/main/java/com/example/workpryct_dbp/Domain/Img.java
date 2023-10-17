@@ -1,6 +1,8 @@
 package com.example.workpryct_dbp.Domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,7 +35,7 @@ public class Img {
     @Column(name = "upload_date", nullable = false)
     private Date upload_date;
 
-    @JsonIgnore
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
@@ -41,13 +43,12 @@ public class Img {
     // ---------------------------------------------------------------------------------------------
     // Constructors (Constructor Default implemented with Lombok)
 
-    public Img(String url, String alt, String description, Date upload_date, User user) {
+    public Img(String url, String alt, String description, Date upload_date) {
         this.url = url;
         this.alt = alt;
         this.description = description;
         this.upload_date = upload_date;
-        this.user = user;
-    }
+    } // Constructor without User
 
     // ---------------------------------------------------------------------------------------------
     // Getters and Setters (Implemented with Lombok)

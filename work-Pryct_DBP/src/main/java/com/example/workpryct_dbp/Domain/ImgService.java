@@ -28,23 +28,15 @@ public class ImgService {
 
     public Optional<Img> getImgById(Long id) {
         return imgRepository.findById(id);
-    } // False if not found (with id)
+    } // Optional Img search by Id
 
     public Optional<Img> getImgByUrl(String url) {
         return imgRepository.findByUrl(url);
-    } // False if not found (with url)
+    } // Optional Img search by Url
 
     public Img createImg(Img img) {
-        if (userRepository.findByUsername(img.getUser().getUsername()).isEmpty()) {
-            throw new RuntimeException("User not found");
-        }
-
-        User userUpload = userRepository.findByUsername(img.getUser().getUsername()).get();
-        img.setUser(userUpload);
-        imgRepository.save(img);
-        userUpload.setProfile_picture(img);
-        return img;
-    } // Returns created plan
+        return imgRepository.save(img);
+    } // Returns created Img
 
     public Img updateImg(Long id, Img img) {
         Img imgToUpdate = imgRepository.findById(id).orElseThrow();
@@ -53,15 +45,20 @@ public class ImgService {
         imgToUpdate.setDescription(img.getDescription());
         imgToUpdate.setUpload_date(img.getUpload_date());
         return imgRepository.save(imgToUpdate);
-    } // Returns updated plan
+    } // Returns updated Img
 
     public Img patchImgDescription(Long id, Img img) {
         Img imgToUpdate = imgRepository.findById(id).orElseThrow();
         imgToUpdate.setDescription(img.getDescription());
         return imgRepository.save(imgToUpdate);
-    } // Returns updated plan
+    } // Returns patch updated Img
 
     public void deleteImg(Long id) {
         imgRepository.deleteById(id);
-    } // Deletes plan
+    } // Delete Img
+
+    public User getUserByImg(Long img_id) {
+        Img img = imgRepository.findById(img_id).orElseThrow();
+        return img.getUser();
+    } // Returns user who uploaded img
 }

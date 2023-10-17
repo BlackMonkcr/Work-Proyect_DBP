@@ -40,6 +40,7 @@ public class User {
     @Column(name = "location", nullable = false, length = 300)
     private String location;
 
+    @JsonManagedReference
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Img profile_picture; // Entity Img
 
@@ -93,12 +94,15 @@ public class User {
     // @Column(name = "service_requests", nullable = true)
     // private Set<Service_requests> service_requests; // Entity Service_requests
 
+    // Add relation @OneToMany User->Img
+    // work quality
+
     // ---------------------------------------------------------------------------------------------
     // Constructors (Constructor Default implemented with Lombok)
 
     public User( String username, String email, Long phone, String name, String password,
                  String location, Date registration_date, Img profile_picture,
-                 Boolean is_worker, Boolean is_premium)
+                 Boolean is_worker)
     {
 
         this.username = username;
