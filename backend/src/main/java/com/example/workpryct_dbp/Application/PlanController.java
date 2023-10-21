@@ -1,5 +1,6 @@
 package com.example.workpryct_dbp.Application;
 
+import com.example.workpryct_dbp.Services.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +20,12 @@ public class PlanController {
         this.planService = planService;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Plan>> getAllPlans() {
         return new ResponseEntity<>(planService.getAllPlans(), HttpStatus.OK);
     } // Returns all plans
 
-    @GetMapping("/id")
+    @GetMapping
     public ResponseEntity<Plan> getPlanById(@RequestParam Long id) {
         if (planService.getPlanById(id).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -57,7 +58,7 @@ public class PlanController {
     } // Returns updated plan
 
     @PatchMapping
-    public ResponseEntity<Plan> pathPlan(@RequestParam Long id, @RequestBody Plan plan) {
+    public ResponseEntity<Plan> patchPlan(@RequestParam Long id, @RequestBody Plan plan) {
         if (planService.getPlanById(id).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
@@ -66,12 +67,12 @@ public class PlanController {
     } // Returns updated plan
 
     @DeleteMapping
-    public ResponseEntity<Plan> deletePlan(@RequestParam Long id) {
+    public ResponseEntity<String> deletePlan(@RequestParam Long id) {
         if (planService.getPlanById(id).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             planService.deletePlan(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>("Deleted!", HttpStatus.OK);
         }
     } // Deletes plan
 

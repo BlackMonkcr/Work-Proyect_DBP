@@ -1,5 +1,7 @@
-package com.example.workpryct_dbp.Domain;
+package com.example.workpryct_dbp.Services;
 
+import com.example.workpryct_dbp.Domain.Plan;
+import com.example.workpryct_dbp.Domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.workpryct_dbp.Infrastructure.PlanRepository;
 import com.example.workpryct_dbp.Infrastructure.UserRepository;
