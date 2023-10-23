@@ -1,10 +1,9 @@
 package com.example.workpryct_dbp.Application;
 
+import com.example.workpryct_dbp.Services.ImgUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.workpryct_dbp.Domain.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/UploadImg")

@@ -1,5 +1,7 @@
-package com.example.workpryct_dbp.Domain;
+package com.example.workpryct_dbp.Services;
 
+import com.example.workpryct_dbp.Domain.Img;
+import com.example.workpryct_dbp.Domain.User;
 import com.example.workpryct_dbp.Infrastructure.ImgRepository;
 import com.example.workpryct_dbp.Infrastructure.UserRepository;
 
