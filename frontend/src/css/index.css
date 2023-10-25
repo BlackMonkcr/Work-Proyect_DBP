@@ -24,6 +24,22 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
+  scrollbar-color: #FAFAFA rgba(50, 50, 50, 0);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #FAFAFA;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(50, 50, 50, 0);
 }
 
 h1 {

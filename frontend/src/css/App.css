@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.activate a svg{
+  color: #5271FF;
+}
+
+.list-pages, .list-options {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  padding: 0;
+  margin: 0;
+}
+
+.list-pages li, .list-options li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.list-pages li a, .list-options li a, .nav-options a {
+  display: flex;
+  align-items: center;
+}
+
+.list-pages li a svg, .list-options li a svg, .nav-options a svg {
+  width: 1.7em;
+  height: 1.7em;
+  margin-right: 0.5em;
+}
+
+.list-pages li a span, .list-options li a span, .nav-options a span {
+  color: #FAFAFA;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 1.2em;
+}
+
+.list-pages li a, .list-options li a, .nav-options a{
+  color: #8a8a8a;
+  transition: color 0.25s;
+}
+
+.list-pages li a:hover, .list-options li a:hover, .nav-options a:hover {
+  color: #5271FF;
+}
+
+.nav-options {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5em;
+}
+
+#navBar {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5em;
+  justify-content: start;
+  padding: 4vh 6vh 0 4vh;
+  background-color: #252525;
+  min-height: 100vh;
+  width: 21vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#navBar img {
+  height: 10vh;
+}
