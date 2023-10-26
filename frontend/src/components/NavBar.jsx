@@ -1,7 +1,7 @@
 function NavPages() {
   return (
-    <div className="nav-pages">
-        <ul className="list-pages">
+    <section className="nav-pages">
+        <ul className="nav-list">
             <li className="activate">
                 <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -44,7 +44,7 @@ function NavPages() {
                 </a>
             </li>
         </ul>
-    </div>
+    </section>
   )
 }
 
@@ -52,8 +52,8 @@ function NavPages() {
 function NavOptions() {
     return(
         <>
-            <div className="nav-options">
-                <ul className="list-options">
+            <section className="nav-options nav-list">
+                <ul className="nav-list">
                     <li>
                         <a href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -78,7 +78,7 @@ function NavOptions() {
                     </svg>
                     <span>Ayuda & Soporte</span>
                 </a>
-            </div>
+            </section>
         </>
     )
 }
