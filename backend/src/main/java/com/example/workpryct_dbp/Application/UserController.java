@@ -6,12 +6,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.workpryct_dbp.Domain.*;
+import com.example.workpryct_dbp.DTO.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "http://localhost:5173", maxAge = 3600, allowCredentials = "true")
 public class UserController {
     private final UserService userService;
 
@@ -33,6 +36,21 @@ public class UserController {
             return userService.getUserById(id);
         }
     } // False if not found (with id)
+
+    @GetMapping("/limits")
+    public ResponseEntity<List<UserMiniPreview>> getUsersByLimits(@RequestParam int limit) {
+        List<User> users = userService.getAllUsers();
+        if (limit > users.size())
+            limit = users.size();
+
+        List<UserMiniPreview> usersMiniPreview = new ArrayList<>();
+
+        for (int i = 0; i < limit; i++) {
+            usersMiniPreview.add(new UserMiniPreview(users.get(i)));
+        }
+
+        return new ResponseEntity<>(usersMiniPreview, HttpStatus.OK);
+    } // Returns users by limits
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {

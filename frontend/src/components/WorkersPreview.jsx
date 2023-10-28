@@ -7,7 +7,6 @@ function WorkersPreview({title, workers, expand, textExpand}) {
             <article className="workers-preview-info">
                 {workers.map((worker) => (
                     <WorkerPreviewMini 
-                        key={worker.id}
                         name={worker.name}
                         occupation={worker.occupation}
                         location={worker.location}

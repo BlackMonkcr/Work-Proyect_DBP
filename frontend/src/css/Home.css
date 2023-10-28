@@ -28,7 +28,7 @@
 }
 
 .nav-list a svg {
-  width: 3.5vh;
+  width: 3.5vw;
   height: 3.5vh;
   margin-right: 0.5em;
 }
@@ -55,10 +55,10 @@
   flex-direction: column;
   row-gap: 4em;
   justify-content: start;
-  padding: 4vh 5vh 0 3vh;
+  padding: 4vh 3vw 0 1vw;
   background-color: #252525;
   min-height: 100vh;
-  width: 28vh;
+  width: 15vw;
 
   position: fixed;
   top: 0;
@@ -66,15 +66,15 @@
 }
 
 #navBar img {
-  height: 12vh;
-  width: 26vh;
+  height: 13vh;
+  width: 14vw;
 }
 
 /* End Styles navBar */
 
 /* -------------------------------------------------------------------------- */
 
-/* Start Styles WorkerPreviews */
+/* Start Styles WorkerPreviewMini */
 
 .worker-preview-mini {
   display: flex;
@@ -97,19 +97,30 @@
 }
 
 .worker-preview-mini:hover .worker-preview-mini_button-more-info {
-  transform: translateX(3px);
+  transform: translateX(5px);
 }
 
 .worker-preview-mini_profile-picture {
-  height: 5vh;
-  width: 5vh;
+  height: 32px;
+  width: 32px;
   border-radius: 50%;
+  border: 2px solid #5271FF;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.worker-preview-mini_content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3.5em;
+  width: 100%;
+  border-bottom: 1px solid #E8E8E8;
+
 }
 
 .worker-preview-mini_header {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #E8E8E8;
 }
 
 .worker-preview-mini_name {
@@ -133,15 +144,20 @@
   color: #5271FF;
   width: 1.2em;
   height: 1.2em;
-  margin-left: 1em;
 }
+
+/* End Styles WorkerPreviewMini */
+
+/* -------------------------------------------------------------------------- */
+
+/* Start Styles WorkersPreview */
 
 .workers-preview-info {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
   background-color: #ffffff;
-  padding: 1.5em 1em;
+  padding: 1.2em 1em;
   border-radius: 10px;
 }
 
@@ -162,24 +178,48 @@
   text-align: center;
 }
 
+/* End Styles WorkersPreview */
+
+/* -------------------------------------------------------------------------- */
+
+/* Start Styles NavWorkersPreview */
+
 #nav-preview-worker {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 2vh 4vh;
-  padding-top: 0;
+  padding: 0 2vw;
   background-color: #252525;
-  min-height: 100vh;
-  width: 40vh;
+  height: 90vh;
+  width: 18vw;
 
   position: fixed;
-  top: 0;
+  bottom: 0;
   right: 0;
 }
 
 #nav-preview-worker_info {
   display: flex;
   flex-direction: column;
-  row-gap: 8vh;
-  margin-bottom: 4vh;
+  row-gap: 2vh;
+  margin-bottom: 2vh;
+  max-height: 90vh;
 }
+
+/* End Styles NavWorkersPreview */
+
+/* -------------------------------------------------------------------------- */
+
+.nav-bar_info {
+  display: flex;
+  flex-direction: row;
+  padding: 2vh 4vw;
+  min-width: 73vw;
+  height: 6vh;
+  background-color: #252525;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
