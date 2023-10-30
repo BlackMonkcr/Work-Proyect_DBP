@@ -186,7 +186,7 @@
 #nav-preview-worker {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 0 2vw;
   background-color: #252525;
   height: 90vh;
@@ -201,11 +201,11 @@
 #nav-preview-worker_info {
   display: flex;
   flex-direction: column;
-  justify-content:center;
-  margin-bottom: 2vh;
+  justify-content:ceter;
+  margin-top: 5%;
   height: 100%;
   max-height: 90vh;
-  gap: 15%;
+  gap: 5%;
 }
 
 /* End Styles NavWorkersPreview */
