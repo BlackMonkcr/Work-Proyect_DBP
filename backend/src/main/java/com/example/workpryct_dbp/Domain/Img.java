@@ -40,6 +40,11 @@ public class Img {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "worker_id", referencedColumnName = "worker_id")
+    private Worker worker;
+
     // ---------------------------------------------------------------------------------------------
     // Constructors (Constructor Default implemented with Lombok)
 
