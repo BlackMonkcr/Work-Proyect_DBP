@@ -68,7 +68,7 @@ public class ClientService {
         return false;
     } // False if not found
 
-    public Set<Worker> getFavoriteClients(Long id) {
+    public Set<Worker> getFavoriteWorkers(Long id) {
         Optional<Client> clientOptional = clientRepository.findById(id);
         if (clientOptional.isPresent()) {
             Client client = clientOptional.get();
@@ -112,11 +112,16 @@ public class ClientService {
         return null;
     } // False if not found
 
-    public Client addFavoriteWorkers(Long id, Set<Worker> workers) {
+    public Client addFavoriteWorkers(Long id, Set<Long> workers_id) {
         Optional<Client> clientOptional = clientRepository.findById(id);
         if (clientOptional.isPresent()) {
             Client client = clientOptional.get();
-            client.getFavorite_workers().addAll(workers);
+            for (Long worker_id : workers_id) {
+                Optional<Worker> workerOptional = workerRepository.findById(worker_id);
+                if (workerOptional.isPresent()) {
+                    client.getFavorite_workers().add(workerOptional.get());
+                }
+            }
             clientRepository.save(client);
             return client;
         }
