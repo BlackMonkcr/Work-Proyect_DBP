@@ -1,5 +1,6 @@
 package com.example.workpryct_dbp.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -31,7 +32,7 @@ public class Plan {
     @Column(name = "description", nullable = false, length = 500)
     private String description;
 
-    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "plan")
     private Set<Worker> workers;
 

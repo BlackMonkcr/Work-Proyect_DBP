@@ -1,5 +1,6 @@
 package com.example.workpryct_dbp.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -60,19 +61,18 @@ public class User {
     @Column(name = "rating", nullable = false)
     private Double rating;
 
-    @JsonManagedReference
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Img profile_picture;
 
-    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "recipient")
     private List<Review> receivedReviews;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Client client; // Add relation in Client
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Worker worker; // Add relation in Worker
 

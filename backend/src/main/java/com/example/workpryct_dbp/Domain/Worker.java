@@ -1,5 +1,6 @@
 package com.example.workpryct_dbp.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -53,20 +54,17 @@ public class Worker {
     @Column(name = "occupation", nullable = false)
     private String Occupation;
 
-    @JsonManagedReference
     @OneToOne
     private User user;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "plan_id", referencedColumnName = "plan_id")
     private Plan plan;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "worker")
     private Set<Img> work_images;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToMany(mappedBy = "favorite_workers")
     private Set<Client> favorite_clients = new HashSet<>();
 }

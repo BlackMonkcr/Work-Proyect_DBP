@@ -27,11 +27,9 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long client_id;
 
-    @JsonManagedReference
     @OneToOne
     private User user;
 
-    @JsonManagedReference
     @ManyToMany
     @JoinTable(
         name = "favorite_workers",

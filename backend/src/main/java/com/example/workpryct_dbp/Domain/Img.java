@@ -35,12 +35,12 @@ public class Img {
     @Column(name = "upload_date", nullable = false)
     private Date upload_date;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "worker_id", referencedColumnName = "worker_id")
     private Worker worker;
