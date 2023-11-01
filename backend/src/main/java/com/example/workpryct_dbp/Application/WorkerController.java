@@ -36,7 +36,9 @@ public class WorkerController {
     } // Returns worker by id
 
     @PostMapping
-    public ResponseEntity<Worker> createWorker(@RequestBody User user, @RequestBody Worker worker) {
+    public ResponseEntity<Worker> createWorker(@RequestBody WorkerRequest workerRequest) {
+        User user = workerRequest.getUser();
+        Worker worker = workerRequest.getWorker();
         return new ResponseEntity<>(workerService.createWorker(user, worker), HttpStatus.CREATED);
     } // Returns created worker
 

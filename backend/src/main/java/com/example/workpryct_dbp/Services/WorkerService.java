@@ -50,7 +50,7 @@ public class WorkerService {
         user.setWorker(worker);
         userRepository.save(user);
         return worker;
-    } // Returns created client
+    } // Returns created worker
 
     public Worker updateWorker(Long id, User user) {
         Optional<Worker> workerOptional = workerRepository.findById(id);
