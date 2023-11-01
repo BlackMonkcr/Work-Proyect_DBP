@@ -63,7 +63,7 @@ public class Worker {
     private Plan plan;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "worker")
     private Set<Img> work_images;
 
     @JsonBackReference
