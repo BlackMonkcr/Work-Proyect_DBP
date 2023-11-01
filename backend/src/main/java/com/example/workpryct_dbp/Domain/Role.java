@@ -1,4 +1,4 @@
-package com.example.workpryct_dbp.Domain;
+/*package com.example.workpryct_dbp.Domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,8 +23,8 @@ public class Role {
     @Enumerated(EnumType.STRING)
     private RoleUser role;
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users = new HashSet<>();
+    //@ManyToMany(mappedBy = "roles")
+    //private Set<User> users = new HashSet<>();
 
     // ---------------------------------------------------------------------------------------------
     // Constructors (Constructor Default & AllArgs implemented with Lombok)
@@ -52,3 +52,4 @@ public class Role {
         }
     }
 }
+*/

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/subscription")
+@CrossOrigin(origins = "*")
 public class SubscriptionController {
     private final SubscriptionService subscriptionService;
 
