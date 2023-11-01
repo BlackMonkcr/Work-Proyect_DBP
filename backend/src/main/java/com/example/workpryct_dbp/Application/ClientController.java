@@ -86,7 +86,7 @@ public class ClientController {
         }
     } // Returns updated client
 
-    @PostMapping("/favorite_workers")
+    @PostMapping("/favorite_workers/all")
     public ResponseEntity<?> addFavoriteWorker(@RequestParam Long id, @RequestBody Set<Long> worker) {
         if (clientService.getClientById(id).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -95,7 +95,7 @@ public class ClientController {
         }
     } // Returns updated client
 
-    @DeleteMapping("/favorite_workers")
+    @DeleteMapping("/favorite_workers/all")
     public ResponseEntity<?> deleteAllFavoriteWorker(@RequestParam Long id) {
         if (clientService.getClientById(id).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
