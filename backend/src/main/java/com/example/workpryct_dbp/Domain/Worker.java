@@ -52,7 +52,7 @@ public class Worker {
     private type_nacional_id type_nacional_id;
 
     @Column(name = "occupation", nullable = false)
-    private String Occupation;
+    private String occupation;
 
     @OneToOne
     private User user;
