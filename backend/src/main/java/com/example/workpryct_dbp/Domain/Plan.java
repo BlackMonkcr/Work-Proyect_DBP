@@ -33,7 +33,7 @@ public class Plan {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "plan")
-    private Set<User> users;
+    private Set<Worker> workers;
 
     // ---------------------------------------------------------------------------------------------
     // Constructors (Constructor Default implemented with Lombok)

@@ -65,4 +65,8 @@ public class Worker {
     @JsonManagedReference
     @OneToMany(mappedBy = "user")
     private Set<Img> work_images;
+
+    @JsonBackReference
+    @ManyToMany(mappedBy = "favorite_workers")
+    private Set<Client> favorite_clients = new HashSet<>();
 }

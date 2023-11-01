@@ -43,9 +43,14 @@ public class ImgController {
     } // Returns Img by url
 
     @PostMapping
-    public ResponseEntity<Img> createImg(@RequestBody Img img) {
-        return new ResponseEntity<>(imgService.createImg(img), HttpStatus.CREATED);
-    } // Returns created plan
+    public ResponseEntity<Img> createImg_profilePicture(@RequestBody Img img, @RequestParam Long user_id) {
+        return new ResponseEntity<>(imgService.createImage_ProfilePicture(user_id, img), HttpStatus.CREATED);
+    } // Returns created profile_picture
+
+    @PostMapping("/upload")
+    public ResponseEntity<Img> createImg_workerPicture(@RequestBody Img img, @RequestParam Long worker_id) {
+        return new ResponseEntity<>(imgService.addWorkerPicture(worker_id, img), HttpStatus.CREATED);
+    } // Returns created worker_picture
 
     @PutMapping
     public ResponseEntity<Img> updateImg(@RequestParam Long id, @RequestBody Img img) {
@@ -54,7 +59,7 @@ public class ImgController {
         } else {
             return new ResponseEntity<>(imgService.updateImg(id, img), HttpStatus.OK);
         }
-    } // Returns updated plan
+    } // Returns updated Img
 
     @PatchMapping
     public ResponseEntity<Img> pathImg(@RequestParam Long id, @RequestBody Img img) {
@@ -63,25 +68,26 @@ public class ImgController {
         } else {
             return new ResponseEntity<>(imgService.patchImgDescription(id, img), HttpStatus.OK);
         }
-    } // Returns updated plan
+    } // Returns updated Img
 
-    @DeleteMapping
-    public ResponseEntity<Img> deleteImg(@RequestParam Long id) {
-        if (imgService.getImgById(id).isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            imgService.deleteImg(id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-    } // Deletes plan
-
-    @GetMapping("/user")
-    public ResponseEntity<User> getUserByImg(@RequestParam Long img_id) {
+    @DeleteMapping("/worker")
+    public ResponseEntity<Img> deleteImgWorker(@RequestParam Long img_id, @RequestParam Long worker_id) {
         if (imgService.getImgById(img_id).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(imgService.getUserByImg(img_id), HttpStatus.OK);
+            imgService.removeWorkerPicture(worker_id, img_id);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
-    } // Returns user who uploaded img
+    } // Deletes worker_picture
+
+    @DeleteMapping("/profile_picture")
+    public ResponseEntity<Img> deleteImgProfilePicture(@RequestParam Long img_id, @RequestParam Long user_id) {
+        if (imgService.getImgById(img_id).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            imgService.removeUserPicture(user_id, img_id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    } // Deletes profile_picture
 
 }

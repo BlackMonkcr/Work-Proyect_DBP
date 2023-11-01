@@ -77,11 +77,11 @@ public class PlanController {
     } // Deletes plan
 
     @GetMapping("/users")
-    public ResponseEntity<Set<User>> getUsersByPlan(@RequestParam Long plan_id) {
+    public ResponseEntity<Set<Worker>> getUsersByPlan(@RequestParam Long plan_id) {
         if (planService.getPlanById(plan_id).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(planService.getUsersByPlan(plan_id), HttpStatus.OK);
+            return new ResponseEntity<>(planService.getWorkersByPlan(plan_id), HttpStatus.OK);
         }
     } // Returns users subscribed to plan
 }

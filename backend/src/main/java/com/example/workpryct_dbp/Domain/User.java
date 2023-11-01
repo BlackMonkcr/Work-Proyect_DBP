@@ -43,7 +43,10 @@ public class User {
     private String password;
 
     @Column(name = "location", nullable = false)
-    private String location;
+    private String precise_location;
+
+    @Column(name = "city", nullable = false)
+    private String city;
 
     @Column(name = "is_verified", nullable = false)
     private Boolean is_verified;
@@ -61,15 +64,9 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Img profile_picture;
 
-    /*
     @JsonManagedReference
-    @ManyToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Review> reviews; // Add relation in Review
-
-    @JsonManagedReference
-    @ManyToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Review> send_reviews; // Add relation in Review
-     */
+    @OneToMany(mappedBy = "recipient")
+    private List<Review> receivedReviews;
 
     @JsonBackReference
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)

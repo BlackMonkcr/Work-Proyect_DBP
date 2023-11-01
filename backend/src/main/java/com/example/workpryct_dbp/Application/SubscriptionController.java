@@ -15,17 +15,17 @@ public class SubscriptionController {
     }
 
     @PostMapping
-    public void subscribeUser(@RequestParam Long plan_id, @RequestParam Long user_id) {
-        subscriptionService.subscribeUser(plan_id, user_id);
+    public void subscribeWorker(@RequestParam Long plan_id, @RequestParam Long worker_id) {
+        subscriptionService.subscribeWorker(plan_id, worker_id);
     } // Subscribes user to plan
 
     @PutMapping
-    public void changePlan(@RequestParam Long plan_id, @RequestParam Long user_id) {
-        subscriptionService.changePlan(plan_id, user_id);
+    public void changePlan(@RequestParam Long plan_id, @RequestParam Long worker_id) {
+        subscriptionService.changePlan(plan_id, worker_id);
     } // Changes user's plan
 
     @DeleteMapping
-    public void unsubscribeUser(@RequestParam Long plan_id, @RequestParam Long user_id) {
-        subscriptionService.unsubscribeUser(plan_id, user_id);
+    public void unsubscribeUser(@RequestParam Long plan_id, @RequestParam Long worker_id) {
+        subscriptionService.unsubscribeWorker(plan_id, worker_id);
     } // Unsubscribes user from plan
 }

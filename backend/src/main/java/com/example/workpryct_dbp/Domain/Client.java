@@ -30,4 +30,13 @@ public class Client {
     @JsonManagedReference
     @OneToOne
     private User user;
+
+    @JsonManagedReference
+    @ManyToMany
+    @JoinTable(
+        name = "favorite_workers",
+        joinColumns = @JoinColumn(name = "client_id"),
+        inverseJoinColumns = @JoinColumn(name = "worker_id")
+    )
+    private Set<Worker> favorite_workers = new HashSet<>();
 }
