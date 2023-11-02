@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -48,4 +49,9 @@ public class Plan {
     // ---------------------------------------------------------------------------------------------
     // Getters and Setters (Implemented with Lombok)
     // ---------------------------------------------------------------------------------------------
+
+    @PrePersist
+    public void prePersist() {
+        this.workers = new HashSet<>();
+    }
 }

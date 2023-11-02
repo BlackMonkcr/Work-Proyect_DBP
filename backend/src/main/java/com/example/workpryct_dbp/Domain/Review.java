@@ -49,4 +49,9 @@ public class Review {
     //
     // Getters and Setters (Implemented with Lombok)
     // ---------------------------------------------------------------------------------------------
+
+    @PrePersist
+    public void prePersist() {
+        this.date = new Date();
+    }
 }

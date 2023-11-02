@@ -59,4 +59,8 @@ public class Img {
     // Getters and Setters (Implemented with Lombok)
     // ---------------------------------------------------------------------------------------------
 
+    @PrePersist
+    public void prePersist() {
+        this.upload_date = new Date();
+    }
 }

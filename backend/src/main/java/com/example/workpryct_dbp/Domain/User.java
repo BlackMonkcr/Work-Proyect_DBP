@@ -9,10 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -91,4 +88,17 @@ public class User {
     //
     // Getters and Setters (Implemented with Lombok)
     // ---------------------------------------------------------------------------------------------
+
+    @PrePersist
+    public void prePersist() {
+        this.is_verified = false;
+        this.registration_date = new Date();
+        this.number_reviews = 0;
+        this.rating = 0.0;
+        this.receivedReviews = new ArrayList<>();
+        /*if (profile_picture == null) {
+            this.profile_picture = createDefaultProfilePicture();
+        }*/
+    }
+
 }

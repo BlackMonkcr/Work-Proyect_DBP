@@ -67,4 +67,12 @@ public class Worker {
     @JsonIgnore
     @ManyToMany(mappedBy = "favorite_workers")
     private Set<Client> favorite_clients = new HashSet<>();
+
+    @PrePersist
+    public void prePersist() {
+        this.is_premium = false;
+        this.plan = null;
+        this.work_images = new HashSet<>();
+        this.favorite_clients = new HashSet<>();
+    }
 }

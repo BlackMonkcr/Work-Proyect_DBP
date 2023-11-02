@@ -37,4 +37,9 @@ public class Client {
         inverseJoinColumns = @JoinColumn(name = "worker_id")
     )
     private Set<Worker> favorite_workers = new HashSet<>();
+
+    @PrePersist
+    public void prePersist() {
+        this.favorite_workers = new HashSet<>();
+    }
 }
