@@ -7,14 +7,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UserMiniPreview {
+public class WorkerMiniPreview {
     private Long id;
     private String name;
     private String occupation;
     private String city;
     private String keyProfilePicture;
 
-    public UserMiniPreview(Worker worker) {
+    public WorkerMiniPreview(Worker worker) {
         this.id = worker.getWorker_id();
         this.name = worker.getUser().getName();
         this.occupation = worker.getOccupation();
@@ -22,5 +22,5 @@ public class UserMiniPreview {
         this.keyProfilePicture = worker.getUser().getUsername();
     }
 
-    public UserMiniPreview() {}
+    public WorkerMiniPreview() {}
 }

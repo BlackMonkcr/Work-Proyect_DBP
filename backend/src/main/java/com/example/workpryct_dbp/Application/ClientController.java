@@ -6,7 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.workpryct_dbp.Domain.*;
+import com.example.workpryct_dbp.DTO.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -76,10 +78,11 @@ public class ClientController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             Set<Worker> workers = clientService.getFavoriteWorkers(id);
-            if (workers.size() < limit) {
-                return new ResponseEntity<>(workers, HttpStatus.OK);
+            Set<WorkerMiniPreview> workerMiniPreviews = new HashSet<>();
+            for (int i = 0; i < limit && i < workers.size(); i++) {
+                workerMiniPreviews.add(new WorkerMiniPreview(workers.toArray(new Worker[0])[i]));
             }
-            return new ResponseEntity<>(workers.stream().limit(limit), HttpStatus.OK);
+            return new ResponseEntity<>(workerMiniPreviews, HttpStatus.OK);
         }
     } // Returns favorite worker
 
