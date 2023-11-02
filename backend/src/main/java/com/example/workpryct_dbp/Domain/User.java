@@ -1,5 +1,6 @@
 package com.example.workpryct_dbp.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -8,10 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -60,30 +58,29 @@ public class User {
     @Column(name = "rating", nullable = false)
     private Double rating;
 
-    @JsonManagedReference
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Img profile_picture;
 
-    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "recipient")
     private List<Review> receivedReviews;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Client client; // Add relation in Client
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Worker worker; // Add relation in Worker
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    /*@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
-
+    */
     // END BASE USER ATTRIBUTES
 
     // ---------------------------------------------------------------------------------------------
@@ -91,4 +88,17 @@ public class User {
     //
     // Getters and Setters (Implemented with Lombok)
     // ---------------------------------------------------------------------------------------------
+
+    @PrePersist
+    public void prePersist() {
+        this.is_verified = false;
+        this.registration_date = new Date();
+        this.number_reviews = 0;
+        this.rating = 0.0;
+        this.receivedReviews = new ArrayList<>();
+        /*if (profile_picture == null) {
+            this.profile_picture = createDefaultProfilePicture();
+        }*/
+    }
+
 }

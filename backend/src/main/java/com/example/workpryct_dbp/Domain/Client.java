@@ -27,11 +27,9 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long client_id;
 
-    @JsonManagedReference
     @OneToOne
     private User user;
 
-    @JsonManagedReference
     @ManyToMany
     @JoinTable(
         name = "favorite_workers",
@@ -39,4 +37,9 @@ public class Client {
         inverseJoinColumns = @JoinColumn(name = "worker_id")
     )
     private Set<Worker> favorite_workers = new HashSet<>();
+
+    @PrePersist
+    public void prePersist() {
+        this.favorite_workers = new HashSet<>();
+    }
 }

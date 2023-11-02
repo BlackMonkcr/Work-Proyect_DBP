@@ -12,6 +12,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/plan")
+@CrossOrigin(origins = "*")
 public class PlanController {
     private final PlanService planService;
 

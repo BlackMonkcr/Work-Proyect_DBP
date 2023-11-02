@@ -36,11 +36,9 @@ public class Review {
     @Column(name = "date", nullable = false)
     private Date date;
 
-    @JsonBackReference
     @ManyToOne
     private User sender;
 
-    @JsonBackReference
     @ManyToOne
     private User recipient;
 
@@ -51,4 +49,9 @@ public class Review {
     //
     // Getters and Setters (Implemented with Lombok)
     // ---------------------------------------------------------------------------------------------
+
+    @PrePersist
+    public void prePersist() {
+        this.date = new Date();
+    }
 }

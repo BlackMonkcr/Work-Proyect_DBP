@@ -1,5 +1,6 @@
 package com.example.workpryct_dbp.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -7,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -31,7 +33,7 @@ public class Plan {
     @Column(name = "description", nullable = false, length = 500)
     private String description;
 
-    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "plan")
     private Set<Worker> workers;
 
@@ -47,4 +49,9 @@ public class Plan {
     // ---------------------------------------------------------------------------------------------
     // Getters and Setters (Implemented with Lombok)
     // ---------------------------------------------------------------------------------------------
+
+    @PrePersist
+    public void prePersist() {
+        this.workers = new HashSet<>();
+    }
 }

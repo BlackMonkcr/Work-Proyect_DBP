@@ -1,4 +1,4 @@
-package com.example.workpryct_dbp.Domain;
+/*package com.example.workpryct_dbp.Domain;
 
 import org.springframework.security.core.GrantedAuthority;
 import java.io.Serializable;
@@ -12,3 +12,4 @@ public enum RoleUser implements GrantedAuthority, Serializable {
     }
 
 }
+ */
