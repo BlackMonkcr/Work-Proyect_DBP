@@ -14,7 +14,8 @@ function Home() {
   useEffect(() => {
     Axios({
       method: "GET",
-      url: "http://localhost:8080/user/limits?limit=3",
+      baseURL: "http://work.up.railway.app/",
+      url: "client/favorite_workers?id=1&limit=3",
     })
       .then((response) => {
         setUsers(response.data);

@@ -66,7 +66,10 @@
 }
 
 #navBar img {
-  height: 9em;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;  
 }
 
 /* End Styles navBar */
