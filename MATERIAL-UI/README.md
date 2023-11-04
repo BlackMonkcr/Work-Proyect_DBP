@@ -1,8 +1,12 @@
-# React + Vite
+## DBP-Proyecto-Cliente
+Cliente del proyecto NullPointer hecho con React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Es necesario instalar las librerias necesarias por medio del comando: 
 
-Currently, two official plugins are available:
+`npm i`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Por último, solo es necesario el comando: 
+
+`npm start`
+
+Con esto finalmente el cliente sera inicializado
