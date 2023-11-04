@@ -7,7 +7,7 @@ import Landing from "./components/principalCont/Landing";
 
 
 export default function App(){
-  const imageSrc = "./imagenes/Tomato.png";
+  
   return(
     <>
       <Navbar/>

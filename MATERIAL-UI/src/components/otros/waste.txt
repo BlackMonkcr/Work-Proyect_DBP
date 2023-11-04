@@ -36,3 +36,54 @@ export default function Navbar(){
         </>
     );
 }  
+/////////////
+LANDING
+
+
+import React from "react";
+
+import { Grid, Container } from '@mui/material';
+
+
+
+function Landing() {
+  return (
+    <Container  maxWidth={false} style={{position:"static",padding:"0",marginLeft:"20px",marginRight:"0"}}  >
+        <Grid
+        container
+        
+      >
+        <Grid item
+          sm={8}
+          lg={8}
+          xl={8}
+          
+        >
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui
+            aspernatur perferendis ipsum veniam, nostrum eos quaerat sequi sed,
+            quisquam minima provident, ad magnam saepe impedit voluptatem
+            ratione quas molestias! Nisi.
+          </p>
+        </Grid>
+        <Grid item
+          sm={4}
+          lg={4}
+          xl={4}
+          
+        >
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui
+            aspernatur perferendis ipsum veniam, nostrum eos quaerat sequi sed,
+            quisquam minima provident, ad magnam saepe impedit voluptatem
+            ratione quas molestias! Nisi.
+          </p>
+        </Grid>
+        
+      </Grid>
+
+    </Container>
+  );
+}
+
+export default Landing;

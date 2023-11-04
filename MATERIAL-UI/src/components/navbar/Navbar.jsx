@@ -19,12 +19,13 @@ export default function Navbar(){
                     <AddIcon/> 
                 </Icon>
                 <Typography variant="h5" color="secondary" sx={{ marginRight: '20px' }} style={{ fontWeight: 'bold', textShadow: '1px 0px 0px rgb(128, 128, 128' }}>Work</Typography>
-
+                    
                 <Button color="secondary" sx={{ marginRight: '18px', fontSize: '15px' }} style={{ fontWeight: 'bold'}}>Compañía</Button> 
                 <Button color="secondary" sx={{ marginRight: '18px', fontSize: '15px' }} style={{ fontWeight: 'bold'}}>Ayuda</Button>  
                 <Button color="secondary"sx={{ marginRight: '18px', fontSize: '15px' }} style={{ fontWeight: 'bold'}}>Contacto</Button>  
 
-                <Button color="secondary" variant="contained"  sx={{ marginLeft: 'auto', marginRight: '10px',color: '#5271FF' , borderRadius: 3}}>Regístrate</Button>
+                <Button color="secondary"  sx={{ marginLeft: 'auto', marginRight: '5px',  fontSize: '15px'}}>Iniciar Sesion</Button>
+                <Button color="secondary" variant="contained"  sx={{  marginRight: '10px',color: '#5271FF' , borderRadius: 3}}>Regístrate</Button>
             </Toolbar>
         </AppBar>
         </>
