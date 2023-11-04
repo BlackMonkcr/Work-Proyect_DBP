@@ -1,0 +1,89 @@
+<Container  sx={{border:0.5,boxShadow:3,pb:2}}>
+<h1>App</h1>
+      <Typography variant="h3">h3 titulo</Typography>
+
+      <Button variant="contained"> botton</Button>
+</Container>
+
+
+ <Toolbar style={{textShadow: '1px 0px 0px rgb(128, 128, 128' }}>
+           /////
+import { AppBar,Button,Drawer, Icon, IconButton, Toolbar, Typography } from "@mui/material";
+import { useState } from "react";
+
+import AddIcon from '@mui/icons-material/Add';
+import  "./Style.css";
+
+export default function Navbar(){
+    const [open,setOpen]=useState(false);
+
+    return(
+        <>
+        <AppBar position="static" style={{ background: 'linear-gradient(to right, #4cc9f0, #4361ee)'}}>
+            <Toolbar>
+                <Icon color="secondary" >  
+                    <AddIcon/> 
+                </Icon>
+                <Typography variant="h5" color="secondary" sx={{ marginRight: '20px' }} style={{ fontWeight: 'bold', textShadow: '1px 0px 0px rgb(128, 128, 128' }}>Work</Typography>
+
+                <Button color="inherit" sx={{ marginRight: '18px', fontSize: '15px' }} style={{ fontWeight: 'bold'}}>Compañía</Button> 
+                <Button color="inherit" sx={{ marginRight: '18px', fontSize: '15px' }} style={{ fontWeight: 'bold'}}>Ayuda</Button>  
+                <Button color="inherit" sx={{ marginRight: '18px', fontSize: '15px' }} style={{ fontWeight: 'bold'}}>Contacto</Button>  
+
+                <Button color="secondary" variant="contained" className="registrate" sx={{ marginLeft: 'auto', marginRight: '10px',color: 'red' , borderRadius: 3}}>Regístrate</Button>
+            </Toolbar>
+        </AppBar>
+        </>
+    );
+}  
+/////////////
+LANDING
+
+
+import React from "react";
+
+import { Grid, Container } from '@mui/material';
+
+
+
+function Landing() {
+  return (
+    <Container  maxWidth={false} style={{position:"static",padding:"0",marginLeft:"20px",marginRight:"0"}}  >
+        <Grid
+        container
+        
+      >
+        <Grid item
+          sm={8}
+          lg={8}
+          xl={8}
+          
+        >
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui
+            aspernatur perferendis ipsum veniam, nostrum eos quaerat sequi sed,
+            quisquam minima provident, ad magnam saepe impedit voluptatem
+            ratione quas molestias! Nisi.
+          </p>
+        </Grid>
+        <Grid item
+          sm={4}
+          lg={4}
+          xl={4}
+          
+        >
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui
+            aspernatur perferendis ipsum veniam, nostrum eos quaerat sequi sed,
+            quisquam minima provident, ad magnam saepe impedit voluptatem
+            ratione quas molestias! Nisi.
+          </p>
+        </Grid>
+        
+      </Grid>
+
+    </Container>
+  );
+}
+
+export default Landing;
