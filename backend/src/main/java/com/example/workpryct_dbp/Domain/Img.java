@@ -35,10 +35,15 @@ public class Img {
     @Column(name = "upload_date", nullable = false)
     private Date upload_date;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "worker_id", referencedColumnName = "worker_id")
+    private Worker worker;
 
     // ---------------------------------------------------------------------------------------------
     // Constructors (Constructor Default implemented with Lombok)
@@ -54,4 +59,8 @@ public class Img {
     // Getters and Setters (Implemented with Lombok)
     // ---------------------------------------------------------------------------------------------
 
+    @PrePersist
+    public void prePersist() {
+        this.upload_date = new Date();
+    }
 }
