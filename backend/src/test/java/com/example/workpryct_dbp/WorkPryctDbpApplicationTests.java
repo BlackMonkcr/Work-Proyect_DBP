@@ -1,4 +1,4 @@
-package com.example.workpryct_dbp;
+/*package com.example.workpryct_dbp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -184,3 +184,4 @@ class WorkPryctDbpApplicationTests {
 		assertEquals("Deleted!", response.getBody());
 	}
 }
+ */

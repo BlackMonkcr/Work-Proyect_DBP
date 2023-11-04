@@ -2,6 +2,7 @@ package com.example.workpryct_dbp.Services;
 
 import com.example.workpryct_dbp.Domain.Plan;
 import com.example.workpryct_dbp.Domain.User;
+import com.example.workpryct_dbp.Domain.Worker;
 import com.example.workpryct_dbp.Infrastructure.PlanRepository;
 import com.example.workpryct_dbp.Infrastructure.UserRepository;
 
@@ -58,8 +59,8 @@ public class PlanService {
         planRepository.deleteById(id);
     } // Deletes plan
 
-    public Set<User> getUsersByPlan(Long plan_id) {
+    public Set<Worker> getWorkersByPlan(Long plan_id) {
         Plan plan = planRepository.findById(plan_id).orElseThrow();
-        return plan.getUsers();
+        return plan.getWorkers();
     } // Returns users subscribed to plan
 }
