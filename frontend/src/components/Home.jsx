@@ -6,9 +6,7 @@ import NavWorkersPreview from "./NavWorkersPreview";
 import NavBarInfo from "./NavBarInfo";
 
 function Home() {
-
   // Get the 3 first users from the database
-
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -25,11 +23,22 @@ function Home() {
       });
   }, [setUsers]);
 
-
   /*--------------------------RETURN COMPONENT--------------------------*/
 
   return (
     <>
+      {/* Agrega la barra de búsqueda aquí */}
+      <div class="nav">
+  <div class="search-bar">
+    <input type="text" placeholder="Electricista, Pintor, etc..." />
+  </div>
+  <div class="home">
+    <a href="#">Home</a>
+  </div>
+</div>
+
+
+
       <NavBar />
       <NavWorkersPreview
         favoriteWorkers={users}

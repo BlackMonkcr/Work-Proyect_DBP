@@ -218,13 +218,54 @@
 .nav-bar_info {
   display: flex;
   flex-direction: row;
-  padding: 2vh 4vw;
+  align-items: center; /* Centra verticalmente */
+  justify-content: center; /* Centra horizontalmente */
+  padding: 3vh 4vw;
   min-width: 73vw;
   height: 6vh;
   background-color: #252525;
-
   position: fixed;
   top: 0;
   right: 0;
 }
 
+.nav-bar_info-text {
+  font-size: 1.6em;
+  color: #ffffff; /* Cambia el color a tu preferencia */
+  font-weight: bold; /* Aplica negrita */
+  text-align: left;
+  padding-right: 1000px;
+  /* Otros estilos que desees aplicar */
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #252525;
+  padding: 20px;
+}
+
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 720px;
+  width: 100%;
+  background-color: #252525;
+  padding: 25px;
+  z-index: 10; /* Asegura que esté por encima de otros elementos */
+  }
+
+
+  .search-bar input {
+    width: 30%;
+    padding: 8px;
+    border: none;
+    border-radius: 7px;
+    background-color: #f2f2f2;
+    color: #252525;
+    margin-right: 10px;
+  }
