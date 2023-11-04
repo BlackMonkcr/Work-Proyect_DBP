@@ -6,7 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.workpryct_dbp.Domain.*;
+import com.example.workpryct_dbp.DTO.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -36,7 +38,9 @@ public class ClientController {
     } // Returns client by id
 
     @PostMapping
-    public ResponseEntity<Client> createClient(@RequestBody User user, @RequestBody Client client) {
+    public ResponseEntity<Client> createClient(@RequestBody ClientRequest clientRequest) {
+        User user = clientRequest.getUser();
+        Client client = clientRequest.getClient();
         return new ResponseEntity<>(clientService.createClient(user, client), HttpStatus.CREATED);
     } // Returns created client
 
@@ -59,7 +63,7 @@ public class ClientController {
         }
     } // Deletes client
 
-    @GetMapping("/favorite_workers")
+    @GetMapping("/favorite_workers/all")
     public ResponseEntity<?> getFavoriteWorkers(@RequestParam Long id) {
         if (clientService.getClientById(id).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -67,6 +71,20 @@ public class ClientController {
             return new ResponseEntity<>(clientService.getFavoriteWorkers(id), HttpStatus.OK);
         }
     } // Returns favorite workers
+
+    @GetMapping("/favorite_workers")
+    public ResponseEntity<?> getFavoriteWorker(@RequestParam Long id, @RequestParam Long limit) {
+        if (clientService.getClientById(id).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            Set<Worker> workers = clientService.getFavoriteWorkers(id);
+            Set<WorkerMiniPreview> workerMiniPreviews = new HashSet<>();
+            for (int i = 0; i < limit && i < workers.size(); i++) {
+                workerMiniPreviews.add(new WorkerMiniPreview(workers.toArray(new Worker[0])[i]));
+            }
+            return new ResponseEntity<>(workerMiniPreviews, HttpStatus.OK);
+        }
+    } // Returns favorite worker
 
     @PostMapping("/favorite_workers")
     public ResponseEntity<?> addFavoriteWorker(@RequestParam Long id, @RequestParam Long worker) {
