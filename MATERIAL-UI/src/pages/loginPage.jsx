@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Form } from "../components/login/form.js";
-import { NavBar } from "../components/navbar/navbar";
+import { Form } from "../components/form.jsx";
+import { NavBar } from "../components/navbar.jsx";
 const fields = [
     {key: "username",name: "username",label: "Usuario",prop: { type: "text" } },
     {key: "password",name: "password",label: "Contraseña",prop: { type: "password" } }
@@ -17,11 +17,6 @@ export const Login = () => {
 
     const handleUser = async (e) => {
         e.preventDefault();
-        //const errors = await api_login(fields, data); Aqui se haria la llamada al backend pasando los datos
-        /*if (!checkErrors(errors)){
-            NotificationManager.success("Redirigiendo...", "Logeo exitoso", 2000);
-            setTimeout(() => navigate("/dashboard"), 2000);
-        }*/
     };
 
     return (

@@ -1,11 +1,11 @@
-import { AppBar,Button, Icon, Toolbar, Typography } from "@mui/material";
+import { AppBar,Button, Toolbar } from "@mui/material";
 
 export const NavBar = () => {
     
     return(
         <>
         
-        <AppBar position="static" style={{ background: 'linear-gradient(to right, #9AB4FF, #12229D '}}>
+        <AppBar position="static" style={{ background: '#9AB4FF', boxShadow: 'none'}}>
 
             <Toolbar >
                 <a className="navbar-brand d-flex align-items-center" href="#">
