@@ -1,11 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './css/index.css'
-import Home from './components/Home.jsx'
-
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './css/index.css';
+import Signup from './signup-web/signup'; // Importa el componente de registro
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
-    <Home />
+    <Signup /> {}
   </>,
-)
+);
+
