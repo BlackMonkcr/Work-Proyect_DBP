@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import './signup.css';
+import './Signup.css';
 
 function Signup() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [district, setDistrict] = useState('');
+  const [name, setName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [address, setAddress] = useState('');
 
   const handleSignup = (e) => {
     e.preventDefault();
@@ -14,6 +18,10 @@ function Signup() {
     setUsername('');
     setEmail('');
     setPassword('');
+    setDistrict('');
+    setName('');
+    setPhoneNumber('');
+    setAddress('');
   }
 
   return (
@@ -30,6 +38,15 @@ function Signup() {
         </div>
       </div>
       <form className="signup-form" onSubmit={handleSignup}>
+      <div>
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="input-field"
+          />
+        </div>
         <div>
           <input
             type="text"
@@ -57,20 +74,43 @@ function Signup() {
             className="input-field"
           />
         </div>
+        <div>
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            className="input-field"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="District"
+            value={district}
+            onChange={(e) => setDistrict(e.target.value)}
+            className="input-field"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="Address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            className="input-field"
+          />
+        </div>
         <button type="submit" className="btn-register">
           Sign Up
         </button>
       </form>
       <p className="login-prompt">Do you have an account?</p>
-      <button type="button" className="login-button">
+      <Link type="button" className="login-button">
         Login
-      </button>
+      </Link>
     </div>
   );
 }
 
 export default Signup;
-
-
-
-
