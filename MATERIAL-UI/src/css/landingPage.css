@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 .title {
-    color: #0066ff;
+    color: #12229d;
     font-size: 5em;
 }
 
@@ -43,7 +43,7 @@
     margin: 0 auto;
     color: #FFFCF2;
     border-radius: 15px;
-    background: #0066FF; 
+    background: #2d4caa; 
     margin-top: 80px;
     padding: 15px 20px;
     border: none;
@@ -51,12 +51,36 @@
 }
 
 .bx_containt-button:hover{
-    background-color: #1d34e0;
+    background-color: #12229D;
     transform: scale(1.1);
 }
 
 .box-img {
-    background-image: url("../../public/img/alternative-img.png");
+    background-image: url("../../public/img/landing-bck-4.png");
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
+}
+
+.text-navbar {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.5em;
+    color: #FFFCF2;
+}
+
+.text-navbar-options {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    padding: 8px 18px;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.nv-op-signup:hover {
+    background-color: #0c197983;
 }
