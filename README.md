@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="638" height="304" src=".\Banner-Logo-Options\Name-bg_Dark.png">
+  <img width="638" height="304" src=".\logos\logo3.png">
 </p>
 
 ## Presentación
