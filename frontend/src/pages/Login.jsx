@@ -2,11 +2,34 @@ import React, { useState } from 'react';
 import '../css/Forms.css';
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    try {
+      const response = await fetch(`https://work.up.railway.app/api/v1/auth/signin`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
+      });
+
+      const data = await response.text();
+
+      if (response.ok) {
+        setMessage('Login successful! Token: ' + data);
+        setIsLoggedIn(true);
+      } else {
+        setMessage('Login failed! ' + data);
+      }
+    } catch (error) {
+      setMessage('An error occurred: ' + error.message);
+    }
+
     setUsername('');
     setPassword('');
   }
@@ -19,10 +42,10 @@ function Login() {
         <form className="forms" onSubmit={handleLogin}>
           <div>
             <input
-              type="text"
-              placeholder="Username or Email"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="input-field"
             />
           </div>
