@@ -1,3 +1,10 @@
+package com.example.workpryct_dbp.Domain;
+
+public enum Role {
+    USER,
+    ADMIN
+}
+
 /*package com.example.workpryct_dbp.Domain;
 
 import jakarta.persistence.*;
