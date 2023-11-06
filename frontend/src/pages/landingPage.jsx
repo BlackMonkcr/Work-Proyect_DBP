@@ -13,13 +13,10 @@ const Landing = () => {
                     <h2 className="sub-title">Flexibilidad, Independencia & Conexion</h2>
                     <p><span>La conexión que necesitas para trabajar con flexibilidad e independencia.</span><br></br>
                     En WORK+, conectamos a trabajadores independientes con clientes de todo tipo. Nuestros servicios te permiten trabajar desde cualquier lugar, en tus propios horarios y con tus propios términos.</p>
-                    <button className="bx_containt-button">Comienza a trabajar</button>
+                    <button className="bx_containt-button"><a href="/signUp">Comienza a trabajar</a></button>
                 </Box>
             </Grid>
         </Grid>
-        <div className="box-img2">
-
-        </div>
     </Container>
     );
 };

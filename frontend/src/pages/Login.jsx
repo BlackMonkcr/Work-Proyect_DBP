@@ -39,7 +39,7 @@ function Login() {
         </form>
         <div>
           <p className="login-prompt">Don't have an account yet?</p>
-          <button to="/signup" className="login-button">Sign Up</button>
+          <button to="/signup" className="login-button"><a href='/signUp'>Sign Up</a></button>
         </div>
       </div>
       <div className="login-img">

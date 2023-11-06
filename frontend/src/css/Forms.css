@@ -21,8 +21,8 @@ body {
   flex-direction: column;
   justify-content: center;
   padding-left: 5vw; 
-  padding-right: 5vw;
-  width: 30vw;
+  padding-right: 8vw;
+  width: 35vw;
   min-height: 100vh;
   background-color: #EDEDED;
 }
@@ -99,14 +99,15 @@ body {
 }
 
 .register-img, .login-img {
-  background-image: url("../img/landing-bck-3.png");
+  background-image: url("../img/landing-bck-4.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  min-width: 60vw;
+  width: 65vw;
 }
 
 .register-img h1, .login-img h1{
+  color: #EDEDED;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 4em;
@@ -118,4 +119,5 @@ body {
 
 .register-img h1 span, .login-img h1 span {
   font-weight: 700;
+
 }

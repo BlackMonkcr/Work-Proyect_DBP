@@ -96,7 +96,7 @@ function Signup() {
         </form>
         <div>
           <p className="register-prompt">Do you have an account?</p>
-          <button to="/signup" className="login-button">Login</button>
+          <button className="login-button"><a href='/login'>Login</a></button>
         </div>
       </div>
       <div className="register-img">
