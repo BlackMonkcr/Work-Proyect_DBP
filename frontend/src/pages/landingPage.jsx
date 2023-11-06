@@ -1,8 +1,8 @@
-import { NavBar } from "../components/navbar.jsx";
+import { NavBar } from "../components/NavBar_landing.jsx";
 import { Grid, Container, Box } from '@mui/material';
 import "../css/landingPage.css"
 
-export const Landing = () => {
+const Landing = () => {
     return (
     <Container maxWidth={false} style={{position:"static", padding:"0", marginLeft:"0px", marginRight:"0"}} >
         <NavBar/>
@@ -22,5 +22,6 @@ export const Landing = () => {
         </div>
     </Container>
     );
-    
 };
+
+export default Landing;

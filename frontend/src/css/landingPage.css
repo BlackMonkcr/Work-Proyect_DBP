@@ -3,6 +3,7 @@
 .title {
     color: #12229d;
     font-size: 5em;
+    font-weight: 700;
 }
 
 .sub-tile {
@@ -56,7 +57,7 @@
 }
 
 .box-img {
-    background-image: url("../../public/img/landing-bck-4.png");
+    background-image: url("src/img/landing-bck-4.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

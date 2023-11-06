@@ -1,5 +1,6 @@
 import { AppBar, Toolbar } from "@mui/material";
 import "../css/landingPage.css"
+import "../css/index_landing.css"
 
 
 export const NavBar = () => {
@@ -7,11 +8,11 @@ export const NavBar = () => {
     return(
         <>
         
-        <AppBar position="static" style={{ background: '#12229D', boxShadow: 'none', display: 'flex', justifyContent: 'center'}}>
+        <AppBar position="static" style={{ background: '#12229D', boxShadow: 'none', display: 'flex', justifyContent: 'center', borderBottom: '2px solid #ededed'}}>
 
             <Toolbar >
                 <a className="navbar-brand d-flex align-items-center" href="#">
-                    <img src="/img/isotipo-2.png" alt="Logo" width="50" height="50" className="d-inline-block align-text-top rounded rounded-2 mx-3"/>
+                    <img src="src/img/isotipo-2.png" alt="Logo" width="50" height="50" className="d-inline-block align-text-top rounded rounded-2 mx-3"/>
                 </a>
                 <h1 className="text-navbar">Bienvenido a W+ PORTAL</h1>
 
