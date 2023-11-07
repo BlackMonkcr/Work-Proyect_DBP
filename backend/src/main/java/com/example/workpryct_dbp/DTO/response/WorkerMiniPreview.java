@@ -1,4 +1,4 @@
-package com.example.workpryct_dbp.DTO;
+package com.example.workpryct_dbp.DTO.response;
 
 import com.example.workpryct_dbp.Domain.Worker;
 import lombok.Getter;
