@@ -6,6 +6,8 @@ import './css/index.css';
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Landing from "./pages/landingPage";
+import LoginWorker from "./pages/LoginWorker";
+import SignupWorker from "./pages/SignupWorker";
 
 export default function App() {
     return (
@@ -14,6 +16,8 @@ export default function App() {
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signUp" element={<Signup/>} />
+                <Route path="/loginWorker" element={<LoginWorker/>} />
+                <Route path="/signupWorker" element={<SignupWorker/>} />
             </Routes>
             <NotificationContainer />
         </BrowserRouter>

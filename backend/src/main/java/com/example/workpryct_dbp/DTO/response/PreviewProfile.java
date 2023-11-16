@@ -13,11 +13,11 @@ public class PreviewProfile {
     private String keyProfilePicture;
 
 
-public PreviewProfile(Client client) {
+    public PreviewProfile(Client client) {
         this.name = client.getUser().getName();
         this.keyProfilePicture = client.getUser().getProfile_picture().getAlt();
     }
-public PreviewProfile(Worker worker) {
+    public PreviewProfile(Worker worker) {
         this.name = worker.getUser().getName();
         this.keyProfilePicture = worker.getUser().getProfile_picture().getAlt();
     }
