@@ -1,4 +1,3 @@
-import React from "react";
 import { NotificationContainer } from "react-notifications";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -18,4 +17,4 @@ export default function App() {
             <NotificationContainer />
         </BrowserRouter>
     );
-};
+}
