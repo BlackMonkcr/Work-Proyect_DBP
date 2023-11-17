@@ -1,58 +1,50 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet } from 'react-native';
 
-const Login = ({ navigation }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const Login = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Aquí puedes realizar la lógica de autenticación con el servidor
-    console.log('Inicio de sesión exitoso');
-    // Puedes navegar a otra pantalla después del inicio de sesión
-    navigation.navigate('Home');
-    //Realizar la logica si es cliente o worker
-  };
+    const handleLogin = () => {
+        // Perform login logic here
+        console.log('Username:', username);
+        console.log('Password:', password);
+    };
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Inicio de Sesión</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Nombre de usuario"
-        onChangeText={(text) => setUsername(text)}
-        value={username}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Contraseña"
-        secureTextEntry
-        onChangeText={(text) => setPassword(text)}
-        value={password}
-      />
-      <Button title="Iniciar Sesión" onPress={handleLogin} />
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <TextInput
+                style={styles.input}
+                placeholder="Username"
+                value={username}
+                onChangeText={setUsername}
+            />
+            <TextInput
+                style={styles.input}
+                placeholder="Password"
+                secureTextEntry
+                value={password}
+                onChangeText={setPassword}
+            />
+            <Button title="Login" onPress={handleLogin} />
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 16,
-  },
-  input: {
-    height: 40,
-    width: '80%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 16,
-    paddingLeft: 8,
-  },
-});
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 16,
+    },
+    input: {
+        width: '100%',
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginBottom: 12,
+        paddingHorizontal: 8,
+    },
 
 export default Login;
