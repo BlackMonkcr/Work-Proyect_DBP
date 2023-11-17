@@ -6,9 +6,8 @@ const Login = () => {
     const [password, setPassword] = useState('');
 
     const handleLogin = () => {
-        // Perform login logic here
-        console.log('Username:', username);
-        console.log('Password:', password);
+        // Add your login logic here
+        console.log('Logging in...');
     };
 
     return (
@@ -46,5 +45,6 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         paddingHorizontal: 8,
     },
+});
 
 export default Login;
