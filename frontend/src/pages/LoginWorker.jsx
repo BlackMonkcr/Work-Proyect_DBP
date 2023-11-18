@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import HomeClient from './Home'
+import HomeClient from './HomeClient'
 import '../css/Forms.css';
 
 function LoginWorker() {

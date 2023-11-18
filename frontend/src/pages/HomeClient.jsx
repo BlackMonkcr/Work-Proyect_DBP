@@ -36,7 +36,7 @@ function Home() {
         favoriteWorkers={users}
         historyWorkers={users}
       />
-      <NavBarInfo />
+      <NavBarInfo title="Home Client" />
     </>
   );
 }

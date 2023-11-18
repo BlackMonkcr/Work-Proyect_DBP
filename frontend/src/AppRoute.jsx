@@ -7,7 +7,7 @@ import Login from "./pages/Login";
 import Landing from "./pages/landingPage";
 import LoginWorker from "./pages/LoginWorker";
 import SignupWorker from "./pages/SignupWorker";
-import HomeClient from "./pages/Home";
+import HomeClient from "./pages/HomeClient";
 
 export default function App() {
     return (
