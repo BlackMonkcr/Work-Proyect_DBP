@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Home from '../components/Home'
+import HomeClient from './Home'
 import '../css/Forms.css';
 
 function LoginWorker() {
@@ -25,6 +25,8 @@ function LoginWorker() {
 
       if (response.ok) {
         setIsLoggedInWorker(true);
+        localStorage.setItem('token', data);
+        window.location.href = '/home';
       }
     } catch (error) {
       setMessage('An error occurred: ' + error.message);
@@ -36,9 +38,7 @@ function LoginWorker() {
 
   return (
     <>
-      {isLoggedInWorker? (
-           <Home />
-         ):(<div className='login'>
+      <div className='login'>
         <div className="login-container">
           <h2 className="login-title">Log in</h2>
           <p className="login-description">Log in so you don't miss anything</p>
@@ -75,7 +75,7 @@ function LoginWorker() {
             Work+ portal
           </h1>
         </div>
-      </div>)}
+      </div>
     </>
   );
 }

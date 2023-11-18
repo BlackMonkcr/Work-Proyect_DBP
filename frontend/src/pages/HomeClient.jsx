@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "../css/Home.css";
-import NavBar from "./NavBar";
-import NavWorkersPreview from "./NavWorkersPreview";
-import NavBarInfo from "./NavBarInfo";
+import NavBar from "../components/NavBar";
+import NavWorkersPreview from "../components/NavWorkersPreview";
+import NavBarInfo from "../components/NavBarInfo";
 
 function Home() {
   // Get the 3 first users from the database
@@ -27,15 +27,7 @@ function Home() {
 
   return (
     <>
-      {/* Agrega la barra de búsqueda aquí */}
-      <div class="nav">
-  <div class="search-bar">
-    <input type="text" placeholder="Electricista, Pintor, etc..." />
-  </div>
-  <div class="home">
-    <a href="#">Home</a>
-  </div>
-</div>
+      
 
 
 

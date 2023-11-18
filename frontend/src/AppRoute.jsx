@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Landing from "./pages/landingPage";
 import LoginWorker from "./pages/LoginWorker";
 import SignupWorker from "./pages/SignupWorker";
+import HomeClient from "./pages/Home";
 
 export default function App() {
     return (
@@ -17,6 +18,7 @@ export default function App() {
                 <Route path="/signUp" element={<Signup/>} />
                 <Route path="/loginWorker" element={<LoginWorker/>} />
                 <Route path="/signupWorker" element={<SignupWorker/>} />
+                <Route path="/home" element={<HomeClient/>}/>
             </Routes>
             <NotificationContainer />
         </BrowserRouter>

@@ -3,7 +3,7 @@
 /* Start styles navBar */
 
 .activate a svg{
-  color: #5271FF;
+  color: #12229D;
 }
 
 .nav-list {
@@ -34,14 +34,14 @@
 }
 
 .nav-list a span {
-  color: #FAFAFA;
+  color: #333437;
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
   font-size: 1.2em;
 }
 
 .nav-list a:hover {
-  color: #5271FF;
+  color: #12229D;
 }
 
 .nav-options {
@@ -56,7 +56,7 @@
   row-gap: 4em;
   justify-content: start;
   padding: 4vh 3vw 0 1vw;
-  background-color: #252525;
+  background-color: #F7F7F7;
   min-height: 100vh;
   width: 15vw;
 
@@ -85,7 +85,7 @@
   padding: 0.5em 0.8em;
   border-radius: 8px;
   background-color: #ffffff;
-  color: #252525;
+  color: #F7F7F7;
   transition: background-color 0.25s;
 }
 
@@ -106,7 +106,7 @@
   height: 32px;
   width: 32px;
   border-radius: 50%;
-  border: 2px solid #5271FF;
+  border: 2px solid #12229D;
   box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
@@ -143,7 +143,7 @@
 }
 
 .worker-preview-mini_button-more-info {
-  color: #5271FF;
+  color: #12229D;
   width: 1.2em;
   height: 1.2em;
 }
@@ -165,14 +165,14 @@
 
 .workers-preview_title {
   font-family: 'Poppins', sans-serif;
-  color: #f2f2f2;
+  color: #333437;
   font-weight: 400;
   font-size: 1.2em;
   margin-bottom: 0.5em;
 }
 
 .workers-preview_expand {
-  color:#5271FF;
+  color:#12229D;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 0.8em;
@@ -191,7 +191,7 @@
   flex-direction: column;
   justify-content: flex-start;
   padding: 0 2vw;
-  background-color: #252525;
+  background-color: #F7F7F7;
   height: 90vh;
   width: 18vw;
   max-width: 260px;
@@ -223,7 +223,7 @@
   padding: 3vh 4vw;
   min-width: 73vw;
   height: 6vh;
-  background-color: #252525;
+  background-color: #F7F7F7;
   position: fixed;
   top: 0;
   right: 0;
@@ -231,12 +231,13 @@
 
 .nav-bar_info-text {
   font-size: 1.6em;
-  color: #ffffff; /* Cambia el color a tu preferencia */
+  color: #333437; /* Cambia el color a tu preferencia */
   font-weight: bold; /* Aplica negrita */
-  text-align: left;
-  padding-right: 1000px;
+  position: absolute; /* Fija la posición */
+  left: 0; /* Lo sitúa en el borde izquierdo */
   /* Otros estilos que desees aplicar */
 }
+
 
 .nav {
   display: flex;
@@ -246,26 +247,3 @@
   padding: 20px;
 }
 
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 720px;
-  width: 100%;
-  background-color: #252525;
-  padding: 25px;
-  z-index: 10; /* Asegura que esté por encima de otros elementos */
-  }
-
-
-  .search-bar input {
-    width: 30%;
-    padding: 8px;
-    border: none;
-    border-radius: 7px;
-    background-color: #f2f2f2;
-    color: #252525;
-    margin-right: 10px;
-  }
