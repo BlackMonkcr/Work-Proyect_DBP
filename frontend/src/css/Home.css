@@ -247,3 +247,96 @@
   padding: 20px;
 }
 
+/* CSS para el componente WorkerHighlight */
+
+.worker-highlight {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 500px;
+  background-color: #ffffff;
+  margin-top: 100px; /* Ajusta el margen superior según sea necesario */
+  margin-bottom: 100px; 
+}
+
+.worker-highlight-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.5em;
+  color: #333437;
+  z-index: 1;
+}
+
+.worker-highlight-description {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 1em;
+  color: #666;
+  text-align: center;
+}
+
+.worker-suggested {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.worker-suggested-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background-color: #f2f2f2;
+  padding: 15px;
+  border-radius: 8px;
+  max-width: 150px;
+}
+
+.worker-suggested-item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.worker-suggested-item-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 570;
+  font-size: 0.9em;
+  color: #333437;
+}
+
+.worker-suggested-item-profession {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 0.8em;
+  color: #666;
+}
+
+.modificacion-worked {
+  padding-left: 250px !important;
+  padding-right: 270px !important;
+}
+
+.bg-default{
+  background: url("./../img/image1.jpeg") center center no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 300px;
+}
+
+#svgelem {
+  position: relative;
+  left: 10%;
+  -webkit-transform: translateX(-20%);
+  -ms-transform: translateX(-20%);
+  transform: translateX(-20%);
+}
+
+.image-card-container{
+  height: 120px;
+}

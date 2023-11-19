@@ -5,6 +5,7 @@ import NavBar from "../components/NavBar";
 import NavWorkersPreview from "../components/NavWorkersPreview";//puedo utilizarlo para mostrar su plan
 import NavBarInfo from "../components/NavBarInfo";
 
+
 function HomeWorker() {
   // Get the 3 first users from the database
   const [users, setUsers] = useState([]);
