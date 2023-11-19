@@ -10,14 +10,14 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
   const Tab = createBottomTabNavigator();
 
-  const NavBar = () => {
+  const NavBarClient = () => {
     return (
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({route}) => ({
             tabBarIcon: ({ color, size }) => {
               let iconName;
-         
+
               if (route.name === 'Home') {
                iconName = 'home';
               } else if (route.name === 'Historial') {
@@ -29,7 +29,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
               } else if (route.name === 'Perfil') {
                iconName = 'account';
               }
-         
+
               // Puedes cambiar "MaterialCommunityIcons" al conjunto de iconos que prefieras
               return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
             },
@@ -90,5 +90,5 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
       </NavigationContainer>
     );
   };
-  
-  export default NavBar;
+
+  export default NavBarClient;

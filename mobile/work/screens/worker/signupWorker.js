@@ -1,11 +1,26 @@
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, KeyboardAvoidingView, TextInput, Platform, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import OctionIcons from 'react-native-vector-icons/Octicons';
-import { FontAwesome, MaterialCommunityIcons,MaterialIcons,Fontisto} from '@expo/vector-icons';
+import { Ionicons,FontAwesome, MaterialCommunityIcons,MaterialIcons,Fontisto} from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useNavigation} from '@react-navigation/native';
 
 const SignupWorker = () => {
+
+  const [password, setPassword] = useState('');
+  const [confirmpassword,setConfirmpassword]=useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+};
+
+const toggleConfirmPasswordVisibility = () => {
+    setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
+  };
+
   const navigation = useNavigation();
 
   const getBack = () => {
@@ -81,13 +96,27 @@ const SignupWorker = () => {
                 <Fontisto name="email" size={20} color={'#12229D'} />
                 <TextInput style={styles.input} placeholder="Email" />
               </View>
-              <View style={styles.inputContainer}>
+              <View style={styles.passwordContainer}>
                 <MaterialIcons name="lock-outline" size={20} color={'#12229D'} />
-                <TextInput style={styles.input} placeholder="Password" />
+                <TextInput style={styles.password} placeholder="Password"
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry={!isPasswordVisible}
+                />
+                <TouchableOpacity onPress={togglePasswordVisibility}>
+                  <Ionicons name={isPasswordVisible ? 'ios-eye-off-outline' : 'ios-eye-outline'} size={24} color="#000000" />
+                </TouchableOpacity>
               </View>
-              <View style={styles.inputContainer}>
+              <View style={styles.confirmpasswordContainer}>
                 <MaterialIcons name="lock-outline" size={20} color={'#12229D'} />
-                <TextInput style={styles.input} placeholder="Confirm Password" />
+                <TextInput style={styles.confirmpassword} placeholder="Confirm Password"
+                  value={confirmpassword}
+                  onChangeText={setConfirmpassword}
+                  secureTextEntry={!isConfirmPasswordVisible}
+                />
+                 <TouchableOpacity onPress={toggleConfirmPasswordVisibility}>
+                  <Ionicons name={isConfirmPasswordVisible ? 'ios-eye-off-outline' : 'ios-eye-outline'} size={24} color="#000000" />
+                </TouchableOpacity>
               </View>
               <TouchableOpacity style={styles.button} onPress={handleSubmit}>
                 <Text style={styles.submitText}>Sign Up</Text>
@@ -171,8 +200,9 @@ const SignupWorker = () => {
     },
     inputContainer: {
       flexDirection: 'row',
-      borderWidth: 1,
+      borderWidth: 2,
       borderRadius: 10,
+      backgroundColor: 'white',
       borderColor: '#9AB4FF',
       justifyContent: 'flex-start',
       alignItems: 'center',
@@ -187,7 +217,49 @@ const SignupWorker = () => {
       width: '100%',
       fontSize: 15,
     },
-    button: {
+    passwordContainer: {
+      flexDirection: 'row',
+      borderWidth: 2,
+      borderRadius: 10,
+      backgroundColor: 'white',
+      borderColor: '#9AB4FF',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      height: '7%',
+      paddingHorizontal: 15,
+      marginBottom: '2.5%',
+      paddingLeft: '2%',
+      width: '90%'
+  },
+  password: {
+      flex: 1,
+      height: '100%',
+      marginLeft: '3%',
+      width: '100%',
+      fontSize: 15,
+  },
+  confirmpasswordContainer: {
+    flexDirection: 'row',
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: '#9AB4FF',
+    backgroundColor: 'white',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    height: '7%',
+    marginBottom: '2.5%',
+    paddingHorizontal: 15,
+    paddingLeft: '2%',
+    width: '90%'
+  },
+  confirmpassword: {
+    flex: 1,
+    height: '100%',
+    marginLeft: '3%',
+    width: '100%',
+    fontSize: 15,
+  },
+  button: {
       backgroundColor: "#9AB4FF",
       borderRadius: 10,
       height: '7%',
@@ -195,12 +267,12 @@ const SignupWorker = () => {
       alignItems: 'center',
       width: '90%',
     },
-    submitText: {
+  submitText: {
       color: 'white',
       fontSize: 18,
       fontWeight: 'bold',
     },
-    loginText: {
+  loginText: {
       marginTop: 10,
       color: '#12229D',
       fontSize: 16,
