@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons,MaterialIcons,MaterialCommunityIcons} from '@expo/vector-icons';
 import { useNavigation} from '@react-navigation/native';
 
 const Login = () => {

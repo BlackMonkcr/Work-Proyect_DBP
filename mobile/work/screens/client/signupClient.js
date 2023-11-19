@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image,TextInput, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { Ionicons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Fontisto } from '@expo/vector-icons';
+import { Ionicons, MaterialIcons,Fontisto } from '@expo/vector-icons';
 import { useNavigation} from '@react-navigation/native';
 
 const SignupClient = () => {
@@ -160,7 +158,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         bottom: 80,
         backgroundColor: 'white',
-        borderRadius: 8,
+        borderRadius: 10,
         borderColor: '#9AB4FF',
         borderWidth: 2,
         paddingHorizontal: 15,
@@ -186,7 +184,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         bottom: 80,
         backgroundColor: 'white',
-        borderRadius: 8,
+        borderRadius: 10,
         borderColor: '#9AB4FF',
         borderWidth: 2,
         paddingHorizontal: 15,
@@ -212,7 +210,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         bottom: 80,
         backgroundColor: 'white',
-        borderRadius: 8,
+        borderRadius: 10,
         borderColor: '#9AB4FF',
         borderWidth: 2,
         paddingHorizontal: 15,
@@ -238,7 +236,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         bottom: 80,
         backgroundColor: 'white',
-        borderRadius: 8,
+        borderRadius: 10,
         borderColor: '#9AB4FF',
         borderWidth: 2,
         paddingHorizontal: 15,
@@ -261,7 +259,7 @@ const styles = StyleSheet.create({
     },
     signUpButton: {
         backgroundColor: '#9AB4FF',
-        borderRadius: 8,
+        borderRadius: 10,
         bottom:80,
         paddingHorizontal: 15,
         paddingVertical: 15,
