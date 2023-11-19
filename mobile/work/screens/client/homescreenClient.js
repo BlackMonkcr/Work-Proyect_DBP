@@ -1,83 +1,100 @@
 import React from 'react';
-import { View, Text, StyleSheetProperties, StyleSheet, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import WorkerCard from '../../components/workerCard';
+import Svg, { Path } from 'react-native-svg';
 
-const WorkerCard = ({ name, rating, location, description }) => {
+
+const HomeScreenClient = () => {
+  const navigation = useNavigation();
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, [navigation]);
+
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.rating}>{rating}</Text>
+    <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <View>
+        <View style={styles.header}>
+            {/* <Svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="#333" width={30} height={30}>
+                <Path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            </Svg> */}
+            <Text style={styles.title}>Home Client</Text>
+        </View>
+        <WorkerCard
+          name={'Juan Perez'}
+          rating={'5.0'}
+          location={'Calle 123'}
+          description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
+        />
+        <WorkerCard
+          name={'Juan Perez'}
+          rating={'5.0'}
+          location={'Calle 123'}
+          description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
+        />
+        <WorkerCard
+          name={'Juan Perez'}
+          rating={'5.0'}
+          location={'Calle 123'}
+          description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
+        />
+        <WorkerCard
+          name={'Juan Perez'}
+          rating={'5.0'}
+          location={'Calle 123'}
+          description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
+        />
+        <WorkerCard
+          name={'Juan Perez'}
+          rating={'5.0'}
+          location={'Calle 123'}
+          description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
+        />
+        <WorkerCard
+          name={'Juan Perez'}
+          rating={'5.0'}
+          location={'Calle 123'}
+          description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
+        />
+        <WorkerCard
+          name={'Juan Perez'}
+          rating={'5.0'}
+          location={'Calle 123'}
+          description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
+        />
+        <WorkerCard
+          name={'Juan Perez'}
+          rating={'5.0'}
+          location={'Calle 123'}
+          description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
+        />
       </View>
-      <View style={styles.location}>
-        <Text style={styles.locationText}>{location}</Text>
-      </View>
-      <View style={styles.description}>
-        <Text style={styles.descriptionText}>{description}</Text>
-      </View>
-      <View style={styles.buttons}>
-        <Button title="Ver más" />
-        <Button title="Solicitar" />
-      </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    width: 300,
-    height: 150,
-    borderRadius: 10,
-    backgroundColor: '#FFF',
-    margin: 10,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  name: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  rating: {
-    fontSize: 16,
-    color: '#999',
-  },
-  location: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  locationText: {
-    fontSize: 16,
-  },
-  description: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  descriptionText: {
-    fontSize: 14,
-    color: '#999',
-    maxLines: 2,
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  },
-  buttons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#333',
+        textAlign: 'left',
+        marginTop: 5,
+    },
+    scrollViewContent: {
+        paddingBottom: 20, // Espaciado en la parte inferior para que no haya un espacio adicional al final
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        marginLeft: 20,
+        marginTop: 50,
+        gap: 15,
+    },
 });
 
-export default WorkerCard;
-
-
-// const HomeScreenClient = () => {
-//     return (
-//         <View>
-//             <Text>Welcome to the Home Screen for Clients!</Text>
-//         </View>
-//     );
-// };
-
-// export default HomeScreenClient;
+export default HomeScreenClient;
