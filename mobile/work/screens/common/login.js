@@ -28,7 +28,6 @@ const Login = () => {
     navigation.navigate('SignupClient');
   }
 
-
   return (
     <View style={styles.container}>
       <Image
@@ -80,7 +79,7 @@ const Login = () => {
             Don’t have account?{' '}
               <Text style={styles.registerLink}>Sign Up</Text>
             </Text>
-          </TouchableOpacity>
+      </TouchableOpacity>
 
     </View>
   );

@@ -52,7 +52,7 @@ const Welcome = () => {
   useEffect(() => {
     const timer = setTimeout(()=>{
       navigation.navigate('Login')
-    }, 3500)
+    }, 3550)
   },[])
 
   return (
