@@ -56,7 +56,7 @@ const NavBar = () => {
             color: '#ededed',
           },
           tabBarStyle: {
-            backgroundColor: '#0F43AA',
+            backgroundColor: '#4433E0',
             paddingTop: 8,
             paddingBottom: 5,
             margin: 8,

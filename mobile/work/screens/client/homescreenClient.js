@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import WorkerCard from '../../components/workerCard';
-import Svg, { Path } from 'react-native-svg';
+import WorkerCardHistory from '../../components/workerCard-history';
 
 
 const HomeScreenClient = () => {
@@ -24,7 +24,7 @@ const HomeScreenClient = () => {
             <Text style={styles.title}>Home Client</Text>
         </View>
         <WorkerCard
-          name={'Juan Perez'}
+          name={'Juanito Perez'}
           rating={'5.0'}
           location={'Calle 123'}
           description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
