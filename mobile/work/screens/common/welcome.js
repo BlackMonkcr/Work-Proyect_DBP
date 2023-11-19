@@ -1,25 +1,20 @@
 import React from 'react';
-import { View, Image, StyleSheet,TouchableOpacity} from 'react-native';
+import { View, Image, StyleSheet, TouchableOpacity, Button } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import { useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 const Welcome = () => {
-
   const navigation = useNavigation();
 
   const handlePress = () => {
     navigation.navigate('Login');
-  }
+  };
+
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../../assets/logo.png')}
-        style={styles.imagen}
-      />
+      <Image source={require('../../assets/logo.png')} style={styles.imagen} />
 
-      <TouchableOpacity onPress={handlePress}>
-        <AntDesign name="rightcircle" size={60} color="#BB9785" style={styles.right}/>
-      </TouchableOpacity>
+      <Button onPress={handlePress} title='Comienza Ahora!' />
     </View>
   );
 };
@@ -36,10 +31,14 @@ const styles = StyleSheet.create({
     height: 400,
     resizeMode: 'contain',
   },
-  right:{
-    top:-28,
-    right:-80,
-  }
+  buttonContainer: {
+    // Ajusta el tamaño del área táctil según sea necesario
+    padding: 10,
+  },
+  right: {
+    top: -28,
+    right: -80,
+  },
 });
 
 export default Welcome;
