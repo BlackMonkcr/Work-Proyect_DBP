@@ -4,9 +4,9 @@
 
 ## Presentación
 
-Descubre la revolución en servicios "express" con +Work: la plataforma que conecta a los mejores profesionales como electricistas, gasfiteros, cerrajeros y más, con quienes buscan sus habilidades excepcionales. Comparte tus experiencias, reseñas y fotos para construir una comunidad basada en la confianza y la calidad del servicio. 
+Descubre la revolución en servicios "express" con Work+: la plataforma que conecta a los mejores profesionales como electricistas, gasfiteros, cerrajeros y más, con quienes buscan sus habilidades excepcionales. Comparte tus experiencias, reseñas y fotos para construir una comunidad basada en la confianza y la calidad del servicio. 
 
-+Work, donde cada trabajo es una historia de éxito y cada usuario se siente seguro y respaldado. Únete a nosotros y transforma la forma en que encuentras y confías en los expertos que hacen el trabajo.
+Work+, donde cada trabajo es una historia de éxito y cada usuario se siente seguro y respaldado. Únete a nosotros y transforma la forma en que encuentras y confías en los expertos que hacen el trabajo.
 
 ## Instrucciones y Comandos (Developer)
 
