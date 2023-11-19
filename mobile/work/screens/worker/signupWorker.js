@@ -1,10 +1,7 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, KeyboardAvoidingView, TextInput, Platform } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, KeyboardAvoidingView, TextInput, Platform, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import OctionIcons from 'react-native-vector-icons/Octicons';
-import { FontAwesome } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Fontisto } from '@expo/vector-icons';
+import { FontAwesome, MaterialCommunityIcons,MaterialIcons,Fontisto} from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useNavigation} from '@react-navigation/native';
 
@@ -17,7 +14,14 @@ const SignupWorker = () => {
 
     const handleSubmit = () => {
       //fetch
-      console.log("Register");
+      Alert.alert(
+        '¡Felicidades!',
+        'Ya puedes empezar. Tu cuenta ha sido registrada exitosamente.',
+        [
+          { text: 'OK', onPress: () => console.log('OK Pressed') }
+        ],
+        { cancelable: false }
+      );
     };
 
   const navigateToLogin = () => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image,TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image,TextInput, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -23,9 +23,14 @@ const SignupClient = () => {
       };
 
     const handleSignUp = () => {
-        console.log('Name:', name);
-        console.log('Email:', email);
-        console.log('Password:', password);
+      Alert.alert(
+        '¡Felicidades!',
+        'Ya puedes empezar. Tu cuenta ha sido registrada exitosamente.',
+        [
+          { text: 'OK', onPress: () => console.log('OK Pressed') }
+        ],
+        { cancelable: false }
+      );
     };
 
     const navigation = useNavigation();
