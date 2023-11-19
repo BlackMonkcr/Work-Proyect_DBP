@@ -1,7 +1,8 @@
 import React from 'react';
 import Navigation from './Navigation';
 import HomeScreenClient  from './screens/client/homescreenClient';
-import NavBarClient  from './components/navBarClient';
+import NavigationBar  from './components/navBarClient';
+import NavBarClient from './components/navBarClient';
 
 const App = () => {
   return(

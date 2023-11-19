@@ -30,7 +30,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
                iconName = 'account';
               }
 
-              // Puedes cambiar "MaterialCommunityIcons" al conjunto de iconos que prefieras
               return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
             },
             tabBarActiveTintColor: '#ededed',
