@@ -44,9 +44,7 @@ const SvgComponent = () => (
   </Svg>
 )
 
-
 const Welcome = () => {
-
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -57,11 +55,7 @@ const Welcome = () => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../../assets/logo.png')}
-        style={styles.imagen}
-      />
-
+      <Image source={require('../../assets/logo.png')} style={styles.imagen} />
       <SvgComponent/>
     </View>
   );
@@ -83,4 +77,5 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   }
 });
+
 export default Welcome;
