@@ -11,6 +11,7 @@ import SignupWorker from './screens/worker/signupWorker';
 import HomeScreenWorker from './screens/worker/homescreenWorker';
 import AccountWorker from './screens/worker/accountWorker';
 import Requests from './screens/worker/requests';
+import Favorites from './screens/client/favorites';
 
 
 const Stack = createStackNavigator();
@@ -25,6 +26,7 @@ const Navigation = () => {
         <Stack.Screen name="HomeScreenClient" component={HomeScreenClient} options={{headerShown: false}}/>
         <Stack.Screen name="AccountClient" component={AccountClient} options={{headerShown: false}}/>
         <Stack.Screen name="History" component={History} options={{headerShown: false}}/>
+        <Stack.Screen name="Favorites" component={Favorites} options={{headerShown: false}}/>
         <Stack.Screen name="SignupWorker" component={SignupWorker} options={{headerShown: false}}/>
         <Stack.Screen name="HomeScreenWorker" component={HomeScreenWorker} options={{headerShown: false}}/>
         <Stack.Screen name="AccountWorker" component={AccountWorker} options={{headerShown: false}}/>

@@ -2,24 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-var ColorGlobal = '#2f43dd';
-
-const WorkerCard = ({ name, rating, location, description, color, count}) => {
-
-    ColorGlobal=color;
-    count+=1;
-    if (description.length > 40) {
-        description = description.substring(0, 40) + '...';
-    }
-
-    const stylestemp = StyleSheet.create({
-        containercolor: {
-            backgroundColor:color
-        }
-    });
-
+const WorkerCardFavorites = ({ name, rating, occupation, location, phoneNumber}) => {
   return (
-    <View style={[styles.container, stylestemp.containercolor]}>
+    <View style={[styles.container]}>
         <View style={styles.info}>
             <View style={styles.infoData}>
                 <View>
@@ -27,10 +12,13 @@ const WorkerCard = ({ name, rating, location, description, color, count}) => {
                 </View>
                 <View style={styles.attributes}>
                     <Text style={[styles.locationText, styles.ratingText]}>{location}, {rating}</Text>
-                    <MaterialCommunityIcons name="star" size={14} color="#FDE52F" />
+                    <MaterialCommunityIcons name="star" size={14} color="#F4C903" />
                 </View>
                 <View>
-                    <Text style={styles.descriptionText}>{description}</Text>
+                    <Text style={styles.occupationText}>{occupation}</Text>
+                </View>
+                <View >
+                    <Text style={styles.ratingText}>Contacto: {phoneNumber}</Text>
                 </View>
             </View>
             <View>
@@ -60,12 +48,19 @@ const styles = StyleSheet.create({
         width: '90%',
         height: 195,
         borderRadius: 10,
+        backgroundColor: '#532FDE',
         margin: 20,
         padding: 20,
         shadowColor: 'black',
         shadowOpacity: 0.6,
         shadowOffset: { width: 5, height: 5 },
         elevation: 20,
+    },
+    occupationText: {
+        fontSize: 14,
+        fontWeight: '600',
+        color: '#ededed',
+        overflow: 'hidden',
     },
     header: {
         flexDirection: 'row',
@@ -100,7 +95,7 @@ const styles = StyleSheet.create({
         paddingRight: 30,
     },
     secondaryButton: {
-        backgroundColor: '#2F43DD',
+        backgroundColor: '#532FDE',
         borderWidth: 1,
         borderColor: '#ededed',
     },
@@ -115,7 +110,7 @@ const styles = StyleSheet.create({
         borderColor: '#ededed',
     },
     buttonText: {
-        color: '#5271FF',
+        color: '#555',
         textAlign: 'center',
         fontWeight: 'bold',
     },
@@ -155,4 +150,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default WorkerCard;
+export default WorkerCardFavorites;

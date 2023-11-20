@@ -2,19 +2,11 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import WorkerCard from '../../components/workerCard';
-import WorkerCardHistory from '../../components/workerCard-history';
-
-function getRandomNumber(min, max) {
-  const random = Math.random();
-  const result = min + random * (max - min);
-  return Math.round(result);
-}
 
 const HomeScreenClient = () => {
   const navigation = useNavigation();
-  colors = ['#12229D','#9AB4FF'];
-  let count =0;
-
+  colors = ['#3837F5','#3672F5', '#36AAB5', '#7436F5'];
+  
   React.useLayoutEffect(() => {
     color = colors[count%colors.length];
     navigation.setOptions({
@@ -36,6 +28,18 @@ const HomeScreenClient = () => {
       location: 'Calle 123',
       description: 'Plomero con más años de experiencia que tu tío de la esquina y más barato...',
     },
+    {
+      name: 'Juanito Perez',
+      rating: '5.0',
+      location: 'Calle 123',
+      description: 'Plomero con más años de experiencia que tu tío de la esquina y más barato...',
+    },
+    {
+      name: 'Juan Perez',
+      rating: '5.0',
+      location: 'Calle 123',
+      description: 'Plomero con más años de experiencia que tu tío de la esquina y más barato...',
+    }
   ];
 
   return (

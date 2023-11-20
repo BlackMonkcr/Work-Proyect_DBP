@@ -3,8 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from '../screens/client/homescreenClient';
 import HistoryScreen from '../screens/client/history';
-import FavoritesScreen from '../screens/client/history';
-import MessagesScreen from '../screens/client/history';
+import FavoritesScreen from '../screens/client/favorites';
+import MessagesScreen from '../screens/client/messages';
 import ProfileScreen from '../screens/client/accountClient';
 import Svg, { Path } from 'react-native-svg';
 import { FontAwesome5,Ionicons,MaterialIcons,MaterialCommunityIcons } from '@expo/vector-icons';
@@ -54,7 +54,7 @@ const NavBarClient = () => {
             margin: 8,
             borderRadius: 10,
             elevation: 20 ,
-            height: '7%',
+            height: '8%',
             shadowColor: '#2F43DD',  // Color del borde desenfocado
             shadowOffset: { width: 4, height: 4 },
             shadowOpacity: 0.5,
@@ -104,4 +104,3 @@ const NavBarClient = () => {
 
 
 export default NavBarClient;
-
