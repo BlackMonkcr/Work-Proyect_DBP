@@ -28,7 +28,7 @@ function WorkerHighlight({ worker }) {
                     </div>
                 </div>
                 <div className="col-12">
-                    <h2 className="text-center my-1">Sugeridos</h2>
+                    <h2 className="text-left mt-3 mb-1">Sugeridos</h2>
                 </div>
                 <div className="col-12">
                     <div className="container">
