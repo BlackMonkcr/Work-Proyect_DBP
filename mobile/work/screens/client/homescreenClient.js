@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         marginTop: 5,
     },
     scrollViewContent: {
-        paddingBottom: 20, // Espaciado en la parte inferior para que no haya un espacio adicional al final
+        paddingBottom: 20,
     },
     header: {
         flexDirection: 'row',
