@@ -1,13 +1,12 @@
 import React from 'react';
 import Navigation from './Navigation';
 import HomeScreenClient  from './screens/client/homescreenClient';
-import NavBarWorker from './components/navBarWorker';
+import NavBarClient from './components/navBarClient';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const App = () => {
   return(
-    //<Navigation />
-    //<HomeScreenClient />
-    <NavBarWorker />
+      <NavBarClient />
   )
 };
 

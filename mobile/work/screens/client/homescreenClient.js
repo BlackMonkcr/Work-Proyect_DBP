@@ -6,9 +6,8 @@ import WorkerCard from '../../components/workerCard';
 const HomeScreenClient = () => {
   const navigation = useNavigation();
   colors = ['#3837F5','#3672F5', '#36AAB5', '#7436F5'];
-  
+
   React.useLayoutEffect(() => {
-    color = colors[count%colors.length];
     navigation.setOptions({
       headerShown: false,
     });
@@ -46,9 +45,6 @@ const HomeScreenClient = () => {
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <View>
         <View style={styles.header}>
-            {/* <Svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="#333" width={30} height={30}>
-                <Path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-            </Svg> */}
             <Text style={styles.title}>Home Client</Text>
         </View>
         {workerData.map((worker, index) => (
@@ -59,7 +55,6 @@ const HomeScreenClient = () => {
             location={worker.location}
             description={worker.description}
             color={colors[index % colors.length]}
-            count={count}
           />
         ))}
       </View>
@@ -68,24 +63,25 @@ const HomeScreenClient = () => {
 };
 
 const styles = StyleSheet.create({
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#333',
-        textAlign: 'left',
-        marginTop: 5,
-    },
-    scrollViewContent: {
-        paddingBottom: 20,
-    },
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        marginLeft: 20,
-        marginTop: 50,
-        gap: 15,
-    },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+    textAlign: 'left',
+    marginTop: 5,
+},
+scrollViewContent: {
+    backgroundColor: '#afeae28d',
+    paddingBottom: 20,
+},
+header: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginLeft: 20,
+    marginTop: 50,
+    gap: 15,
+},
 });
 
 export default HomeScreenClient;
