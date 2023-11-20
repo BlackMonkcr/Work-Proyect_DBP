@@ -12,11 +12,12 @@ const Login = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
 
+  const navigation = useNavigation();
+
   const handleSignIn = () => {
     console.log('Signing in...');
+    navigation.navigate('NavBarClient')
   };
-
-  const navigation = useNavigation();
 
   const handlePress = () => {
     navigation.navigate('SignupWorker');

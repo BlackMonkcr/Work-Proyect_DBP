@@ -13,7 +13,6 @@ const Tab = createBottomTabNavigator();
 
 const NavBarClient = () => {
   return (
-    <NavigationContainer >
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: () => {
@@ -98,7 +97,6 @@ const NavBarClient = () => {
           }}
         />
       </Tab.Navigator>
-    </NavigationContainer>
   );
 };
 
