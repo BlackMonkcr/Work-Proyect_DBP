@@ -323,7 +323,7 @@
 }
 
 .bg-default{
-  background: url("./../img/image1.jpeg") center center no-repeat;
+  background: url("./../img/landing-bck-2.png") center center no-repeat;
   background-attachment: fixed;
   background-size: cover;
   height: 300px;
