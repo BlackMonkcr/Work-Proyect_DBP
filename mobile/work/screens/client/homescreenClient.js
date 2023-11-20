@@ -4,15 +4,39 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import WorkerCard from '../../components/workerCard';
 import WorkerCardHistory from '../../components/workerCard-history';
 
+function getRandomNumber(min, max) {
+  const random = Math.random();
+  const result = min + random * (max - min);
+  return Math.round(result);
+}
 
 const HomeScreenClient = () => {
   const navigation = useNavigation();
+  colors = ['#12229D','#9AB4FF'];
+  let count =0;
 
   React.useLayoutEffect(() => {
+    color = colors[count%colors.length];
     navigation.setOptions({
       headerShown: false,
     });
   }, [navigation]);
+
+
+  const workerData = [
+    {
+      name: 'Juanito Perez',
+      rating: '5.0',
+      location: 'Calle 123',
+      description: 'Plomero con más años de experiencia que tu tío de la esquina y más barato...',
+    },
+    {
+      name: 'Juan Perez',
+      rating: '5.0',
+      location: 'Calle 123',
+      description: 'Plomero con más años de experiencia que tu tío de la esquina y más barato...',
+    },
+  ];
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
@@ -23,54 +47,17 @@ const HomeScreenClient = () => {
             </Svg> */}
             <Text style={styles.title}>Home Client</Text>
         </View>
-        <WorkerCard
-          name={'Juanito Perez'}
-          rating={'5.0'}
-          location={'Calle 123'}
-          description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
-        />
-        <WorkerCard
-          name={'Juan Perez'}
-          rating={'5.0'}
-          location={'Calle 123'}
-          description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
-        />
-        <WorkerCard
-          name={'Juan Perez'}
-          rating={'5.0'}
-          location={'Calle 123'}
-          description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
-        />
-        <WorkerCard
-          name={'Juan Perez'}
-          rating={'5.0'}
-          location={'Calle 123'}
-          description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
-        />
-        <WorkerCard
-          name={'Juan Perez'}
-          rating={'5.0'}
-          location={'Calle 123'}
-          description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
-        />
-        <WorkerCard
-          name={'Juan Perez'}
-          rating={'5.0'}
-          location={'Calle 123'}
-          description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
-        />
-        <WorkerCard
-          name={'Juan Perez'}
-          rating={'5.0'}
-          location={'Calle 123'}
-          description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
-        />
-        <WorkerCard
-          name={'Juan Perez'}
-          rating={'5.0'}
-          location={'Calle 123'}
-          description={'Plomero con más años de experiencia que tu tío de la esquina y más barato...'}
-        />
+        {workerData.map((worker, index) => (
+          <WorkerCard
+            key={index}
+            name={worker.name}
+            rating={worker.rating}
+            location={worker.location}
+            description={worker.description}
+            color={colors[index % colors.length]}
+            count={count}
+          />
+        ))}
       </View>
     </ScrollView>
   );

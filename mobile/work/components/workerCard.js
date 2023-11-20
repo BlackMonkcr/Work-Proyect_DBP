@@ -2,14 +2,23 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const WorkerCard = ({ name, rating, location, description }) => {
+var ColorGlobal = '#2f43dd';
 
+const WorkerCard = ({ name, rating, location, description,color,count}) => {
+    ColorGlobal=color;
+    count+=1;
     if (description.length > 40) {
         description = description.substring(0, 40) + '...';
     }
-    
+
+    const stylestemp = StyleSheet.create({
+        containercolor: {
+            backgroundColor:color
+        }
+    });
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, stylestemp.containercolor]}>
         <View style={styles.info}>
             <View style={styles.infoData}>
                 <View>
@@ -29,13 +38,13 @@ const WorkerCard = ({ name, rating, location, description }) => {
         </View>
 
       <View style={styles.buttons}>
-        <TouchableHighlight 
+        <TouchableHighlight
             style={styles.button}
         >
             <Text style={styles.buttonText}>Solicitar</Text>
         </TouchableHighlight>
-        
-        <TouchableHighlight 
+
+        <TouchableHighlight
             style={[styles.button, styles.secondaryButton]}
         >
             <Text style={styles.buttonTextSecondary}>Ver más...</Text>
@@ -50,7 +59,6 @@ const styles = StyleSheet.create({
         width: '90%',
         height: 195,
         borderRadius: 10,
-        backgroundColor: '#2F43DD',
         margin: 20,
         padding: 20,
         shadowColor: 'black',
@@ -109,7 +117,7 @@ const styles = StyleSheet.create({
         color: '#5271FF',
         textAlign: 'center',
         fontWeight: 'bold',
-    }, 
+    },
     buttonTextSecondary: {
         color: '#ededed',
         textAlign: 'center',
