@@ -6,8 +6,7 @@ import WorkerCard from '../../components/workerCard';
 const HomeScreenClient = () => {
   const navigation = useNavigation();
   colors = ['#3837F5','#3672F5', '#36AAB5', '#7436F5'];
-  let count =0;
-
+  
   React.useLayoutEffect(() => {
     color = colors[count%colors.length];
     navigation.setOptions({
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
         marginTop: 5,
     },
     scrollViewContent: {
-        paddingBottom: 20, // Espaciado en la parte inferior para que no haya un espacio adicional al final
+        paddingBottom: 20,
     },
     header: {
         flexDirection: 'row',

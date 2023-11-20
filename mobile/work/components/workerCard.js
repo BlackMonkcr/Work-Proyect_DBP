@@ -5,6 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 var ColorGlobal = '#2f43dd';
 
 const WorkerCard = ({ name, rating, location, description, color, count}) => {
+
     ColorGlobal=color;
     count+=1;
     if (description.length > 40) {
