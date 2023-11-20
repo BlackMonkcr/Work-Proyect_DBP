@@ -1,47 +1,17 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import WorkerCard from '../../components/workerCard';
+import WorkerCardFavorites from '../../components/workerCard-favorites';
 
-const HomeScreenClient = () => {
+
+const Favorites = () => {
   const navigation = useNavigation();
-  colors = ['#3837F5','#3672F5', '#36AAB5', '#7436F5'];
-  let count =0;
 
   React.useLayoutEffect(() => {
-    color = colors[count%colors.length];
     navigation.setOptions({
       headerShown: false,
     });
   }, [navigation]);
-
-
-  const workerData = [
-    {
-      name: 'Juanito Perez',
-      rating: '5.0',
-      location: 'Calle 123',
-      description: 'Plomero con más años de experiencia que tu tío de la esquina y más barato...',
-    },
-    {
-      name: 'Juan Perez',
-      rating: '5.0',
-      location: 'Calle 123',
-      description: 'Plomero con más años de experiencia que tu tío de la esquina y más barato...',
-    },
-    {
-      name: 'Juanito Perez',
-      rating: '5.0',
-      location: 'Calle 123',
-      description: 'Plomero con más años de experiencia que tu tío de la esquina y más barato...',
-    },
-    {
-      name: 'Juan Perez',
-      rating: '5.0',
-      location: 'Calle 123',
-      description: 'Plomero con más años de experiencia que tu tío de la esquina y más barato...',
-    }
-  ];
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
@@ -50,19 +20,15 @@ const HomeScreenClient = () => {
             {/* <Svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="#333" width={30} height={30}>
                 <Path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
             </Svg> */}
-            <Text style={styles.title}>Home Client</Text>
+            <Text style={styles.title}>Favorites</Text>
         </View>
-        {workerData.map((worker, index) => (
-          <WorkerCard
-            key={index}
-            name={worker.name}
-            rating={worker.rating}
-            location={worker.location}
-            description={worker.description}
-            color={colors[index % colors.length]}
-            count={count}
-          />
-        ))}
+        <WorkerCardFavorites
+          name={'Juanito Perez'}
+          rating={'5.0'}
+          location={'Calle 123'}
+          occupation={'Plomero, electricista'}
+          phoneNumber={'1234567890'}
+        />
       </View>
     </ScrollView>
   );
@@ -89,4 +55,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomeScreenClient;
+export default Favorites;
