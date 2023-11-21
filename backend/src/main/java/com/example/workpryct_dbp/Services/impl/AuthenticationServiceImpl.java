@@ -76,7 +76,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         WorkerRequest workerRequest = new WorkerRequest(user, worker);
 
-        var jwt = jwtService.generateToken(workerRequest);
+        var jwt = jwtService.generateToken(user);
         return JwtAuthenticationResponse.builder().token(jwt).role(Role.WORKER).build();
     }
 

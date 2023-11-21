@@ -6,6 +6,7 @@ public enum Role {
     ADMIN
 }
 
+
 /*package com.example.workpryct_dbp.Domain;
 
 import jakarta.persistence.*;
