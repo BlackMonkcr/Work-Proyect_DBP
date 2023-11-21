@@ -28,6 +28,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public JwtAuthenticationResponse signupClient(SignUpClientRequest request) {
         var user = User.builder()
+                .user_id(0L)
                 .city("")
                 .email(request.getEmail())
                 .is_verified(false)
@@ -59,6 +60,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public JwtAuthenticationResponse signupWorker(SignUpWorkerRequest request) {
         var user = User.builder()
+                .user_id(0L)
                 .city("")
                 .email(request.getEmail())
                 .is_verified(false)
