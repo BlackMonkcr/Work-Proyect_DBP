@@ -1,10 +1,14 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { MaterialCommunityIcons,FontAwesome } from '@expo/vector-icons';
+
+
 
 var ColorGlobal = '#2f43dd';
 
 const WorkerCard = ({ name, rating, location, description, color, count}) => {
+
+    const [starPressed, setStarPressed] = useState(false);
 
     ColorGlobal=color;
     count+=1;
@@ -39,17 +43,18 @@ const WorkerCard = ({ name, rating, location, description, color, count}) => {
         </View>
 
       <View style={styles.buttons}>
-        <TouchableHighlight
+        <TouchableOpacity
             style={styles.button}
         >
             <Text style={styles.buttonText}>Solicitar</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
 
-        <TouchableHighlight
-            style={[styles.button, styles.secondaryButton]}
+        <TouchableOpacity
+          style={[styles.button, styles.secondaryButton]}
+          onPress={() => setStarPressed(!starPressed)}
         >
-            <Text style={styles.buttonTextSecondary}>Ver más...</Text>
-        </TouchableHighlight>
+          <FontAwesome name="star" size={24} color={starPressed ? 'yellow' : '#ededed'} />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -116,11 +121,6 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: '#5271FF',
-        textAlign: 'center',
-        fontWeight: 'bold',
-    },
-    buttonTextSecondary: {
-        color: '#ededed',
         textAlign: 'center',
         fontWeight: 'bold',
     },

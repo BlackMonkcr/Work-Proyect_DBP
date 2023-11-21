@@ -45,7 +45,7 @@ const HomeScreenClient = () => {
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <View>
         <View style={styles.header}>
-            <Text style={styles.title}>Home Client</Text>
+            <Text style={styles.title}>Home</Text>
         </View>
         {workerData.map((worker, index) => (
           <WorkerCard
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
 },
 scrollViewContent: {
-    backgroundColor: '#afeae28d',
+    backgroundColor: '#ededed',
     paddingBottom: 20,
 },
 header: {
