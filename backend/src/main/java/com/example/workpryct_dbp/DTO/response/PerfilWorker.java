@@ -19,7 +19,7 @@ public class PerfilWorker {
         this.name = worker.getUser().getName();
         this.occupation = worker.getOccupation();
         this.email = worker.getUser().getEmail();
-        this.phone = worker.getUser().getPhone();
+        this.phone = worker.getPhone();
         this.description = worker.getDescription();
         this.keyProfilePicture = worker.getUser().getProfile_picture().getAlt();
     }
