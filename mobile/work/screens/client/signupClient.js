@@ -20,25 +20,51 @@ const SignupClient = () => {
         setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
       };
 
-    const handleSignUp = () => {
-        if (!name || !email || !password || !confirmpassword) {
-          Alert.alert('Validation Error', 'Please fill in all fields.');
-          return;
-        }
+    const handleSignUp = async (e) => {
+      if (!name || !email || !password || !confirmpassword) {
+        Alert.alert('Validation Error', 'Please fill in all fields.');
+        return;
+      }
 
-        if (password !== confirmpassword) {
-          Alert.alert('Validation Error', 'Passwords do not match.');
-          return;
+      if (password !== confirmpassword) {
+        Alert.alert('Validation Error', 'Passwords do not match.');
+        return;
+      }
+
+      e.preventDefault();
+      try {
+        const response = await fetch('https://work.up.railway.app/api/v1/auth/signupClient', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          Alert.alert(
+            '¡Felicidades!',
+            'Ya puedes empezar. Tu cuenta ha sido registrada exitosamente.',
+            [
+              { text: 'OK', onPress: () => console.log('OK Pressed') }
+            ],
+            { cancelable: false }
+          );
+          navigation.navigate('Login')
+        } else {
+          Alert.alert('No pudo registrar', 'El email ya pertence a una cuenta existente');
         }
-      Alert.alert(
-        '¡Felicidades!',
-        'Ya puedes empezar. Tu cuenta ha sido registrada exitosamente.',
-        [
-          { text: 'OK', onPress: () => console.log('OK Pressed') }
-        ],
-        { cancelable: false }
-      );
+      } catch (error) {
+        Alert.alert('Error en el servidor', 'No se pudo registrar');
+      }
     };
+  };
 
     const navigation = useNavigation();
 
