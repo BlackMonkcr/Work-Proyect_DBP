@@ -29,6 +29,9 @@ public class User {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
@@ -74,8 +77,7 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Worker worker; // Add relation in Worker
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+
     /*@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
