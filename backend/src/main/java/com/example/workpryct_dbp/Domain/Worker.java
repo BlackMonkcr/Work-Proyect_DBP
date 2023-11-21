@@ -41,14 +41,6 @@ public class Worker {
     @Column(name = "national_id", nullable = false)
     private Long national_id;
 
-    public enum type_nacional_id {
-        DNI,
-        PASAPORTE
-    }
-
-    @Enumerated(EnumType.STRING)
-    private type_nacional_id type_nacional_id;
-
     @Column(name = "occupation", nullable = false)
     private String occupation;
 
