@@ -67,6 +67,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .user(user)
                 .occupation(request.getOccupation())
                 .national_id(request.getDNI())
+                .description("")
                 .build();
         user.setWorker(workerRepository.save(worker));
         userRepository.save(user);
