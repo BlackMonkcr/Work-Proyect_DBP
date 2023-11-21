@@ -40,9 +40,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         clientRepository.save(client);
         userRepository.save(user);
 
-        ClientRequest clientRequest = new ClientRequest(user, client);
-
-        var jwt = jwtService.generateToken(clientRequest);
+        var jwt = jwtService.generateToken(user);
         return JwtAuthenticationResponse.builder().token(jwt).role(Role.CLIENT).build();
     }
 
