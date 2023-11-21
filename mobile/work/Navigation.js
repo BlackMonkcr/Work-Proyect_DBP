@@ -13,6 +13,7 @@ import AccountWorker from './screens/worker/accountWorker';
 import Requests from './screens/worker/requests';
 import Favorites from './screens/client/favorites';
 import NavBarClient from './components/navBarClient';
+import NavBarWorker from './components/navBarWorker';
 
 
 const Stack = createStackNavigator();
@@ -33,6 +34,7 @@ const Navigation = () => {
         <Stack.Screen name="AccountWorker" component={AccountWorker} options={{headerShown: false}}/>
         <Stack.Screen name="Requests" component={Requests} options={{headerShown: false}}/>
         <Stack.Screen name="NavBarClient" component={NavBarClient} options={{headerShown: false}}/>
+        <Stack.Screen name="NavBarWorker" component={NavBarWorker} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

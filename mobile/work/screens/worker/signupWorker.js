@@ -8,6 +8,13 @@ import { useNavigation} from '@react-navigation/native';
 
 const SignupWorker = () => {
 
+  const [name, setName] = useState('');
+  const [dni,setDni] = useState('');
+  const [age,setAge] = useState('');
+  const [gender,setGender] = useState('');
+  const [phone,setPhone] = useState('');
+  const [ocupation,setOcupation] = useState('');
+  const[email,setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpassword,setConfirmpassword]=useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -28,7 +35,16 @@ const toggleConfirmPasswordVisibility = () => {
   }
 
     const handleSubmit = () => {
-      //fetch
+      if (!name || !dni|| !age||!gender|| !phone|| !ocupation||!email || !password || !confirmpassword) {
+        Alert.alert('Validation Error', 'Please fill in all fields.');
+        return;
+      }
+
+      if (password !== confirmpassword) {
+        Alert.alert('Validation Error', 'Passwords do not match.');
+        return;
+      }
+
       Alert.alert(
         '¡Felicidades!',
         'Ya puedes empezar. Tu cuenta ha sido registrada exitosamente.',
@@ -70,31 +86,53 @@ const toggleConfirmPasswordVisibility = () => {
             <View style={styles.formContainer}>
               <View style={styles.inputContainer}>
                 <OctionIcons name='person' size={20} color={'#12229D'} />
-                <TextInput style={styles.input} placeholder="Full Name" />
+                <TextInput style={styles.input} placeholder="Full Name"
+                  value={name}
+                  onChangeText={setName}
+                />
+
               </View>
               <View style={styles.inputContainer}>
                 <FontAwesome name="id-card-o" size={20} color={'#12229D'} />
-                <TextInput style={styles.input} placeholder="DNI" />
+                <TextInput style={styles.input} placeholder="DNI"
+                  value={dni}
+                  onChangeText={setDni}
+                />
               </View>
               <View style={styles.inputContainer}>
                 <MaterialCommunityIcons name="cake-variant-outline" size={20} color={'#12229D'} />
-                <TextInput style={styles.input} placeholder="Age" />
+                <TextInput style={styles.input} placeholder="Age"
+                  value={age}
+                  onChangeText={setAge}
+                />
               </View>
               <View style={styles.inputContainer}>
                 <MaterialCommunityIcons name="gender-male-female" size={20} color={'#12229D'} />
-                <TextInput style={styles.input} placeholder="Gender" />
+                <TextInput style={styles.input} placeholder="Gender"
+                value={gender}
+                onChangeText={setGender}
+                />
               </View>
               <View style={styles.inputContainer}>
                 <MaterialIcons name="work-outline" size={20} color={'#12229D'} />
-                <TextInput style={styles.input} placeholder="Profession" />
+                <TextInput style={styles.input} placeholder="Profession"
+                value={ocupation}
+                onChangeText={setOcupation}
+                />
               </View>
               <View style={styles.inputContainer}>
                 <MaterialIcons name="phone-iphone" size={20} color={'#12229D'} />
-                <TextInput style={styles.input} placeholder="Phone Number" />
+                <TextInput style={styles.input} placeholder="Phone Number"
+                value={phone}
+                onChangeText={setPhone}
+                />
               </View>
               <View style={styles.inputContainer}>
                 <Fontisto name="email" size={20} color={'#12229D'} />
-                <TextInput style={styles.input} placeholder="Email" />
+                <TextInput style={styles.input} placeholder="Email"
+                  value={email}
+                  onChangeText={setEmail}
+                />
               </View>
               <View style={styles.passwordContainer}>
                 <MaterialIcons name="lock-outline" size={20} color={'#12229D'} />

@@ -1,11 +1,9 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
 import HomeScreenWorker from '../screens/worker/homescreenWorker';
 import AccountWorker from '../screens/worker/accountWorker';
 import Requests from '../screens/worker/requests';
 import Plans from '../screens/worker/plans'
-import Svg, { Path } from 'react-native-svg';
 import { FontAwesome5,Ionicons,MaterialIcons,AntDesign } from '@expo/vector-icons';
 import PlansWorker from '../screens/worker/plans';
 
@@ -13,7 +11,6 @@ const Tab = createBottomTabNavigator();
 
 const NavBarWorker = () => {
   return (
-    <NavigationContainer >
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: () => {
@@ -85,7 +82,6 @@ const NavBarWorker = () => {
           }}
         />
       </Tab.Navigator>
-    </NavigationContainer>
   );
 };
 

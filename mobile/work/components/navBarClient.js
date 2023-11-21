@@ -1,6 +1,5 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from '../screens/client/homescreenClient';
 import HistoryScreen from '../screens/client/history';
 import FavoritesScreen from '../screens/client/favorites';

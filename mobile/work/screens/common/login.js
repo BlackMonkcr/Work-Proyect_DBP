@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons,MaterialIcons,MaterialCommunityIcons} from '@expo/vector-icons';
 import { useNavigation} from '@react-navigation/native';
+import { Alert } from 'react-native';
+
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -14,10 +16,43 @@ const Login = () => {
 
   const navigation = useNavigation();
 
-  const handleSignIn = () => {
-    console.log('Signing in...');
-    navigation.navigate('NavBarClient')
-  };
+  const handleSignIn = async (e) => {
+    if (!username || !password) {
+      Alert.alert('Validation Error', 'Please enter both username and password.');
+      return;
+    }
+    else{
+      e.preventDefault();
+      try {
+        const response = await fetch('https://work.up.railway.app/api/v1/auth/signin', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: username,
+            password: password,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          if (data.role == 'CLIENT') {
+            navigation.navigate('NavBarClient')
+          } else if (data.role == 'WORKER') {
+            navigation.navigate('NavBarWorker')
+          }
+        }
+      } catch (error) {
+        Alert.alert('No se pudo loguear', 'Error en credenciales');
+      }
+
+      setUsername('');
+      setPassword('');
+    }
+  }
+
 
   const handlePress = () => {
     navigation.navigate('SignupWorker');

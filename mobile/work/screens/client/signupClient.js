@@ -21,6 +21,15 @@ const SignupClient = () => {
       };
 
     const handleSignUp = () => {
+        if (!name || !email || !password || !confirmpassword) {
+          Alert.alert('Validation Error', 'Please fill in all fields.');
+          return;
+        }
+
+        if (password !== confirmpassword) {
+          Alert.alert('Validation Error', 'Passwords do not match.');
+          return;
+        }
       Alert.alert(
         '¡Felicidades!',
         'Ya puedes empezar. Tu cuenta ha sido registrada exitosamente.',
