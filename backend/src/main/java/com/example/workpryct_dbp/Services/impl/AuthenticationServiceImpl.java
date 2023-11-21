@@ -4,9 +4,6 @@ import com.example.workpryct_dbp.DTO.request.SignUpClientRequest;
 import jakarta.persistence.*;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,25 +28,31 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public JwtAuthenticationResponse signupClient(SignUpClientRequest request) {
-
-        var client = Client.builder().build();
-
-        clientRepository.save(client);
-
         var user = User.builder().name(request.getName()).username(request.getEmail())
                 .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.CLIENT).client(client).build();
+                .role(Role.CLIENT).build();
 
-        client.setUser(userRepository.save(user));
+        userRepository.save(user);
+        var jwt = jwtService.generateToken(user);
+
+        var client = Client.builder().user(user).build();
+
         clientRepository.save(client);
 
-        var jwt = jwtService.generateToken(user);
         return JwtAuthenticationResponse.builder().token(jwt).role(Role.CLIENT).build();
     }
 
     @Override
     public JwtAuthenticationResponse signupWorker(SignUpWorkerRequest request) {
+        var user = User.builder().name(request.getName()).username(request.getEmail())
+                .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
+                .role(Role.WORKER).build();
+
+        userRepository.save(user);
+        var jwt = jwtService.generateToken(user);
+
         var worker = Worker.builder()
+                .user(user)
                 .is_available(false)
                 .is_premium(false)
                 .hour_price(0.0)
@@ -60,27 +63,19 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         workerRepository.save(worker);
 
-        var user = User.builder().name(request.getName()).username(request.getEmail())
-                .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.WORKER).worker(worker).build();
-
-        worker.setUser(userRepository.save(user));
-
-        var jwt = jwtService.generateToken(user);
         return JwtAuthenticationResponse.builder().token(jwt).role(Role.WORKER).build();
     }
 
     @Override
     public JwtAuthenticationResponse signin(SigninRequest request) {
-        Authentication authentication = authenticationManager.authenticate(
+        authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        var user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        var jwt = jwtService.generateToken(user);
 
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String jwt = jwtService.generateToken(userDetails);
-
-        return JwtAuthenticationResponse.builder().token(jwt).role(Role.valueOf(userDetails.getAuthorities().iterator().next().getAuthority())).build();
+        return JwtAuthenticationResponse.builder().token(jwt).role(user.getRole()).build();
     }
 
 }
