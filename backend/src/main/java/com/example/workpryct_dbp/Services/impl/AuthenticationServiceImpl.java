@@ -69,7 +69,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .precise_location("")
                 .rating(0.0)
                 .registration_date(new java.util.Date())
-                .role(Role.CLIENT)
+                .role(Role.WORKER)
                 .username(request.getEmail())
                 .build();
         userRepository.save(user);
