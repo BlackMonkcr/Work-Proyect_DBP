@@ -11,9 +11,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SignUpWorkerRequest {
     private String name;
-    private Long DNI;
-    private String occupation;
-    private Long phoneNumber;
+    private String username;
     private String email;
     private String password;
+    private Long phoneNumber;
+    private String district;
+    private String precise_location;
+    private String occupation;
+    private Long DNI;
 }
