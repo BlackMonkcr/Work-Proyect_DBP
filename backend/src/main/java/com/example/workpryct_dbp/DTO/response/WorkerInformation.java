@@ -11,6 +11,7 @@ public class WorkerInformation{
     private Long id;
     private String name;
     private String occupation;
+    private String description;
     private String keyProfilePicture;
     private Double rating;
 
@@ -18,6 +19,7 @@ public class WorkerInformation{
         this.id = worker.getWorker_id();
         this.name = worker.getUser().getName();
         this.occupation = worker.getOccupation();
+        this.description = worker.getDescription();
         this.keyProfilePicture = worker.getUser().getProfile_picture().getAlt();
         this.rating = worker.getUser().getRating();
     }

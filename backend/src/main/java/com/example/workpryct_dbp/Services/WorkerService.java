@@ -1,5 +1,6 @@
 package com.example.workpryct_dbp.Services;
 
+import com.example.workpryct_dbp.DTO.response.WorkerInformation;
 import com.example.workpryct_dbp.Domain.Img;
 import com.example.workpryct_dbp.Domain.User;
 import com.example.workpryct_dbp.Domain.Client;
@@ -13,6 +14,7 @@ import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -81,5 +83,14 @@ public class WorkerService {
             return worker.getWork_images();
         }
         return null;
+    } // False if not found
+
+    public List<WorkerInformation> getWorkersLimit(int Limit) {
+        List<Worker> workers = workerRepository.findAll();
+        List<WorkerInformation> workersInformation = new ArrayList<>();
+        for (int i = 0; i < Limit; i++) {
+            workersInformation.add(new WorkerInformation(workers.get(i)));
+        }
+        return workersInformation;
     } // False if not found
 }

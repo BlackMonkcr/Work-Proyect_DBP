@@ -2,6 +2,7 @@ package com.example.workpryct_dbp.Application;
 
 import com.example.workpryct_dbp.DTO.request.WorkerRequest;
 import com.example.workpryct_dbp.DTO.response.PerfilWorker;
+import com.example.workpryct_dbp.DTO.response.WorkerInformation;
 import com.example.workpryct_dbp.Services.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,11 @@ public class WorkerController {
         } else {
             return new ResponseEntity<>(workerService.getWorkerById(id).get(), HttpStatus.OK);
         }
+    } // Returns worker by id
+
+    @GetMapping("/homeCards")
+    public ResponseEntity<List<WorkerInformation>> getHomeCards(@RequestParam int limit) {
+        return new ResponseEntity<>(workerService.getWorkersLimit(limit), HttpStatus.OK);
     } // Returns worker by id
 
     @GetMapping("/perfil")
