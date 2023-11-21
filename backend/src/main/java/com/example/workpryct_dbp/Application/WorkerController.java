@@ -1,5 +1,7 @@
 package com.example.workpryct_dbp.Application;
 
+import com.example.workpryct_dbp.DTO.request.WorkerRequest;
+import com.example.workpryct_dbp.DTO.response.PerfilWorker;
 import com.example.workpryct_dbp.Services.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import com.example.workpryct_dbp.Domain.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/worker")
@@ -34,6 +35,15 @@ public class WorkerController {
             return new ResponseEntity<>(workerService.getWorkerById(id).get(), HttpStatus.OK);
         }
     } // Returns worker by id
+
+    @GetMapping("/perfil")
+    public ResponseEntity<PerfilWorker> getPerfilWorker(@RequestParam Long worker_id) {
+        if (workerService.getWorkerById(worker_id).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(new PerfilWorker(workerService.getWorkerById(worker_id).get()), HttpStatus.OK);
+        }
+    } // Returns worker by user_id
 
     @PostMapping
     public ResponseEntity<Worker> createWorker(@RequestBody WorkerRequest workerRequest) {

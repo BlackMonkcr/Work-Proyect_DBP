@@ -1,10 +1,11 @@
 package com.example.workpryct_dbp.Application;
 
+import com.example.workpryct_dbp.DTO.request.SignUpClientRequest;
+import com.example.workpryct_dbp.DTO.request.SignUpWorkerRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.workpryct_dbp.DTO.request.SignUpRequest;
-import com.example.workpryct_dbp.DTO.request.SigninRequest;
+import com.example.workpryct_dbp.DTO.request.*;
 import com.example.workpryct_dbp.DTO.response.JwtAuthenticationResponse;
 import com.example.workpryct_dbp.Services.AuthenticationService;
 
@@ -16,9 +17,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
-    @PostMapping("/signup")
-    public ResponseEntity<JwtAuthenticationResponse> signup(@RequestBody SignUpRequest request) {
-        return ResponseEntity.ok(authenticationService.signup(request));
+    @PostMapping("/signupWorker")
+    public ResponseEntity<JwtAuthenticationResponse> signupWorker(@RequestBody SignUpWorkerRequest request) {
+        return ResponseEntity.ok(authenticationService.signupWorker(request));
+    }
+
+    @PostMapping("/signupClient")
+    public ResponseEntity<JwtAuthenticationResponse> signupClient(@RequestBody SignUpClientRequest request) {
+        return ResponseEntity.ok(authenticationService.signupClient(request));
     }
 
     @PostMapping("/signin")

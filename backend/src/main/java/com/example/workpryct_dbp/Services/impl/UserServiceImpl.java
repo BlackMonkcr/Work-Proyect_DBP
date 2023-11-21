@@ -1,5 +1,8 @@
 package com.example.workpryct_dbp.Services.impl;
 
+import com.example.workpryct_dbp.DTO.request.*;
+import com.example.workpryct_dbp.Infrastructure.ClientRepository;
+import com.example.workpryct_dbp.Infrastructure.WorkerRepository;
 import com.example.workpryct_dbp.Services.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

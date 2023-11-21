@@ -4,15 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "workers")
@@ -20,6 +17,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Worker {
     // ---------------------------------------------------------------------------------------------
     // CLIENT ATTRIBUTES
@@ -27,6 +25,9 @@ public class Worker {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long worker_id;
+
+    @Column(name = "phone", nullable = false, unique = true)
+    private Long phone;
 
     @Column(name = "description", nullable = false)
     private String description;
@@ -39,17 +40,6 @@ public class Worker {
 
     @Column(name = "hour_price", nullable = false)
     private Double hour_price;
-
-    @Column(name = "national_id", nullable = false)
-    private Long national_id;
-
-    private enum type_nacional_id {
-        DNI,
-        PASAPORTE
-    }
-
-    @Enumerated(EnumType.STRING)
-    private type_nacional_id type_nacional_id;
 
     @Column(name = "occupation", nullable = false)
     private String occupation;

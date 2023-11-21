@@ -1,5 +1,6 @@
 package com.example.workpryct_dbp.Application;
 
+import com.example.workpryct_dbp.DTO.request.ClientRequest;
 import com.example.workpryct_dbp.DTO.response.WorkerMiniPreview;
 import com.example.workpryct_dbp.Services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -29,23 +29,18 @@ public class User implements UserDetails {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "phone", nullable = false, unique = true)
-    private Long phone;
-
     @Column(name = "password", nullable = false)
     private String password;
-
-    @Column(name = "location", nullable = false)
-    private String precise_location;
-
-    @Column(name = "city", nullable = false)
-    private String city;
 
     @Column(name = "is_verified", nullable = false)
     private Boolean is_verified;
@@ -74,8 +69,7 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Worker worker; // Add relation in Worker
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+
     /*@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
@@ -104,15 +98,10 @@ public class User implements UserDetails {
         }*/
     }
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
-    }
-
-    @Override
-    public String getUsername() {
-        // email in our case
-        return email;
     }
 
     @Override
