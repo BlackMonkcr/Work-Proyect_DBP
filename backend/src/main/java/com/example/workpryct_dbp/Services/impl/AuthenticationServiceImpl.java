@@ -61,7 +61,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public JwtAuthenticationResponse signupWorker(SignUpWorkerRequest request) {
         var user = User.builder().name(request.getName()).username(request.getEmail())
                 .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.WORKER).phone(request.getPhoneNumber()).city("").precise_location("").build();
+                .role(Role.WORKER).phone(request.getPhoneNumber()).city("Lima").precise_location("Barranco").build();
         userRepository.save(user);
 
         var worker = Worker.builder()
