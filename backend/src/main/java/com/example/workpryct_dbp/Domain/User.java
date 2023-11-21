@@ -39,17 +39,8 @@ public class User implements UserDetails {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "phone", nullable = false, unique = true)
-    private Long phone;
-
     @Column(name = "password", nullable = false)
     private String password;
-
-    @Column(name = "location", nullable = false)
-    private String precise_location;
-
-    @Column(name = "city", nullable = false)
-    private String city;
 
     @Column(name = "is_verified", nullable = false)
     private Boolean is_verified;

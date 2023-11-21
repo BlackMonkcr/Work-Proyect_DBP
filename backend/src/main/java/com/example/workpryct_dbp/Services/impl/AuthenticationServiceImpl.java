@@ -28,21 +28,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public JwtAuthenticationResponse signupClient(SignUpClientRequest request) {
-        var user = User.builder()
-                .user_id(0L)
-                .city("")
-                .email(request.getEmail())
-                .is_verified(false)
-                .name(request.getName())
-                .number_reviews(0)
-                .password(passwordEncoder.encode(request.getPassword()))
-                .phone(000000000L)
-                .precise_location("")
-                .rating(0.0)
-                .registration_date(new java.util.Date())
-                .role(Role.CLIENT)
-                .username(request.getEmail())
-                .build();
+        var user = User.builder().name(request.getName()).username(request.getEmail())
+                .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
+                .role(Role.CLIENT).build();
         userRepository.save(user);
 
         var client = Client.builder().user(user).build();
@@ -62,7 +50,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public JwtAuthenticationResponse signupWorker(SignUpWorkerRequest request) {
         var user = User.builder().name(request.getName()).username(request.getEmail())
                 .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.WORKER).phone(request.getPhoneNumber()).city(request.getDistrict()).precise_location(request.getPrecise_location()).build();
+                .role(Role.WORKER).build();
 
         userRepository.save(user);
 
@@ -73,6 +61,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .hour_price(0.0)
                 .occupation(request.getOccupation())
                 .description("")
+                .phone(request.getPhoneNumber())
                 .build();
 
         user.setWorker(workerRepository.save(worker));

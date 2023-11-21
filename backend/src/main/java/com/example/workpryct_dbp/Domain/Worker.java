@@ -26,6 +26,9 @@ public class Worker {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long worker_id;
 
+    @Column(name = "phone", nullable = false, unique = true)
+    private Long phone;
+
     @Column(name = "description", nullable = false)
     private String description;
 
