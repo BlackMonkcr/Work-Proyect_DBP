@@ -8,6 +8,5 @@ import com.example.workpryct_dbp.DTO.response.JwtAuthenticationResponse;
 public interface AuthenticationService {
     JwtAuthenticationResponse signupClient(SignUpClientRequest request);
     JwtAuthenticationResponse signupWorker(SignUpWorkerRequest request);
-
     JwtAuthenticationResponse signin(SigninRequest request);
 }

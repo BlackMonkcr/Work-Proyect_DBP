@@ -59,21 +59,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public JwtAuthenticationResponse signupWorker(SignUpWorkerRequest request) {
-        var user = User.builder()
-                .user_id(0L)
-                .city("")
-                .email(request.getEmail())
-                .is_verified(false)
-                .name(request.getName())
-                .number_reviews(0)
-                .password(passwordEncoder.encode(request.getPassword()))
-                .phone(request.getPhoneNumber())
-                .precise_location("")
-                .rating(0.0)
-                .registration_date(new java.util.Date())
-                .role(Role.WORKER)
-                .username(Role.WORKER.name())
-                .build();
+        var user = User.builder().name(request.getName()).username(request.getEmail())
+                .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
+                .role(Role.WORKER).phone(request.getPhoneNumber()).city("").precise_location("").build();
         userRepository.save(user);
 
         var worker = Worker.builder()
