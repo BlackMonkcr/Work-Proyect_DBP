@@ -7,6 +7,7 @@ import com.example.workpryct_dbp.Services.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.example.workpryct_dbp.Domain.*;
 
@@ -24,11 +25,13 @@ public class WorkerController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<List<Worker>> getAllWorkers() {
         return new ResponseEntity<>(workerService.getAllWorkers(), HttpStatus.OK);
     } // Returns all workers
 
     @GetMapping
+    @PreAuthorize("permitAll()")
     public ResponseEntity<Worker> getWorkerById(@RequestParam Long id) {
         if (workerService.getWorkerById(id).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -38,11 +41,13 @@ public class WorkerController {
     } // Returns worker by id
 
     @GetMapping("/homeCards")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<List<WorkerInformation>> getHomeCards(@RequestParam int limit) {
         return new ResponseEntity<>(workerService.getWorkersLimit(limit), HttpStatus.OK);
     } // Returns worker by id
 
     @GetMapping("/perfil")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<PerfilWorker> getPerfilWorker(@RequestParam Long worker_id) {
         if (workerService.getWorkerById(worker_id).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -52,6 +57,7 @@ public class WorkerController {
     } // Returns worker by user_id
 
     @PostMapping
+    @PreAuthorize("permitAll()")
     public ResponseEntity<Worker> createWorker(@RequestBody WorkerRequest workerRequest) {
         User user = workerRequest.getUser();
         Worker worker = workerRequest.getWorker();
@@ -59,6 +65,7 @@ public class WorkerController {
     } // Returns created worker
 
     @DeleteMapping
+    @PreAuthorize("permitAll()")
     public ResponseEntity<?> deleteWorker(@RequestParam Long id) {
         if (workerService.getWorkerById(id).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

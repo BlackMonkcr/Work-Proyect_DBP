@@ -20,7 +20,7 @@ public class WorkerInformation{
         this.name = worker.getUser().getName();
         this.occupation = worker.getOccupation();
         this.description = worker.getDescription();
-        this.keyProfilePicture = worker.getUser().getProfile_picture().getAlt();
+        this.keyProfilePicture = worker.getUser().getEmail();
         this.rating = worker.getUser().getRating();
     }
 
