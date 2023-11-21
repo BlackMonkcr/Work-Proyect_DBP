@@ -57,11 +57,9 @@ const SignupClient = () => {
             { cancelable: false }
           );
           navigation.navigate('Login')
-        } else {
-          Alert.alert('No pudo registrar', 'El email ya pertence a una cuenta existente');
         }
       } catch (error) {
-        Alert.alert('Error en el servidor', 'No se pudo registrar');
+        Alert.alert('No se pudo registrar', 'Este email, ya está registrado.');
       }
     };
 
