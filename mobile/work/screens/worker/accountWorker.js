@@ -1,12 +1,20 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import PerfilAccountWorker from '../../components/perfilAccountWorker';
 
 const AccountWorker = () => {
+    const navigation = useNavigation();
+
+    React.useLayoutEffect(() => {
+      navigation.setOptions({
+        headerShown: false,
+      });
+    }, [navigation]);
+
     return (
-        <View>
-            <Text>Account Worker Component</Text>
-        </View>
+      <PerfilAccountWorker/>
     );
 };
 
 export default AccountWorker;
+

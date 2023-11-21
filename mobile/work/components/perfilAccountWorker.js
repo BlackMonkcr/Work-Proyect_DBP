@@ -6,8 +6,10 @@ const ProfileScreen = () => {
     name: 'John Doe',
     email: 'john.doe@example.com',
     phoneNumber: '123-456-7890',
-    servicesContracted: ['Service A', 'Service B', 'Service C'],
-    favoriteServices: ['Service X', 'Service Y', 'Service Z'],
+    occupation: 'Developer',
+    skills: ['React Native', 'JavaScript', 'Node.js', 'HTML', 'CSS'],
+    description:
+      'Soy un apasionado desarrollador de software con más de 5 años de experiencia en el diseño, desarrollo y mantenimiento de aplicaciones web y móviles. Mi enfoque se centra en proporcionar soluciones eficientes y escalables utilizando las últimas tecnologías y mejores prácticas de desarrollo.',
     profileImage: 'https://placekitten.com/200/200', // URL de la imagen de perfil
   };
 
@@ -16,6 +18,7 @@ const ProfileScreen = () => {
       <View style={styles.header}>
         <Image source={{ uri: userProfile.profileImage }} style={styles.profileImage} />
         <Text style={styles.name}>{userProfile.name}</Text>
+        <Text style={styles.occupation}>{userProfile.occupation}</Text>
       </View>
       <View style={styles.body}>
         <View style={styles.attribute}>
@@ -27,21 +30,15 @@ const ProfileScreen = () => {
           <Text style={styles.bodyInfo}>{userProfile.phoneNumber}</Text>
         </View>
         <View style={styles.attribute}>
-          <Text style={styles.headerInfo}>Services Contracted: </Text>
-          <View style={styles.skillsContainer}>
-            {userProfile.servicesContracted.map((service, index) => (
-              <Text key={index} style={styles.skill}>
-                {service}
-              </Text>
-            ))}
-          </View>
+          <Text style={styles.headerInfo}>Description: </Text>
+          <Text style={styles.bodyInfo}>{userProfile.description}</Text>
         </View>
         <View style={styles.attribute}>
-          <Text style={styles.headerInfo}>Favorite Services: </Text>
+          <Text style={styles.headerInfo}>Skills: </Text>
           <View style={styles.skillsContainer}>
-            {userProfile.favoriteServices.map((service, index) => (
+            {userProfile.skills.map((skill, index) => (
               <Text key={index} style={styles.skill}>
-                {service}
+                {skill}
               </Text>
             ))}
           </View>
@@ -54,58 +51,58 @@ const ProfileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ededed',
+    backgroundColor: '#f0f0f0',
   },
   header: {
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
     backgroundColor: '#3672F5',
-    borderRadius: 30,
   },
   profileImage: {
     width: 150,
     height: 150,
     borderRadius: 75,
-    marginTop: '20%',
     marginBottom: 10,
   },
   name: {
-    fontSize: 27,
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#fff',
   },
+  occupation: {
+    fontSize: 18,
+    color: '#fff',
+  },
   body: {
-    padding: 30,
-    height: '100%',
+    padding: 20,
   },
   attribute: {
     flexDirection: 'column',
-    alignItems: 'left',
     marginTop: 20,
   },
   headerInfo: {
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#0fb088',
+    color: '#333',
   },
   bodyInfo: {
-    marginTop:8,
-    fontSize: 18,
+    fontSize: 16,
     color: '#555',
     marginLeft: 5,
   },
   skillsContainer: {
     flexDirection: 'column',
     flexWrap: 'wrap',
-    marginTop: 8,
+    marginTop: 5,
   },
   skill: {
     color: '#555',
-    fontSize: 18,
-    paddingHorizontal: 5,
-    margin: 2,
-  },
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    margin: 5,
+  }
 });
 
 export default ProfileScreen;
