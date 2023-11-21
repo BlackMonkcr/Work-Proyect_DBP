@@ -22,6 +22,11 @@ const WorkerCard = ({ name, rating, location, description, color, count}) => {
         }
     });
 
+    const addFavorite = () => {
+        setStarPressed(!starPressed);
+        
+    }
+
   return (
     <View style={[styles.container, stylestemp.containercolor]}>
         <View style={styles.info}>
@@ -51,7 +56,7 @@ const WorkerCard = ({ name, rating, location, description, color, count}) => {
 
         <TouchableOpacity
           style={[styles.button, styles.secondaryButton]}
-          onPress={() => setStarPressed(!starPressed)}
+          onPress={addFavorite}
         >
           <FontAwesome name="star" size={24} color={starPressed ? 'yellow' : '#ededed'} />
         </TouchableOpacity>
