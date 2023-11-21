@@ -28,17 +28,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public JwtAuthenticationResponse signupClient(SignUpClientRequest request) {
+
+        var client = Client.builder().build();
+
+        clientRepository.save(client);
+
         var user = User.builder().name(request.getName()).username(request.getEmail())
                 .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.CLIENT).build();
-        userRepository.save(user);
+                .role(Role.CLIENT).client(client).build();
 
-        var client = Client.builder().user(user).build();
-        user.setClient(clientRepository.save(client));
-
-        client.setUser(user);
+        client.setUser(userRepository.save(user));
         clientRepository.save(client);
-        userRepository.save(user);
 
         var jwt = jwtService.generateToken(user);
         return JwtAuthenticationResponse.builder().token(jwt).role(Role.CLIENT).build();
@@ -46,14 +46,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public JwtAuthenticationResponse signupWorker(SignUpWorkerRequest request) {
-        var user = User.builder().name(request.getName()).username(request.getEmail())
-                .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.WORKER).build();
-
-        userRepository.save(user);
-
         var worker = Worker.builder()
-                .user(user)
                 .is_available(false)
                 .is_premium(false)
                 .hour_price(0.0)
@@ -62,8 +55,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .phone(request.getPhoneNumber())
                 .build();
 
-        user.setWorker(workerRepository.save(worker));
-        userRepository.save(user);
+        workerRepository.save(worker);
+
+        var user = User.builder().name(request.getName()).username(request.getEmail())
+                .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
+                .role(Role.WORKER).worker(worker).build();
+
+        worker.setUser(userRepository.save(user));
 
         var jwt = jwtService.generateToken(user);
         return JwtAuthenticationResponse.builder().token(jwt).role(Role.WORKER).build();
