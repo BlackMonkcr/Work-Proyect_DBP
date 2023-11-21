@@ -70,7 +70,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .rating(0.0)
                 .registration_date(new java.util.Date())
                 .role(Role.WORKER)
-                .username(request.getEmail())
+                .username(Role.WORKER.name())
                 .build();
         userRepository.save(user);
 
