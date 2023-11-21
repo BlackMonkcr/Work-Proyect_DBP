@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
     @PostMapping("/signupWorker")
-    public ResponseEntity<JwtAuthenticationResponse> signup(@RequestBody SignUpWorkerRequest request) {
+    public ResponseEntity<JwtAuthenticationResponse> signupWorker(@RequestBody SignUpWorkerRequest request) {
         return ResponseEntity.ok(authenticationService.signupWorker(request));
     }
 

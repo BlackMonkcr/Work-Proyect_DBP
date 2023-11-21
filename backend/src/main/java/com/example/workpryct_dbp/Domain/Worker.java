@@ -18,7 +18,7 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Worker implements UserDetails {
+public class Worker {
     // ---------------------------------------------------------------------------------------------
     // CLIENT ATTRIBUTES
 
@@ -72,40 +72,5 @@ public class Worker implements UserDetails {
         this.plan = null;
         this.work_images = new HashSet<>();
         this.favorite_clients = new HashSet<>();
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(getUser().getRole().name()));
-    }
-
-    @Override
-    public String getUsername() {
-        return getUser().getEmail();
-    }
-
-    @Override
-    public String getPassword() {
-        return getUser().getPassword();
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
     }
 }

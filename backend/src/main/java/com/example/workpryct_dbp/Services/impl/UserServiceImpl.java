@@ -17,23 +17,14 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    private final ClientRepository clientRepository;
-    private final WorkerRepository workerRepository;
+    private final UserRepository userRepository;
     @Override
     public UserDetailsService userDetailsService() {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) {
-                var client = clientRepository.findByEmail(username);
-                if (client.isPresent()) {
-                    return new ClientRequest(client.get().getUser(), client.get());
-                }
-
-                var worker = workerRepository.findByEmail(username);
-                if (worker.isPresent()) {
-                    return new WorkerRequest(worker.get().getUser(), worker.get());
-                }
-                throw new UsernameNotFoundException("User not found");
+                return userRepository.findByEmail(username)
+                        .orElseThrow(() -> new UsernameNotFoundException("User not found"));
             }
         };
     }

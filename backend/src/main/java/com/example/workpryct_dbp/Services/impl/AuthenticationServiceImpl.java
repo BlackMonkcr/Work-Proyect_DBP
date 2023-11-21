@@ -70,11 +70,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .national_id(request.getDNI())
                 .build();
         user.setWorker(workerRepository.save(worker));
-
-        workerRepository.save(worker);
         userRepository.save(user);
-
-        WorkerRequest workerRequest = new WorkerRequest(user, worker);
 
         var jwt = jwtService.generateToken(user);
         return JwtAuthenticationResponse.builder().token(jwt).role(Role.WORKER).build();
@@ -85,21 +81,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
-        String jwt = null;
-        Role role = null;
-
-        if (clientRepository.findByEmail(request.getEmail()).isPresent()) {
-            var client = clientRepository.findByEmail(request.getEmail())
+        var user = userRepository.findByEmail(request.getEmail())
                     .orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
-            jwt = jwtService.generateToken(client);
-            role = Role.CLIENT;
-        }
-        else if (workerRepository.findByEmail(request.getEmail()).isPresent()) {
-            var worker = workerRepository.findByEmail(request.getEmail())
-                    .orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
-            jwt = jwtService.generateToken(worker);
-            role = Role.WORKER;
-        }
+            String jwt = jwtService.generateToken(user);
+            Role role = user.getRole();
 
         return JwtAuthenticationResponse.builder().token(jwt).role(role).build();
     }
