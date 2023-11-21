@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PerfilWorker {
+    private Long id;
     private String name;
     private String occupation;
     private String email;
@@ -16,6 +17,7 @@ public class PerfilWorker {
 
 
     public PerfilWorker(Worker worker) {
+        this.id = worker.getId();
         this.name = worker.getUser().getName();
         this.occupation = worker.getOccupation();
         this.email = worker.getUser().getEmail();
