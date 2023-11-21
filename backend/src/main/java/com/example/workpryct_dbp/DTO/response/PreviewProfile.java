@@ -15,12 +15,12 @@ public class PreviewProfile {
 
 
     public PreviewProfile(Client client) {
-        this.id = client.getId();
+        this.id = client.getClient_id();
         this.name = client.getUser().getName();
         this.keyProfilePicture = client.getUser().getProfile_picture().getAlt();
     }
     public PreviewProfile(Worker worker) {
-        this.id = worker.getId();
+        this.id = worker.getWorker_id();
         this.name = worker.getUser().getName();
         this.keyProfilePicture = worker.getUser().getProfile_picture().getAlt();
     }

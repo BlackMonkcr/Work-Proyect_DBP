@@ -17,7 +17,7 @@ public class PerfilWorker {
 
 
     public PerfilWorker(Worker worker) {
-        this.id = worker.getId();
+        this.id = worker.getWorker_id();
         this.name = worker.getUser().getName();
         this.occupation = worker.getOccupation();
         this.email = worker.getUser().getEmail();
