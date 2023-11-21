@@ -1,6 +1,7 @@
 package com.example.workpryct_dbp.Services;
 
 import com.example.workpryct_dbp.DTO.response.WorkerInformation;
+import com.example.workpryct_dbp.DTO.response.WorkerInformationGEn;
 import com.example.workpryct_dbp.Domain.Img;
 import com.example.workpryct_dbp.Domain.User;
 import com.example.workpryct_dbp.Domain.Client;
@@ -85,12 +86,12 @@ public class WorkerService {
         return null;
     } // False if not found
 
-    public List<WorkerInformation> getWorkersLimit(int Limit) {
+    public WorkerInformationGEn getWorkersLimit(int Limit) {
         List<Worker> workers = workerRepository.findAll();
         List<WorkerInformation> workersInformation = new ArrayList<>();
         for (int i = 0; i < Limit; i++) {
             workersInformation.add(new WorkerInformation(workers.get(i)));
         }
-        return workersInformation;
+        return new WorkerInformationGEn(workersInformation, "Workers found");
     } // False if not found
 }
