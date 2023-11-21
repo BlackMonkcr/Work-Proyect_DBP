@@ -64,6 +64,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.WORKER).phone(request.getPhoneNumber()).city(request.getDistrict()).precise_location(request.getPrecise_location()).build();
 
+        userRepository.save(user);
+
         var worker = Worker.builder()
                 .user(user)
                 .is_available(false)
