@@ -27,9 +27,20 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public JwtAuthenticationResponse signupClient(SignUpClientRequest request) {
-        var user = User.builder().name(request.getName()).username(request.getEmail())
-                .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.CLIENT).phone(000000000L).city("").precise_location("").build();
+        var user = User.builder()
+                .city("")
+                .email(request.getEmail())
+                .is_verified(false)
+                .name(request.getName())
+                .number_reviews(0)
+                .password(passwordEncoder.encode(request.getPassword()))
+                .phone(000000000L)
+                .precise_location("")
+                .rating(0.0)
+                .registration_date(new java.util.Date())
+                .role(Role.CLIENT)
+                .username(request.getEmail())
+                .build();
         userRepository.save(user);
 
         var client = Client.builder().user(user).build();
@@ -42,20 +53,33 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         ClientRequest clientRequest = new ClientRequest(user, client);
 
         var jwt = jwtService.generateToken(clientRequest);
-        return JwtAuthenticationResponse.builder().token(jwt).role("CLIENT").build();
+        return JwtAuthenticationResponse.builder().token(jwt).role(Role.CLIENT).build();
     }
 
     @Override
     public JwtAuthenticationResponse signupWorker(SignUpWorkerRequest request) {
-        var user = User.builder().name(request.getName()).username(request.getEmail())
-                .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.WORKER).phone(000000000L).city("")
-                .precise_location("").build();
+        var user = User.builder()
+                .city("")
+                .email(request.getEmail())
+                .is_verified(false)
+                .name(request.getName())
+                .number_reviews(0)
+                .password(passwordEncoder.encode(request.getPassword()))
+                .phone(request.getPhoneNumber())
+                .precise_location("")
+                .rating(0.0)
+                .registration_date(new java.util.Date())
+                .role(Role.CLIENT)
+                .username(request.getEmail())
+                .build();
         userRepository.save(user);
 
-        var worker = Worker.builder().user(user).build();
+        var worker = Worker.builder()
+                .user(user)
+                .occupation(request.getOccupation())
+                .national_id(request.getDNI())
+                .build();
         user.setWorker(workerRepository.save(worker));
-        worker.setUser(user);
 
         workerRepository.save(worker);
         userRepository.save(user);
@@ -63,7 +87,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         WorkerRequest workerRequest = new WorkerRequest(user, worker);
 
         var jwt = jwtService.generateToken(workerRequest);
-        return JwtAuthenticationResponse.builder().token(jwt).role("WORKER").build();
+        return JwtAuthenticationResponse.builder().token(jwt).role(Role.WORKER).build();
     }
 
     @Override
@@ -72,19 +96,19 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
         String jwt = null;
-        String role = null;
+        Role role = null;
 
         if (clientRepository.findByEmail(request.getEmail()).isPresent()) {
             var client = clientRepository.findByEmail(request.getEmail())
                     .orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
             jwt = jwtService.generateToken(client);
-            role = "CLIENT";
+            role = Role.CLIENT;
         }
         else if (workerRepository.findByEmail(request.getEmail()).isPresent()) {
             var worker = workerRepository.findByEmail(request.getEmail())
                     .orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
             jwt = jwtService.generateToken(worker);
-            role = "WORKER";
+            role = Role.WORKER;
         }
 
         return JwtAuthenticationResponse.builder().token(jwt).role(role).build();

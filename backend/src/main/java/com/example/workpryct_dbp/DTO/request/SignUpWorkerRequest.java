@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SignUpWorkerRequest {
     private String name;
-    private String DNI;
+    private Long DNI;
     private String occupation;
     private Long phoneNumber;
     private String email;
