@@ -38,9 +38,6 @@ public class Worker {
     @Column(name = "hour_price", nullable = false)
     private Double hour_price;
 
-    @Column(name = "national_id", nullable = false)
-    private Long national_id;
-
     @Column(name = "occupation", nullable = false)
     private String occupation;
 

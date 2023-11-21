@@ -18,5 +18,4 @@ public class SignUpWorkerRequest {
     private String district;
     private String precise_location;
     private String occupation;
-    private Long DNI;
 }

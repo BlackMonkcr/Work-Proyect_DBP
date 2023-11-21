@@ -70,7 +70,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .is_premium(false)
                 .hour_price(0.0)
                 .occupation(request.getOccupation())
-                .national_id(request.getDNI())
                 .description("")
                 .build();
 
