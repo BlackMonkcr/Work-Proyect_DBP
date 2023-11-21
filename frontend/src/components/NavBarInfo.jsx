@@ -1,10 +1,11 @@
-function NavBarInfo() {
-    return (
-      <nav className="nav-bar_info">
-        <span className="nav-bar_info-text">Home</span>
-      </nav>
-    )
-  }
-  
+import React from "react";
 
-export default NavBarInfo
+function NavBarInfo({ title }) {
+    return (
+        <nav className="navbar navbar-light bg-light justify-content-center fixed-top">
+            <span className="navbar-brand mb-0 h fs-3 texto-dark ">{title}</span>
+        </nav>
+    );
+}
+
+export default NavBarInfo;
