@@ -1,4 +1,4 @@
-package com.example.workpryct_dbp.DTO.response;
+package com.example.workpryct_dbp.DTO.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class JwtAuthenticationResponse {
-    private String token;
-    private String role;
+public class SignUpClientRequest {
+    private String name;
+    private String email;
+    private String password;
 }
