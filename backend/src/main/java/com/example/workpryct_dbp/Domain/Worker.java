@@ -41,7 +41,7 @@ public class Worker {
     @Column(name = "national_id", nullable = false)
     private Long national_id;
 
-    private enum type_nacional_id {
+    public enum type_nacional_id {
         DNI,
         PASAPORTE
     }

@@ -1,6 +1,7 @@
 package com.example.workpryct_dbp.Services.impl;
 
 import com.example.workpryct_dbp.DTO.request.SignUpClientRequest;
+import jakarta.persistence.*;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -65,10 +66,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         var worker = Worker.builder()
                 .user(user)
+                .is_available(false)
+                .is_premium(false)
+                .hour_price(0.0)
+                .national_id(request.getDNI())
+                .type_nacional_id(Worker.type_nacional_id.DNI)
                 .occupation(request.getOccupation())
                 .national_id(request.getDNI())
                 .description("")
                 .build();
+
         user.setWorker(workerRepository.save(worker));
         userRepository.save(user);
 
