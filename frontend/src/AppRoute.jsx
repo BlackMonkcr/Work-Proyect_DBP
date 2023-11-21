@@ -9,8 +9,10 @@ import LoginWorker from "./pages/LoginWorker";
 import SignupWorker from "./pages/SignupWorker";
 import HomeClient from "./pages/HomeClient";
 import HomeWorker from "./pages/HomeWorker";
-
-//Comentario
+import Services from "./pages/services";
+import Plans from "./pages/plans";
+import Profile from "./pages/Profile";
+import Questions from "./pages/Questions";
 
 export default function App() {
     return (
@@ -23,6 +25,10 @@ export default function App() {
                 <Route path="/signupWorker" element={<SignupWorker/>} />
                 <Route path="/homeClient" element={<HomeClient/>}/>
                 <Route path="/homeWorker" element={<HomeWorker/>}/>
+                <Route path="/services" element={<Services/>} />
+                <Route path="/plans" element={<Plans/>} />
+                <Route path="/profile" element={<Profile/>} />
+                <Route path="/questions" element={<Questions/>} />
             </Routes>
             <NotificationContainer />
         </BrowserRouter>

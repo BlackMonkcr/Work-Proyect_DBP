@@ -340,3 +340,55 @@
 .image-card-container{
   height: 120px;
 }
+
+.card-height{
+  height: 140px;
+}
+/*--------------------PLANES*/
+.plan-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3.5em;
+  width: 100%;
+  border-bottom: 1px solid#7898E8;
+
+}
+
+.plan-preview-mini {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 0.5em 0.8em;
+  border-radius: 8px;
+  background-color: #7898E8;
+  color: #F7F7F7;
+  transition: background-color 0.25s;
+}
+
+.plan-preview-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  background-color: #7898E8;
+  padding: 1.2em 1em;
+  border-radius: 10px;
+}
+
+.picture {
+  height: 80px;
+  width: 80px;
+  
+}
+
+.textoDestacado {
+  font-size: 50px; /* Tamaño del texto */
+  font-weight: bold; /* Grosor del texto (negrita) */
+  color: white; /* Color del texto */
+}
+.bchica{
+  background: url("./../img/landing-bck-2.png") center center no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100px;
+}
