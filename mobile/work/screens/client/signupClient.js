@@ -64,7 +64,6 @@ const SignupClient = () => {
         Alert.alert('Error en el servidor', 'No se pudo registrar');
       }
     };
-  };
 
     const navigation = useNavigation();
 
