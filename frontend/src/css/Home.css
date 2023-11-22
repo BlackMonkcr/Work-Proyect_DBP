@@ -269,6 +269,7 @@
   z-index: 1;
 }
 
+
 .worker-highlight-description {
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
@@ -323,7 +324,7 @@
 }
 
 .bg-default{
-  background: url("./../img/landing-bck-2.png") center center no-repeat;
+  background: url("./../img/landing-bck-2.png") center center no-repeat; 
   background-attachment: fixed;
   background-size: cover;
   height: 300px;
