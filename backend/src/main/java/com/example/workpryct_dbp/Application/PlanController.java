@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/plan")
+@RequestMapping("/api/v1/plan")
 @CrossOrigin(origins = "*")
 public class PlanController {
     private final PlanService planService;

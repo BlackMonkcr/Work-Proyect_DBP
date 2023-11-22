@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/client")
+@RequestMapping("/api/v1/client")
 @CrossOrigin(origins = "*")
 public class ClientController {
     private final ClientService clientService;

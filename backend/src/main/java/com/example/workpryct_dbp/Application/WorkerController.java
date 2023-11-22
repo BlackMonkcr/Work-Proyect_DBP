@@ -14,7 +14,7 @@ import com.example.workpryct_dbp.Domain.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/worker")
+@RequestMapping("/api/v1/worker")
 @CrossOrigin(origins = "*")
 public class WorkerController {
     private final WorkerService workerService;
