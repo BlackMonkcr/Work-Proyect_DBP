@@ -14,6 +14,7 @@ public class PerfilWorker {
     private String occupation;
     private String description;
     private double hourPrice;
+    private String keyProfilePicture;
 
     public PerfilWorker(Worker worker) {
         this.id = worker.getWorker_id();
@@ -23,6 +24,13 @@ public class PerfilWorker {
         this.occupation = worker.getOccupation();
         this.description = worker.getDescription();
         this.hourPrice = worker.getHour_price();
+        this.keyProfilePicture = worker.getUser().getName();
+        for (int i = 0; i < this.keyProfilePicture.length(); i++) {
+            if (this.keyProfilePicture.charAt(i) == ' ') {
+                this.keyProfilePicture = this.keyProfilePicture.substring(0, i) + this.keyProfilePicture.substring(i + 1);
+                i--;
+            }
+        }
     }
 
     public PerfilWorker() {}
