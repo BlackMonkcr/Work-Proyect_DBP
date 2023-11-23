@@ -89,7 +89,7 @@ public class WorkerService {
     public WorkerInformationGEn getWorkersLimit(int Limit) {
         List<Worker> workers = workerRepository.findAll();
         List<WorkerInformation> workersInformation = new ArrayList<>();
-        for (int i = 0; i < Limit; i++) {
+        for (int i = 0; i < Limit && i < workers.size(); i++) {
             workersInformation.add(new WorkerInformation(workers.get(i)));
         }
         return new WorkerInformationGEn(workersInformation, "Workers found");
