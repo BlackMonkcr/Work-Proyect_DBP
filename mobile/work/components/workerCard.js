@@ -6,12 +6,11 @@ import { MaterialCommunityIcons,FontAwesome } from '@expo/vector-icons';
 
 var ColorGlobal = '#2f43dd';
 
-const WorkerCard = ({ name, rating, location, description, color, count}) => {
+const WorkerCard = ({ key, name, rating, description, color }) => {
 
     const [starPressed, setStarPressed] = useState(false);
 
     ColorGlobal=color;
-    count+=1;
     if (description.length > 40) {
         description = description.substring(0, 40) + '...';
     }
@@ -35,7 +34,7 @@ const WorkerCard = ({ name, rating, location, description, color, count}) => {
                     <Text style={styles.name}>{name}</Text>
                 </View>
                 <View style={styles.attributes}>
-                    <Text style={[styles.locationText, styles.ratingText]}>{location}, {rating}</Text>
+                    <Text style={[styles.locationText, styles.ratingText]}>{rating}</Text>
                     <MaterialCommunityIcons name="star" size={14} color="#FDE52F" />
                 </View>
                 <View>
