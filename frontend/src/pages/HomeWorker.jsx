@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "../css/Home.css";
-import { MainCardHome } from "../components/mainCardHome";
+import MainCardHomeWorker from "../components/mainCardHome-worker";
 
 import NavBarInfo from "../components/NavBarInfo";
 import NavBarWorker from "../components/navbarWorker";
@@ -12,21 +12,26 @@ import NavPlanApp from "../components/navPlanApp";
 
 function HomeWorker() {
     // Get the 3 first users from the database
-    const [users, setUsers] = useState([]);
+    const [workers, setWorkers] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    useEffect(() => { //No funciona por los CORS
-        Axios({
-            method: "GET",
-            baseURL: "http://work.up.railway.app/",
-            url: "client/favorite_workers?id=1&limit=3",
-        })
-        .then((response) => {
-            setUsers(response.data);
-        })
-        .catch((error) => {
-            console.log("Error: " + error.message);
-        });
-    }, [setUsers]);
+    const fetchData = async () => {
+        try {
+            setLoading(true);   
+            const response = await fetch('https://work.up.railway.app/api/v1/worker/homeCards?limit=10', {
+                method: 'GET',
+            });
+            const data = await response.json();
+            setWorkers(data.workers);
+            setLoading(false);
+        } catch (error) {
+          console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     /*--------------------------RETURN COMPONENT--------------------------*/
 
@@ -38,8 +43,16 @@ function HomeWorker() {
                 <div className="container ">
                     <div className="row ">
                         <div className="col-12 mt-5">
-                            <MainCardHome title="Trabajador Destacado de la semana" subtitle="Frankie Ruiz" body="San Borja 4.9" description="Descripción sobre el trabajador" />
-                            <MainCardHome title="Trabajador Destacado de la semana" subtitle="Frankie Ruiz" body="San Borja 4.9" description="Descripción sobre el trabajador" />
+                            {workers.map((worker) => (
+                                <MainCardHomeWorker
+                                    key={worker.id}
+                                    id={worker.id}
+                                    name={worker.name}
+                                    occupation={worker.occupation}
+                                    description={worker.description}
+                                    keyProfilePicture={worker.keyProfilePicture}
+                                />
+                            ))}
                         </div>
                     </div>
                 </div>
