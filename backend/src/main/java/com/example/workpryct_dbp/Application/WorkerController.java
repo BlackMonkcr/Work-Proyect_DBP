@@ -43,11 +43,11 @@ public class WorkerController {
     } // Returns worker by id
 
     @GetMapping("/perfil")
-    public ResponseEntity<PerfilWorker> getPerfilWorker(@RequestParam Long worker_id) {
-        if (workerService.getWorkerById(worker_id).isEmpty()) {
+    public ResponseEntity<PerfilWorker> getPerfilWorker(@RequestParam String email) {
+        if (workerService.getPerfilWorker(email) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(new PerfilWorker(workerService.getWorkerById(worker_id).get()), HttpStatus.OK);
+            return new ResponseEntity<>(workerService.getPerfilWorker(email), HttpStatus.OK);
         }
     } // Returns worker by user_id
 

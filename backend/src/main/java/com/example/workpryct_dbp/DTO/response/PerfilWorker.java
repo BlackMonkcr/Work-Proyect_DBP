@@ -9,21 +9,20 @@ import lombok.Setter;
 public class PerfilWorker {
     private Long id;
     private String name;
-    private String occupation;
     private String email;
     private Long phone;
+    private String occupation;
     private String description;
-    private String keyProfilePicture;
-
+    private double hourPrice;
 
     public PerfilWorker(Worker worker) {
         this.id = worker.getWorker_id();
         this.name = worker.getUser().getName();
-        this.occupation = worker.getOccupation();
         this.email = worker.getUser().getEmail();
         this.phone = worker.getPhone();
+        this.occupation = worker.getOccupation();
         this.description = worker.getDescription();
-        this.keyProfilePicture = worker.getUser().getProfile_picture().getAlt();
+        this.hourPrice = worker.getHour_price();
     }
 
     public PerfilWorker() {}

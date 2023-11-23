@@ -1,8 +1,10 @@
 package com.example.workpryct_dbp.Services;
 
+import com.example.workpryct_dbp.DTO.response.PerfilWorker;
 import com.example.workpryct_dbp.DTO.response.WorkerInformation;
 import com.example.workpryct_dbp.DTO.response.WorkersInformation;
 import com.example.workpryct_dbp.Domain.Img;
+import com.example.workpryct_dbp.Domain.Role;
 import com.example.workpryct_dbp.Domain.User;
 import com.example.workpryct_dbp.Domain.Worker;
 import com.example.workpryct_dbp.Infrastructure.ClientRepository;
@@ -91,5 +93,14 @@ public class WorkerService {
             workersInformation.add(new WorkerInformation(workers.get(i)));
         }
         return new WorkersInformation(workersInformation);
+    } // False if not found
+
+    public PerfilWorker getPerfilWorker(String email) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isPresent() && userOptional.get().getRole() == Role.WORKER) {
+            Worker worker = userOptional.get().getWorker();
+            return new PerfilWorker(worker);
+        }
+        return null;
     } // False if not found
 }
