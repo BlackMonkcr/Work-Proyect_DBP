@@ -31,7 +31,10 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         .requestMatchers("api/v1/client/**").permitAll()
-                        .requestMatchers("api/v1/worker/**").permitAll().anyRequest().authenticated())
+                        .requestMatchers("api/v1/worker/**").permitAll()
+                        .requestMatchers("api/v1/plan/**").permitAll()
+                        .requestMatchers("api/v1/subscription/**").permitAll()
+                        .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
                         jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
