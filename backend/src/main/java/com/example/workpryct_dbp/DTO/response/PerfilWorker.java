@@ -15,6 +15,7 @@ public class PerfilWorker {
     private String description;
     private double hourPrice;
     private String keyProfilePicture;
+    private String plan;
 
     public PerfilWorker(Worker worker) {
         this.id = worker.getWorker_id();
@@ -30,6 +31,11 @@ public class PerfilWorker {
                 this.keyProfilePicture = this.keyProfilePicture.substring(0, i) + this.keyProfilePicture.substring(i + 1);
                 i--;
             }
+        }
+        if (worker.getPlan() == null) {
+            this.plan = "Free";
+        } else {
+            this.plan = worker.getPlan().getName();
         }
     }
 
