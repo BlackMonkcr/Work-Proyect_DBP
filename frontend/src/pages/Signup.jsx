@@ -16,20 +16,15 @@ function Signup() {
         e.preventDefault();
 
         try {
-            const response = await fetch( "https://work.up.railway.app/api/v1/auth/signup", {
+            const response = await fetch('https://work.up.railway.app/api/v1/auth/signupClient' , {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     name: name,
-                    username: username,
-                    password: password,
-                    phoneNumber: phoneNumber,
-                    district: district,
-                    precise_location: address,
                     email: email,
-                    password: password
+                    password: password, 
                 })
             });
 
