@@ -4,6 +4,7 @@ import com.example.workpryct_dbp.DTO.request.ClientRequest;
 import com.example.workpryct_dbp.DTO.response.PerfilClient;
 import com.example.workpryct_dbp.DTO.response.PerfilWorker;
 import com.example.workpryct_dbp.DTO.response.WorkerMiniPreview;
+import com.example.workpryct_dbp.DTO.response.WorkersInformation;
 import com.example.workpryct_dbp.Services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -80,12 +81,8 @@ public class ClientController {
         if (clientService.getClientById(id).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            Set<Worker> workers = clientService.getFavoriteWorkers(id);
-            Set<WorkerMiniPreview> workerMiniPreviews = new HashSet<>();
-            for (int i = 0; i < limit && i < workers.size(); i++) {
-                workerMiniPreviews.add(new WorkerMiniPreview(workers.toArray(new Worker[0])[i]));
-            }
-            return new ResponseEntity<>(workerMiniPreviews, HttpStatus.OK);
+            WorkersInformation workers = clientService.getFavoriteWorkers(id);
+            return new ResponseEntity<>(workers, HttpStatus.OK);
         }
     } // Returns favorite worker
 

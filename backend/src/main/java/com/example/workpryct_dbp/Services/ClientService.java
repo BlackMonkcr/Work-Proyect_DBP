@@ -2,6 +2,8 @@ package com.example.workpryct_dbp.Services;
 
 import com.example.workpryct_dbp.DTO.response.PerfilClient;
 import com.example.workpryct_dbp.DTO.response.PerfilWorker;
+import com.example.workpryct_dbp.DTO.response.WorkerInformation;
+import com.example.workpryct_dbp.DTO.response.WorkersInformation;
 import com.example.workpryct_dbp.Domain.Role;
 import com.example.workpryct_dbp.Domain.User;
 import com.example.workpryct_dbp.Domain.Client;
@@ -71,11 +73,16 @@ public class ClientService {
         return false;
     } // False if not found
 
-    public Set<Worker> getFavoriteWorkers(Long id) {
+    public WorkersInformation getFavoriteWorkers(Long id) {
         Optional<Client> clientOptional = clientRepository.findById(id);
         if (clientOptional.isPresent()) {
             Client client = clientOptional.get();
-            return client.getFavorite_workers();
+            WorkersInformation workersInformation = new WorkersInformation();
+            for (Worker worker : client.getFavorite_workers()) {
+                workersInformation.getWorkers().add(new WorkerInformation(worker));
+            }
+
+            return workersInformation;
         }
         return null;
     } // False if not found
