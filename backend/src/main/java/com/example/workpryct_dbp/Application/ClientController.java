@@ -67,6 +67,24 @@ public class ClientController {
         }
     } // Deletes client
 
+    @GetMapping("/history_workers/all")
+    public ResponseEntity<?> getHistoryWorkers(@RequestParam Long id) {
+        if (clientService.getClientById(id).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(clientService.getHistoryWorkers(id), HttpStatus.OK);
+        }
+    } // Returns history workers
+
+    @PostMapping("/history_workers")
+    public ResponseEntity<?> addHistoryWorker(@RequestParam Long id, @RequestParam Long worker) {
+        if (clientService.getClientById(id).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(clientService.addHistoryWorker(id, worker), HttpStatus.OK);
+        }
+    } // Returns updated client
+
     @GetMapping("/favorite_workers/all")
     public ResponseEntity<?> getFavoriteWorkers(@RequestParam Long id) {
         if (clientService.getClientById(id).isEmpty()) {

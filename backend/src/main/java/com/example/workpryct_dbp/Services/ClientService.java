@@ -1,9 +1,6 @@
 package com.example.workpryct_dbp.Services;
 
-import com.example.workpryct_dbp.DTO.response.PerfilClient;
-import com.example.workpryct_dbp.DTO.response.PerfilWorker;
-import com.example.workpryct_dbp.DTO.response.WorkerInformation;
-import com.example.workpryct_dbp.DTO.response.WorkersInformation;
+import com.example.workpryct_dbp.DTO.response.*;
 import com.example.workpryct_dbp.Domain.Role;
 import com.example.workpryct_dbp.Domain.User;
 import com.example.workpryct_dbp.Domain.Client;
@@ -132,6 +129,31 @@ public class ClientService {
                     client.getFavorite_workers().add(workerOptional.get());
                 }
             }
+            clientRepository.save(client);
+            return client;
+        }
+        return null;
+    } // False if not found
+
+    public WorkersRequest getHistoryWorkers(Long id) {
+        Optional<Client> clientOptional = clientRepository.findById(id);
+        if (clientOptional.isPresent()) {
+            Client client = clientOptional.get();
+            List<WorkerRequest> workerRequestList = new ArrayList<>();
+            for (Worker worker : client.getHistory_workers()) {
+                workerRequestList.add(new WorkerRequest(worker));
+            }
+            return new WorkersRequest(workerRequestList);
+        }
+        return null;
+    } // False if not found
+
+    public Client addHistoryWorker(Long id, Long worker_id) {
+        Optional<Client> clientOptional = clientRepository.findById(id);
+        Optional<Worker> workerOptional = workerRepository.findById(worker_id);
+        if (clientOptional.isPresent() && workerOptional.isPresent()) {
+            Client client = clientOptional.get();
+            client.getHistory_workers().add(workerOptional.get());
             clientRepository.save(client);
             return client;
         }
