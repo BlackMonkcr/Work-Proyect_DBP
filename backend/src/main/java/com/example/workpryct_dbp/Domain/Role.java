@@ -1,9 +1,11 @@
 package com.example.workpryct_dbp.Domain;
 
 public enum Role {
-    USER,
+    CLIENT,
+    WORKER,
     ADMIN
 }
+
 
 /*package com.example.workpryct_dbp.Domain;
 

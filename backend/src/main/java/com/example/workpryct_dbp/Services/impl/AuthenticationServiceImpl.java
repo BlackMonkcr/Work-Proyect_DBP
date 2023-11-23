@@ -1,17 +1,17 @@
 package com.example.workpryct_dbp.Services.impl;
 
+import com.example.workpryct_dbp.DTO.request.SignUpClientRequest;
+import jakarta.persistence.*;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.workpryct_dbp.DTO.request.SignUpRequest;
-import com.example.workpryct_dbp.DTO.request.SigninRequest;
+import com.example.workpryct_dbp.DTO.request.*;
 import com.example.workpryct_dbp.DTO.response.JwtAuthenticationResponse;
-import com.example.workpryct_dbp.Domain.Role;
-import com.example.workpryct_dbp.Domain.User;
-import com.example.workpryct_dbp.Infrastructure.UserRepository;
-import com.example.workpryct_dbp.Services.AuthenticationService;
+import com.example.workpryct_dbp.Domain.*;
+import com.example.workpryct_dbp.Infrastructure.*;
+import com.example.workpryct_dbp.Services.*;
 import com.example.workpryct_dbp.Services.JwtService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,18 +19,51 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
+    private final ClientRepository clientRepository;
+    private final WorkerRepository workerRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+
     @Override
-    public JwtAuthenticationResponse signup(SignUpRequest request) {
-        var user = User.builder().name(request.getName()).username(request.getUsername())
+    public JwtAuthenticationResponse signupClient(SignUpClientRequest request) {
+        var user = User.builder().name(request.getName()).username(request.getEmail())
                 .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER).phone(request.getPhoneNumber()).city(request.getDistrict()).precise_location(request.getPrecise_location()).build();
+                .role(Role.CLIENT).build();
+
         userRepository.save(user);
         var jwt = jwtService.generateToken(user);
-        return JwtAuthenticationResponse.builder().token(jwt).build();
+
+        var client = Client.builder().user(user).build();
+
+        clientRepository.save(client);
+
+        return JwtAuthenticationResponse.builder().token(jwt).role(Role.CLIENT).build();
+    }
+
+    @Override
+    public JwtAuthenticationResponse signupWorker(SignUpWorkerRequest request) {
+        var user = User.builder().name(request.getName()).username(request.getEmail())
+                .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
+                .role(Role.WORKER).build();
+
+        userRepository.save(user);
+        var jwt = jwtService.generateToken(user);
+
+        var worker = Worker.builder()
+                .user(user)
+                .is_available(false)
+                .is_premium(false)
+                .hour_price(0.0)
+                .occupation(request.getOccupation())
+                .description("")
+                .phone(request.getPhoneNumber())
+                .build();
+
+        workerRepository.save(worker);
+
+        return JwtAuthenticationResponse.builder().token(jwt).role(Role.WORKER).build();
     }
 
     @Override
@@ -39,7 +72,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
+
         var jwt = jwtService.generateToken(user);
-        return JwtAuthenticationResponse.builder().token(jwt).build();
+
+        return JwtAuthenticationResponse.builder().token(jwt).role(user.getRole()).build();
     }
+
 }

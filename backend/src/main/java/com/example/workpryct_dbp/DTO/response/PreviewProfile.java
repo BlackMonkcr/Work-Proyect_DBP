@@ -9,15 +9,18 @@ import lombok.Setter;
 @Setter
 
 public class PreviewProfile {
+    private Long id;
     private String name;
     private String keyProfilePicture;
 
 
     public PreviewProfile(Client client) {
+        this.id = client.getClient_id();
         this.name = client.getUser().getName();
         this.keyProfilePicture = client.getUser().getProfile_picture().getAlt();
     }
     public PreviewProfile(Worker worker) {
+        this.id = worker.getWorker_id();
         this.name = worker.getUser().getName();
         this.keyProfilePicture = worker.getUser().getProfile_picture().getAlt();
     }

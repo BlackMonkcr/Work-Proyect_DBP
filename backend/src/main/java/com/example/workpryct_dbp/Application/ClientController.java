@@ -1,5 +1,6 @@
 package com.example.workpryct_dbp.Application;
 
+import com.example.workpryct_dbp.DTO.request.ClientRequest;
 import com.example.workpryct_dbp.DTO.response.WorkerMiniPreview;
 import com.example.workpryct_dbp.Services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/client")
+@RequestMapping("/api/v1/client")
 @CrossOrigin(origins = "*")
 public class ClientController {
     private final ClientService clientService;

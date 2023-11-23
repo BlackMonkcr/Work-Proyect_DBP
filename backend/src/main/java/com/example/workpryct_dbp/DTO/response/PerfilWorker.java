@@ -4,21 +4,27 @@ import com.example.workpryct_dbp.Domain.Worker;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
-public class WorkerMiniPreview {
+public class PerfilWorker {
     private Long id;
     private String name;
     private String occupation;
+    private String email;
+    private Long phone;
+    private String description;
     private String keyProfilePicture;
 
-    public WorkerMiniPreview(Worker worker) {
+
+    public PerfilWorker(Worker worker) {
         this.id = worker.getWorker_id();
         this.name = worker.getUser().getName();
         this.occupation = worker.getOccupation();
-        this.keyProfilePicture = worker.getUser().getUsername();
+        this.email = worker.getUser().getEmail();
+        this.phone = worker.getPhone();
+        this.description = worker.getDescription();
+        this.keyProfilePicture = worker.getUser().getProfile_picture().getAlt();
     }
 
-    public WorkerMiniPreview() {}
+    public PerfilWorker() {}
 }

@@ -10,7 +10,7 @@ import com.example.workpryct_dbp.Domain.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/img")
+@RequestMapping("/api/v1/img")
 @CrossOrigin(origins = "*")
 public class ImgController {
     private final ImgService imgService;
