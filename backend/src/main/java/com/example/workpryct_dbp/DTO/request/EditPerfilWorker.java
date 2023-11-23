@@ -7,6 +7,8 @@ import lombok.*;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class EditPerfil {
     private String description;
     private Double hourPrice;
