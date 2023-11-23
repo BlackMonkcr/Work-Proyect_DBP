@@ -43,6 +43,7 @@ const AccountWorker = ({username}) => {
         hourPrice={workerData.hourPrice}
         description={workerData.description}
         keyProfilePicture={workerData.keyProfilePicture}
+        plan={workerData.plan}
       />
     );
 };

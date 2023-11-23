@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import { View, Text, StyleSheet, Image, ScrollView,TouchableOpacity,TextInput } from 'react-native';
 
-const ProfileScreen = ({ name, email, phone, occupation, hourPrice, description, keyProfilePicture}) => {
+const ProfileScreen = ({ name, email, phone, occupation, hourPrice, description, keyProfilePicture, plan}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedDescription, setEditedDescription] = useState(description || '');
   const [editedHourPrice, setEditedHourPrice] = useState(hourPrice);
@@ -58,6 +58,10 @@ const ProfileScreen = ({ name, email, phone, occupation, hourPrice, description,
         <View style={styles.attribute}>
           <Text style={styles.headerInfo}>Phone Number: </Text>
           <Text style={styles.bodyInfo}>{phone}</Text>
+        </View>
+        <View style={styles.attribute}>
+          <Text style={styles.headerInfo}>Plan Actual: </Text>
+          <Text style={styles.bodyInfo}>{plan}</Text>
         </View>
         <View style={styles.attribute}>
           <Text style={styles.headerInfo}>Description: </Text>
