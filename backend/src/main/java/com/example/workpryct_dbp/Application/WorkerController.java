@@ -52,6 +52,15 @@ public class WorkerController {
         }
     } // Returns worker by user_id
 
+    @GetMapping("/perfilById")
+    public ResponseEntity<PerfilWorker> getPerfilWorkerById(@RequestParam Long id) {
+        if (workerService.getPerfilWorkerById(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(workerService.getPerfilWorkerById(id), HttpStatus.OK);
+        }
+    } // Returns worker by user_id
+
     @PostMapping
     public ResponseEntity<Worker> createWorker(@RequestBody WorkerRequest workerRequest) {
         User user = workerRequest.getUser();

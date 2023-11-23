@@ -105,6 +105,15 @@ public class WorkerService {
         return null;
     } // False if not found
 
+    public PerfilWorker getPerfilWorkerById(Long id) {
+        Optional<Worker> workerOptional = workerRepository.findById(id);
+        if (workerOptional.isPresent()) {
+            Worker worker = workerOptional.get();
+            return new PerfilWorker(worker);
+        }
+        return null;
+    } // False if not found
+
     public boolean patchPerfilWorker(String email, EditPerfilWorker perfilWorker) {
         Optional<User> userOptional = userRepository.findByEmail(email);
         if (userOptional.isPresent() && userOptional.get().getRole() == Role.WORKER) {
