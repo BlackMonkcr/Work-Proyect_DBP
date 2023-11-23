@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import WorkerCard from '../../components/workerCard';
+import WorkerCardDefault from '../../components/workerCardDefault';
 
-const HomeScreenClient = () => {
+const HomeScreenClient = ({username}) => {
   const navigation = useNavigation();
   const [workerData, setWorkerData] = useState([]);
   const colors = ['#3837F5', '#3672F5', '#36AAB5', '#7436F5'];
@@ -37,7 +37,7 @@ const HomeScreenClient = () => {
           <Text style={styles.title}>Home</Text>
         </View>
         {workerData.map((worker, index) => (
-          <WorkerCard
+          <WorkerCardDefault
             key={worker.id}
             name={worker.name}
             rating={worker.rating}

@@ -10,7 +10,8 @@ import { FontAwesome5,Ionicons,MaterialIcons,MaterialCommunityIcons } from '@exp
 
 const Tab = createBottomTabNavigator();
 
-const NavBarClient = () => {
+const NavBarClient = ({route}) => {
+  const { username } = route.params;
   return (
       <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -62,39 +63,48 @@ const NavBarClient = () => {
       >
         <Tab.Screen
           name="Home"
-          component={HomeScreen}
           options={{
             tabBarLabel: 'Home',
           }}
-        />
+        >
+          {() => <HomeScreen username={username} />}
+        </Tab.Screen>
+
         <Tab.Screen
           name="Favorites"
-          component={FavoritesScreen}
           options={{
             tabBarLabel: 'Favorites',
           }}
-        />
+        >
+          {() => <FavoritesScreen/>}
+        </Tab.Screen>
+
         <Tab.Screen
           name="Profile"
-          component={ProfileScreen}
           options={{
             tabBarLabel: 'Profile',
           }}
-        />
+        >
+          {() => <ProfileScreen/>}
+        </Tab.Screen>
+
         <Tab.Screen
           name="History"
-          component={HistoryScreen}
           options={{
             tabBarLabel: 'History',
           }}
-        />
+        >
+          {() => <HistoryScreen/>}
+        </Tab.Screen>
+
         <Tab.Screen
           name="Messages"
-          component={MessagesScreen}
           options={{
             tabBarLabel: 'Messages',
           }}
-        />
+        >
+          {() => <MessagesScreen/>}
+        </Tab.Screen>
       </Tab.Navigator>
   );
 };

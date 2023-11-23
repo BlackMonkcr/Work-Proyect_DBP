@@ -2,12 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons,FontAwesome } from '@expo/vector-icons';
 
-
-
 var ColorGlobal = '#2f43dd';
 
-const WorkerCard = ({ key, name, rating, description, color }) => {
-
+const WorkerCardDefault = ({ name, occupation, description, color, keyProfilePicture }) => {
     const [starPressed, setStarPressed] = useState(false);
 
     ColorGlobal=color;
@@ -23,7 +20,6 @@ const WorkerCard = ({ key, name, rating, description, color }) => {
 
     const addFavorite = () => {
         setStarPressed(!starPressed);
-        
     }
 
   return (
@@ -34,15 +30,15 @@ const WorkerCard = ({ key, name, rating, description, color }) => {
                     <Text style={styles.name}>{name}</Text>
                 </View>
                 <View style={styles.attributes}>
-                    <Text style={[styles.locationText, styles.ratingText]}>{rating}</Text>
-                    <MaterialCommunityIcons name="star" size={14} color="#FDE52F" />
+                    <Text style={[styles.locationText, styles.ratingText]}>{occupation}</Text>
+                    <MaterialCommunityIcons name="briefcase-variant" size={14} color="#ededed" />
                 </View>
                 <View>
                     <Text style={styles.descriptionText}>{description}</Text>
                 </View>
             </View>
             <View>
-                <Image src={"https://unavatar.io/elon"} style={styles.photoPerfil}/>
+                <Image src={`https://unavatar.io/${keyProfilePicture}`} style={styles.photoPerfil}/>
             </View>
         </View>
 
@@ -159,4 +155,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default WorkerCard;
+export default WorkerCardDefault;

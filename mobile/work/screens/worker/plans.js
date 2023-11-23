@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const PlansWorker = () => {
+const PlansWorker = ({username}) => {
     return (
         <View>
             <Text>Plans Worker</Text>

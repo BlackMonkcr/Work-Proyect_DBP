@@ -9,7 +9,8 @@ import PlansWorker from '../screens/worker/plans';
 
 const Tab = createBottomTabNavigator();
 
-const NavBarWorker = () => {
+const NavBarWorker = ({route}) => {
+  const { username } = route.params;
   return (
       <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -53,35 +54,42 @@ const NavBarWorker = () => {
           },
         })}
       >
-        <Tab.Screen
-          name="Home"
-          component={HomeScreenWorker}
-          options={{
-            tabBarLabel: 'Home',
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={AccountWorker}
-          options={{
-            tabBarLabel: 'Profile',
-          }}
-        />
-        <Tab.Screen
-          name="Requests"
-          component={Requests}
-          options={{
-            tabBarLabel: 'Requests',
-          }}
-        />
-        <Tab.Screen
-          name="Plans"
-          component={PlansWorker}
-          options={{
-            tabBarLabel: 'Plans',
-          }}
-        />
-      </Tab.Navigator>
+      <Tab.Screen
+        name="Home"
+        options={{
+          tabBarLabel: 'Home',
+        }}
+      >
+        {() => <HomeScreenWorker username={username} />}
+      </Tab.Screen>
+
+      <Tab.Screen
+        name="Profile"
+        options={{
+          tabBarLabel: 'Profile',
+        }}
+      >
+        {() => <AccountWorker username={username} />}
+      </Tab.Screen>
+
+      <Tab.Screen
+        name="Requests"
+        options={{
+          tabBarLabel: 'Requests',
+        }}
+      >
+        {() => <Requests username={username} />}
+      </Tab.Screen>
+
+      <Tab.Screen
+        name="Plans"
+        options={{
+          tabBarLabel: 'Plans',
+        }}
+      >
+        {() => <PlansWorker username={username} />}
+      </Tab.Screen>
+    </Tab.Navigator>
   );
 };
 

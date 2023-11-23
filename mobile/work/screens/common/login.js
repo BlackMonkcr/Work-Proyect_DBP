@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons,MaterialIcons,MaterialCommunityIcons} from '@expo/vector-icons';
 import { useNavigation} from '@react-navigation/native';
@@ -39,9 +39,9 @@ const Login = () => {
 
         if (response.ok) {
           if (data.role == 'CLIENT') {
-            navigation.navigate('NavBarClient')
+            navigation.navigate('NavBarClient', { username: username })
           } else if (data.role == 'WORKER') {
-            navigation.navigate('NavBarWorker')
+            navigation.navigate('NavBarWorker', { username: username })
           }
         }
       } catch (error) {
@@ -243,6 +243,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   }
 });
+
 
 export default Login;
 
