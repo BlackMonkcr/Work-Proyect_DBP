@@ -1,21 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import WorkerCard from '../../components/workerCard';
+import WorkerCardDefault from '../../components/workerCardDefault';
 
-const HomeScreenClient = () => {
+const HomeScreenClient = ({username}) => {
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
   const [workerData, setWorkerData] = useState([]);
   const colors = ['#3837F5', '#3672F5', '#36AAB5', '#7436F5'];
 
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://work.up.railway.app/api/v1/worker/homeCards?limit=10', {
+        method: 'GET',
+      });
+      const data = await response.json();
+      setWorkerData(data.workers);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    fetch('https://work.up.railway.app/worker/homeCards?limit=10', {
-      method: 'GET',
-    })
-      .then((response) => response.json())
-      .then((data) => setWorkerData(data))
-      .catch((error) => console.error(error));
-  }, []);
+    if (isFocused) {
+      fetchData();
+    }
+  }, [isFocused]);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -30,12 +40,15 @@ const HomeScreenClient = () => {
           <Text style={styles.title}>Home</Text>
         </View>
         {workerData.map((worker, index) => (
-          <WorkerCard
+          <WorkerCardDefault
             key={worker.id}
+            id={worker.id}
             name={worker.name}
-            rating={worker.rating}
-            description={worker.description}
+            occupation={worker.occupation}
+            description={(worker.description == null || worker.description == '') ? 'No description' : worker.description}
             color={colors[index % colors.length]}
+            keyProfilePicture={worker.keyProfilePicture}
+            client={username}
           />
         ))}
       </View>
@@ -66,4 +79,3 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreenClient;
-

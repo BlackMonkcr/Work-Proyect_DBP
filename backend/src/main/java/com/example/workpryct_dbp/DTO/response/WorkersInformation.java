@@ -7,7 +7,6 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class WorkerInformationGEn {
-    List<WorkerInformation> workerInformationList;
-    String response;
+public class WorkersInformation {
+    List<WorkerInformation> workers;
 }

@@ -1,11 +1,66 @@
-import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import ContactCard from '../../components/contactCard';
 
 
-const History = () => {
+const Contact = ({username}) => {
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
+
+  const [clientData, setClientData] = React.useState([]);
+  const [history, setHistory] = React.useState([]);
+  const [loading, setLoading] = React.useState(true); // Nuevo estado para indicar carga
+
+  const colors = ['#3837F5', '#3672F5', '#36AAB5', '#7436F5'];
+
+  const fetchData = async () => {
+    try {
+      setLoading(true); // Establecer carga a true cuando se inicia la solicitud
+      const response = await fetch(`https://work.up.railway.app/api/v1/client/perfil?email=${username}`, {
+        method: 'GET',
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error en la solicitud: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      setClientData(data);
+      setLoading(false); // Establecer carga a false cuando los datos se han cargado
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchHistory = async () => {  
+    try {
+      const response = await fetch(`https://work.up.railway.app/api/v1/client/history_workers/all?id=${clientData.id}`, {
+        method: 'GET',
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error en la solicitud: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      setHistory(data.workers);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    if (isFocused) {
+      fetchData();
+    }
+  }, [isFocused]);
+
+  useEffect(() => {
+    if (!loading) {
+      fetchHistory();
+    }
+  }, [loading]);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -19,27 +74,15 @@ const History = () => {
         <View style={styles.header}>
             <Text style={styles.title}>Mensajes</Text>
         </View>
-        <ContactCard
-          name={'Juanito Perez'}
-          rating={'5.0'}
-          location={'Calle 123'}
-          occupation={'Plomero, electricista'}
-          phoneNumber={'1234567890'}
-        />
-        <ContactCard
-          name={'Juanito Perez'}
-          rating={'5.0'}
-          location={'Calle 123'}
-          occupation={'Plomero, electricista'}
-          phoneNumber={'1234567890'}
-        />
-        <ContactCard
-          name={'Juanito Perez'}
-          rating={'5.0'}
-          location={'Calle 123'}
-          occupation={'Plomero, electricista'}
-          phoneNumber={'1234567890'}
-        />
+        {history.map((worker, index) => (
+          <ContactCard
+            key={worker.id}
+            name={worker.name}
+            occupation={worker.occupation}
+            phone={worker.phone}
+            color={colors[index % colors.length]}
+          />
+        ))}
       </View>
     </ScrollView>
   );
@@ -68,4 +111,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default History;
+export default Contact;

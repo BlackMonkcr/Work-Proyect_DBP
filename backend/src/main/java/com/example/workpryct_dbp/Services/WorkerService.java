@@ -1,17 +1,15 @@
 package com.example.workpryct_dbp.Services;
 
 import com.example.workpryct_dbp.DTO.response.WorkerInformation;
-import com.example.workpryct_dbp.DTO.response.WorkerInformationGEn;
+import com.example.workpryct_dbp.DTO.response.WorkersInformation;
 import com.example.workpryct_dbp.Domain.Img;
 import com.example.workpryct_dbp.Domain.User;
-import com.example.workpryct_dbp.Domain.Client;
 import com.example.workpryct_dbp.Domain.Worker;
 import com.example.workpryct_dbp.Infrastructure.ClientRepository;
 import com.example.workpryct_dbp.Infrastructure.ImgRepository;
 import com.example.workpryct_dbp.Infrastructure.WorkerRepository;
 import com.example.workpryct_dbp.Infrastructure.UserRepository;
 
-import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -86,12 +84,12 @@ public class WorkerService {
         return null;
     } // False if not found
 
-    public WorkerInformationGEn getWorkersLimit(int Limit) {
+    public WorkersInformation getWorkersLimit(int Limit) {
         List<Worker> workers = workerRepository.findAll();
         List<WorkerInformation> workersInformation = new ArrayList<>();
         for (int i = 0; i < Limit && i < workers.size(); i++) {
             workersInformation.add(new WorkerInformation(workers.get(i)));
         }
-        return new WorkerInformationGEn(workersInformation, "Workers found");
+        return new WorkersInformation(workersInformation);
     } // False if not found
 }

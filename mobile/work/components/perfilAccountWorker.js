@@ -1,45 +1,67 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import { View, Text, StyleSheet, Image, ScrollView,TouchableOpacity,TextInput } from 'react-native';
 
-const ProfileScreen = () => {
-  const userProfile = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    phoneNumber: '123-456-7890',
-    occupation: 'Developer',
-    skills: ['React Native', 'JavaScript', 'Node.js', 'HTML', 'CSS'],
-    description:
-      'Soy un apasionado desarrollador de software con más de 5 años de experiencia en el diseño, desarrollo y mantenimiento de aplicaciones web y móviles. Mi enfoque se centra en proporcionar soluciones eficientes y escalables utilizando las últimas tecnologías y mejores prácticas de desarrollo.',
-    profileImage: 'https://placekitten.com/200/200', // URL de la imagen de perfil
+const ProfileScreen = ({ name, email, phone, occupation, hourPrice, description, keyProfilePicture, plan}) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedDescription, setEditedDescription] = useState(description || '');
+  const [editedHourPrice, setEditedHourPrice] = useState(hourPrice);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`https://work.up.railway.app/api/v1/worker?email=${email}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          description: editedDescription.toString(),
+          hourPrice: parseFloat(editedHourPrice),
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error en la solicitud: ${response.statusText}`);
+      }
+  
+      // Puedes manejar la respuesta aquí si es necesario
+    } catch (error) {
+      console.error(error);
+      // Puedes lanzar el error nuevamente para que sea manejado en el código que llama a fetchData
+      throw error;
+    }
   };
 
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedDescription, setEditedDescription] = useState(userProfile.description);
-  const [editedSkills, setEditedSkills] = useState(userProfile.skills.join(', '));
+  useEffect(() => {
+    setEditedDescription(description);
+    setEditedHourPrice(hourPrice);
+  }, [description, hourPrice]);
+  
 
   const handleSaveChanges = () => {
-    // Aquí puedes implementar la lógica para guardar los cambios en la descripción y habilidades
+    fetchData();
     console.log('Guardando cambios...');
     setIsEditing(false);
   };
 
-
-
   return (
   <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <Image source={{ uri: userProfile.profileImage }} style={styles.profileImage} />
-        <Text style={styles.name}>{userProfile.name}</Text>
-        <Text style={styles.occupation}>{userProfile.occupation}</Text>
+        <Image source={{ uri: `https://unavatar.io/${keyProfilePicture}` }} style={styles.profileImage} />
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.occupation}>{occupation}</Text>
       </View>
       <View style={styles.body}>
         <View style={styles.attribute}>
           <Text style={styles.headerInfo}>Email: </Text>
-          <Text style={styles.bodyInfo}>{userProfile.email}</Text>
+          <Text style={styles.bodyInfo}>{email}</Text>
         </View>
         <View style={styles.attribute}>
           <Text style={styles.headerInfo}>Phone Number: </Text>
-          <Text style={styles.bodyInfo}>{userProfile.phoneNumber}</Text>
+          <Text style={styles.bodyInfo}>{phone}</Text>
+        </View>
+        <View style={styles.attribute}>
+          <Text style={styles.headerInfo}>Plan Actual: </Text>
+          <Text style={styles.bodyInfo}>{plan}</Text>
         </View>
         <View style={styles.attribute}>
           <Text style={styles.headerInfo}>Description: </Text>
@@ -52,22 +74,21 @@ const ProfileScreen = () => {
               numberOfLines={4}
             />
           ) : (
-            <Text style={styles.bodyInfo}>{userProfile.description}</Text>
+            <Text style={styles.bodyInfo}>{editedDescription}</Text>
           )}
         </View>
 
         <View style={styles.attribute}>
-          <Text style={styles.headerInfo}>Skills: </Text>
+          <Text style={styles.headerInfo}>Hour Price: </Text>
           {isEditing ? (
             <TextInput
-              style={styles.editableText}
-              value={editedSkills}
-              onChangeText={setEditedSkills}
-              multiline={true}
-              numberOfLines={4}
+              style={styles.editablePrice}
+              value={editedHourPrice}
+              onChangeText={setEditedHourPrice}
+              keyboardType="numeric"
             />
           ) : (
-            <Text style={styles.bodyInfo}>{userProfile.skills.join(', ')}</Text>
+            <Text style={styles.bodyInfo}>{editedHourPrice}</Text>
           )}
         </View>
 
@@ -139,17 +160,6 @@ const styles = StyleSheet.create({
     color: '#555',
     marginLeft: 5,
   },
-  skillsContainer: {
-    flexDirection: 'column',
-    flexWrap: 'wrap',
-    marginTop: 8,
-  },
-  skill: {
-    color: '#555',
-    fontSize: 18,
-    paddingHorizontal: 5,
-    margin: 2,
-  },
   editableText: {
     fontSize: 16,
     color: '#555',
@@ -157,9 +167,22 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ddd',
     padding: 5,
+    marginTop: 10,
     marginBottom: 10,
-    width: 350,
+    width: 340,
     height: 200,
+  },
+  editablePrice: {
+    fontSize: 16,
+    color: '#555',
+    marginLeft: 5,
+    borderWidth: 1,
+    marginTop: 10,
+    borderColor: '#ddd',
+    padding: 5,
+    marginBottom: 10,
+    width: 340,
+    height: 50,
   },
   saveButton: {
     backgroundColor: '#3672F5',

@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class WorkerInformation{
+public class WorkerInformation {
     private Long id;
     private String name;
     private String occupation;

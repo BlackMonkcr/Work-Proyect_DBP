@@ -1,43 +1,96 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
+import React, {useState} from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Modal } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import PerfilAccountWorkerView from '../components/perfilAccountWorkerView.js';
 
-const WorkerCardFavorites = ({ name, rating, occupation, location, phoneNumber}) => {
-  return (
-    <View style={[styles.container]}>
+var ColorGlobal = '#2f43dd';
+
+const WorkerCardFavorites = ({ id, name, occupation, description, color, keyProfilePicture}) => {
+    const [showVerMas, setShowVerMas] = useState(false);
+    const [workerDataView, setWorkerDataView] = useState({});
+    ColorGlobal=color;
+    if (description.length > 40) {
+        description = description.substring(0, 40) + '...';
+    }
+
+    const stylestemp = StyleSheet.create({
+        containercolor: {
+            backgroundColor: color,
+        }
+    });
+
+    const fetchData = async () => {
+        try {
+          const response = await fetch(`https://work.up.railway.app/api/v1/worker/perfilById?id=${id}`, {
+            method: 'GET',
+          });
+          const data = await response.json();
+          setWorkerDataView(data);
+          setShowVerMas(true);
+        } catch (error) {
+          console.error(error);
+        }
+    };
+
+    const verMas = () => {
+        fetchData();
+    }
+
+    const handleVerMasClose = () => {
+        setShowVerMas(false);
+    }
+  
+    return (
+    <View style={[styles.container, stylestemp.containercolor]}>
         <View style={styles.info}>
             <View style={styles.infoData}>
                 <View>
                     <Text style={styles.name}>{name}</Text>
                 </View>
                 <View style={styles.attributes}>
-                    <Text style={[styles.locationText, styles.ratingText]}>{location}, {rating}</Text>
-                    <MaterialCommunityIcons name="star" size={14} color="#F4C903" />
-                </View>
-                <View>
-                    <Text style={styles.occupationText}>{occupation}</Text>
+                    <Text style={[styles.locationText, styles.ratingText]}>{occupation}</Text>
+                    <MaterialCommunityIcons name="briefcase-variant" size={14} color="#ededed" />
                 </View>
                 <View >
-                    <Text style={styles.ratingText}>Contacto: {phoneNumber}</Text>
+                    <Text style={styles.ratingText}>Description: {description}</Text>
                 </View>
             </View>
             <View>
-                <Image src={"https://unavatar.io/elon"} style={styles.photoPerfil}/>
+                <Image src={`https://unavatar.io/${keyProfilePicture}`} style={styles.photoPerfil}/>
             </View>
         </View>
 
       <View style={styles.buttons}>
-        <TouchableHighlight
+        <TouchableOpacity
             style={styles.button}
         >
             <Text style={styles.buttonText}>Solicitar</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
 
-        <TouchableHighlight
+        <TouchableOpacity
             style={[styles.button, styles.secondaryButton]}
+            onPress={verMas}
         >
             <Text style={styles.buttonTextSecondary}>Ver más...</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
+
+        <Modal
+            transparent={true}
+            visible={showVerMas}
+            onRequestClose={() => setShowVerMas(false)}
+        >
+            <PerfilAccountWorkerView
+                name={workerDataView.name}
+                email={workerDataView.email}
+                phone={workerDataView.phone}
+                occupation={workerDataView.occupation}
+                hourPrice={(workerDataView.hourPrice == 0)? 'Price not specified' : workerDataView.hourPrice}
+                description={(workerDataView.description == null || workerDataView.description == '') ? 'No description' : workerDataView.description}
+                keyProfilePicture={workerDataView.keyProfilePicture}
+                color = {color}
+                onClose={handleVerMasClose}
+            />
+        </Modal>
       </View>
     </View>
   );

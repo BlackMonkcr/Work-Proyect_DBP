@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
 import { MaterialCommunityIcons,FontAwesome } from '@expo/vector-icons';
-
-
 
 var ColorGlobal = '#2f43dd';
 
-const WorkerCard = ({ name, rating, location, description, color, count}) => {
-
+const WorkerCardDefault = ({ id, name, occupation, description, color, keyProfilePicture, client }) => {
     const [starPressed, setStarPressed] = useState(false);
+    let clientData = {};
 
     ColorGlobal=color;
-    count+=1;
     if (description.length > 40) {
         description = description.substring(0, 40) + '...';
     }
@@ -22,9 +19,66 @@ const WorkerCard = ({ name, rating, location, description, color, count}) => {
         }
     });
 
-    const addFavorite = () => {
+    const fetchData = async () => {
+        try {
+            const response = await fetch(`https://work.up.railway.app/api/v1/client/perfil?email=${client}`, {
+                method: 'GET',
+            });
+            clientData = await response.json();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const fetchAddFavorite = async () => {
+        try {
+            const response = await fetch(`https://work.up.railway.app/api/v1/client/favorite_workers?id=${clientData.id}&worker=${id}`, {
+                method: 'POST',
+                ContentType: 'application/json',
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const fetchDeleteFavorite = async () => {
+        try {
+            const response = await fetch(`https://work.up.railway.app/api/v1/client/favorite_workers?id=${clientData.id}&worker=${id}`, {
+                method: 'DELETE',
+                ContentType: 'application/json',
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const addFavorite = async () => {
+        await fetchData();
+        if (starPressed) {
+            fetchDeleteFavorite();
+        } else {
+            fetchAddFavorite();
+        }
         setStarPressed(!starPressed);
-        
+    }
+
+    const fetchAddHistory = async () => {
+        try {
+            console.log(clientData.id);
+            console.log(id);
+            const response = await fetch(`https://work.up.railway.app/api/v1/client/history_workers?id=${clientData.id}&worker=${id}`, {
+                method: 'POST',
+                ContentType: 'application/json',
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const addHistoy = async () => {
+        await fetchData();
+        await fetchAddHistory();
+        Alert.alert("Solicitud enviada", "Revisa tu pestaña \"Mensajes\" para contactar al trabajador");
     }
 
   return (
@@ -35,21 +89,22 @@ const WorkerCard = ({ name, rating, location, description, color, count}) => {
                     <Text style={styles.name}>{name}</Text>
                 </View>
                 <View style={styles.attributes}>
-                    <Text style={[styles.locationText, styles.ratingText]}>{location}, {rating}</Text>
-                    <MaterialCommunityIcons name="star" size={14} color="#FDE52F" />
+                    <Text style={[styles.locationText, styles.ratingText]}>{occupation}</Text>
+                    <MaterialCommunityIcons name="briefcase-variant" size={14} color="#ededed" />
                 </View>
                 <View>
                     <Text style={styles.descriptionText}>{description}</Text>
                 </View>
             </View>
             <View>
-                <Image src={"https://unavatar.io/elon"} style={styles.photoPerfil}/>
+                <Image src={`https://unavatar.io/${keyProfilePicture}`} style={styles.photoPerfil}/>
             </View>
         </View>
 
       <View style={styles.buttons}>
         <TouchableOpacity
             style={styles.button}
+            onPress={addHistoy}
         >
             <Text style={styles.buttonText}>Solicitar</Text>
         </TouchableOpacity>
@@ -160,4 +215,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default WorkerCard;
+export default WorkerCardDefault;
