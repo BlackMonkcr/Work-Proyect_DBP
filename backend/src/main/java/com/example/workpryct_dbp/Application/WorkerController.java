@@ -1,6 +1,6 @@
 package com.example.workpryct_dbp.Application;
 
-import com.example.workpryct_dbp.DTO.request.EditPerfil;
+import com.example.workpryct_dbp.DTO.request.EditPerfilWorker;
 import com.example.workpryct_dbp.DTO.request.WorkerRequest;
 import com.example.workpryct_dbp.DTO.response.PerfilWorker;
 import com.example.workpryct_dbp.DTO.response.WorkersInformation;
@@ -61,9 +61,9 @@ public class WorkerController {
 
     @PatchMapping
     public ResponseEntity<HttpStatus> PatchWorkerDescription_hp(@RequestParam String email,
-                                                                @RequestBody EditPerfil editPerfil) {
+                                                                @RequestBody EditPerfilWorker editPerfilWorker) {
 
-        if (workerService.patchPerfilWorker(email, editPerfil)) {
+        if (workerService.patchPerfilWorker(email, editPerfilWorker)) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

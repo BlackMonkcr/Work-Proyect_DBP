@@ -1,6 +1,6 @@
 package com.example.workpryct_dbp.Services;
 
-import com.example.workpryct_dbp.DTO.request.EditPerfil;
+import com.example.workpryct_dbp.DTO.request.EditPerfilWorker;
 import com.example.workpryct_dbp.DTO.response.PerfilWorker;
 import com.example.workpryct_dbp.DTO.response.WorkerInformation;
 import com.example.workpryct_dbp.DTO.response.WorkersInformation;
@@ -105,7 +105,7 @@ public class WorkerService {
         return null;
     } // False if not found
 
-    public boolean patchPerfilWorker(String email, EditPerfil perfilWorker) {
+    public boolean patchPerfilWorker(String email, EditPerfilWorker perfilWorker) {
         Optional<User> userOptional = userRepository.findByEmail(email);
         if (userOptional.isPresent() && userOptional.get().getRole() == Role.WORKER) {
             Worker worker = userOptional.get().getWorker();
