@@ -1,5 +1,6 @@
 package com.example.workpryct_dbp.Application;
 
+import com.example.workpryct_dbp.DTO.request.EditPerfil;
 import com.example.workpryct_dbp.DTO.request.WorkerRequest;
 import com.example.workpryct_dbp.DTO.response.PerfilWorker;
 import com.example.workpryct_dbp.DTO.response.WorkersInformation;
@@ -57,6 +58,17 @@ public class WorkerController {
         Worker worker = workerRequest.getWorker();
         return new ResponseEntity<>(workerService.createWorker(user, worker), HttpStatus.CREATED);
     } // Returns created worker
+
+    @PatchMapping
+    public ResponseEntity<HttpStatus> PatchWorkerDescription_hp(@RequestParam String email,
+                                                                @RequestBody EditPerfil editPerfil) {
+
+        if (workerService.patchPerfilWorker(email, editPerfil)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    } // Returns updated worker
 
     @DeleteMapping
     public ResponseEntity<?> deleteWorker(@RequestParam Long id) {
