@@ -18,15 +18,12 @@ const ProfileScreen = ({ name, email, phone, occupation, hourPrice, description,
           hourPrice: parseFloat(editedHourPrice),
         }),
       });
-  
+
       if (!response.ok) {
         throw new Error(`Error en la solicitud: ${response.statusText}`);
       }
-  
-      // Puedes manejar la respuesta aquí si es necesario
     } catch (error) {
       console.error(error);
-      // Puedes lanzar el error nuevamente para que sea manejado en el código que llama a fetchData
       throw error;
     }
   };
@@ -35,7 +32,7 @@ const ProfileScreen = ({ name, email, phone, occupation, hourPrice, description,
     setEditedDescription(description);
     setEditedHourPrice(hourPrice);
   }, [description, hourPrice]);
-  
+
 
   const handleSaveChanges = () => {
     fetchData();
@@ -120,8 +117,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
-    backgroundColor: '#3672F5',
     borderRadius: 30,
+    backgroundColor: '#4433E0',
+      height: '%',
+      shadowColor: '#2F43DD',  // Color del borde desenfocado
+      shadowOffset: { width: 4, height: 4 },
+      shadowOpacity: 0.5,
+      shadowRadius: 5,
   },
   profileImage: {
     width: 150,
@@ -185,10 +187,17 @@ const styles = StyleSheet.create({
     height: 50,
   },
   saveButton: {
-    backgroundColor: '#3672F5',
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 20,
+    backgroundColor: '#4433E0',
+    marginBottom:20,
+    paddingTop:8,
+    margin: 8,
+    borderRadius: 10,
+    elevation: 20 ,
+    height: '4%',
+    shadowColor: '#2F43DD',  // Color del borde desenfocado
+    shadowOffset: { width: 4, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
   },
   saveButtonText: {
     fontWeight: 'bold',
@@ -197,10 +206,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   editButton: {
-    backgroundColor: '#3672F5',
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 20,
+    backgroundColor: '#4433E0',
+    marginBottom:20,
+    paddingTop:8,
+    margin: 8,
+    borderRadius: 10,
+    elevation: 20 ,
+    height: '5%',
+    shadowColor: '#2F43DD',  // Color del borde desenfocado
+    shadowOffset: { width: 4, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
   },
   editButtonText: {
     fontWeight: 'bold',

@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
 
 const RequestClient = ({id, name, email, keyProfilePicture, color}) => {
 
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
       display: 'flex',
       flexDirection: 'column',
       width: '60%',
-      gap: 5,
+      gap: 8,
   },
   photoPerfil: {
       marginTop: 30,

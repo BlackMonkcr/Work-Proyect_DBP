@@ -2,29 +2,29 @@ import React, { useEffect } from 'react';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
-import RequestClient from '../../components/RequestClient';
+import RequestClient from '../../components/Request';
 
 const Requests = ({username}) => {
     const navigation = useNavigation();
     const isFocused = useIsFocused();
-  
+
     const [clientData, setClientData] = React.useState([]);
     const [history, setHistory] = React.useState([]);
     const [loading, setLoading] = React.useState(true); // Nuevo estado para indicar carga
-  
+
     const colors = ['#3837F5', '#3672F5', '#36AAB5', '#7436F5'];
-  
+
     const fetchData = async () => {
       try {
         setLoading(true); // Establecer carga a true cuando se inicia la solicitud
         const response = await fetch(`https://work.up.railway.app/api/v1/worker/perfil?email=${username}`, {
           method: 'GET',
         });
-  
+
         if (!response.ok) {
           throw new Error(`Error en la solicitud: ${response.statusText}`);
         }
-  
+
         const data = await response.json();
         setClientData(data);
         setLoading(false); // Establecer carga a false cuando los datos se han cargado
@@ -32,36 +32,36 @@ const Requests = ({username}) => {
         console.error(error);
       }
     };
-  
-    const fetchHistory = async () => {  
+
+    const fetchHistory = async () => {
       try {
         const response = await fetch(`https://work.up.railway.app/api/v1/worker/history_clients/all?id=${clientData.id}`, {
           method: 'GET',
         });
-  
+
         if (!response.ok) {
           throw new Error(`Error en la solicitud: ${response.statusText}`);
         }
-  
+
         const data = await response.json();
         setHistory(data.historys);
       } catch (error) {
         console.error(error);
       }
     }
-  
+
     useEffect(() => {
       if (isFocused) {
         fetchData();
       }
     }, [isFocused]);
-  
+
     useEffect(() => {
       if (!loading) {
         fetchHistory();
       }
     }, [loading]);
-  
+
     React.useLayoutEffect(() => {
       navigation.setOptions({
         headerShown: false,
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     },
     scrollViewContent: {
         paddingBottom: 20,
-        backgroundColor: '#afeae28d',
+        backgroundColor: '#ededed',
         height:'100%' // Espaciado en la parte inferior para que no haya un espacio adicional al final
     },
     header: {

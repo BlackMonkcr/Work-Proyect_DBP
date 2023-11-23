@@ -1,16 +1,18 @@
-import React,{useEffect, useState} from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 
 const ProfileScreenView = ({ name, email, occupation, hourPrice, description, keyProfilePicture, color}) => {
-    
+
     const stylesTemp = StyleSheet.create({
-        headerColor: { 
+        headerColor: {
             backgroundColor: color
         },
     });
+    
 
     return (
     <ScrollView style={styles.container}>
+
         <View style={[styles.header, stylesTemp.headerColor]}>
             <Image source={{ uri: `https://unavatar.io/${keyProfilePicture}` }} style={styles.profileImage} />
             <Text style={styles.name}>{name}</Text>

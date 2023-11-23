@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Modal, Alert } from 'react-native';
-import { MaterialCommunityIcons,FontAwesome5, MaterialIcons } from '@expo/vector-icons';
+import React from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
+import {FontAwesome5} from '@expo/vector-icons';
 
 var ColorGlobal = '#2f43dd';
 
@@ -81,7 +81,7 @@ const CardPlan = ({ id, name, price, description, color, worker_email }) => {
                 style={styles.button}
                 onPress={subscribe}
             >
-                <Text style={styles.buttonText}>Subscribe!</Text>
+                <Text style={styles.buttonText}>Suscribirse</Text>
             </TouchableOpacity>
         </View>
     );
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
         color: '#ededed',
     },
     descriptionText: {
-        fontSize: 10,
+        fontSize: 12,
         fontWeight: '400',
         color: '#ededed',
         overflow: 'hidden',
@@ -133,8 +133,8 @@ const styles = StyleSheet.create({
         borderColor: '#ededed',
     },
     button: {
-        width: '30%',
-        marginTop: 10,
+        width: '50%',
+        marginTop: 20,
         paddingTop: 5,
         paddingBottom: 5,
         paddingLeft: 10,

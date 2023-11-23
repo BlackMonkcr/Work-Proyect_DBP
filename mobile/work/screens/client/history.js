@@ -33,7 +33,7 @@ const History = ({username}) => {
     }
   };
 
-  const fetchHistory = async () => {  
+  const fetchHistory = async () => {
     try {
       const response = await fetch(`https://work.up.railway.app/api/v1/client/history_workers/all?id=${clientData.id}`, {
         method: 'GET',
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     },
     scrollViewContent: {
         paddingBottom: 20,
-        backgroundColor: '#afeae28d',
+        backgroundColor: '#ededed',
         height:'100%' // Espaciado en la parte inferior para que no haya un espacio adicional al final
     },
     header: {

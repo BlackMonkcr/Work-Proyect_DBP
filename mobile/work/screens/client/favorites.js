@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   scrollViewContent: {
-    backgroundColor: '#afeae28d',
+    backgroundColor: '#ededed',
     paddingBottom: 20, // Espaciado en la parte inferior para que no haya un espacio adicional al final
     height: '100%',
   },

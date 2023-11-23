@@ -76,7 +76,7 @@ const WorkerCardForWorker = ({ id, name, occupation, description, color, keyProf
                     onPress={handleVerMasClose}
                 >
                     <Text style={styles.buttonTextSalir}>Salir</Text>
-                    <Feather name="x" size={24} color="#666" style={styles.buttonTextSalir} />
+                    <Feather name="x" size={32} color="#666" style={styles.buttonTextSalir} />
                 </TouchableOpacity>
                 <PerfilAccountWorkerView
                     name={workerDataView.name}
@@ -95,7 +95,7 @@ const WorkerCardForWorker = ({ id, name, occupation, description, color, keyProf
 
 const styles = StyleSheet.create({
     popup: {
-        backgroundColor: 'transparent',
+        backgroundColor: '#ededed',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'flex-end',
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         fontWeight: 'bold',
-        marginTop: 10,
+        marginTop: 50,
     },
     info: {
         display: 'flex',

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import WorkerCardDefault from '../../components/workerCardDefault';
+import { Entypo } from '@expo/vector-icons';
 
 const HomeScreenClient = ({username}) => {
   const navigation = useNavigation();
@@ -27,6 +28,13 @@ const HomeScreenClient = ({username}) => {
     }
   }, [isFocused]);
 
+  const handleLogout = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Login' }],
+    });
+  };
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -36,8 +44,11 @@ const HomeScreenClient = ({username}) => {
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <View>
-        <View style={styles.header}>
+      <View style={styles.header}>
           <Text style={styles.title}>Home</Text>
+          <TouchableOpacity onPress={handleLogout}>
+            <Entypo name="log-out" size={24} color="black" style={styles.logoutIcon} />
+          </TouchableOpacity>
         </View>
         {workerData.map((worker, index) => (
           <WorkerCardDefault
@@ -74,7 +85,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginLeft: 20,
     marginTop: 50,
-    gap: 15,
+    gap: 280,
   },
 });
 
