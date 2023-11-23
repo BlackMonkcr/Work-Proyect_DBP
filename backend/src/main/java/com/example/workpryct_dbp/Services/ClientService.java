@@ -15,6 +15,7 @@ import com.example.workpryct_dbp.Infrastructure.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -77,12 +78,11 @@ public class ClientService {
         Optional<Client> clientOptional = clientRepository.findById(id);
         if (clientOptional.isPresent()) {
             Client client = clientOptional.get();
-            WorkersInformation workersInformation = new WorkersInformation();
+            List<WorkerInformation> workerInformationList = new ArrayList<>();
             for (Worker worker : client.getFavorite_workers()) {
-                workersInformation.getWorkers().add(new WorkerInformation(worker));
+                workerInformationList.add(new WorkerInformation(worker));
             }
-
-            return workersInformation;
+            return new WorkersInformation(workerInformationList);
         }
         return null;
     } // False if not found
