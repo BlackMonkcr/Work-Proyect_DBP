@@ -8,13 +8,20 @@ const HomeScreenClient = () => {
   const [workerData, setWorkerData] = useState([]);
   const colors = ['#3837F5', '#3672F5', '#36AAB5', '#7436F5'];
 
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://work.up.railway.app/api/v1/worker/homeCards?limit=10', {
+        method: 'GET',
+      });
+      const data = await response.json();
+      setWorkerData(data.workers);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    fetch('https://work.up.railway.app/worker/homeCards?limit=10', {
-      method: 'GET',
-    })
-      .then((response) => response.json())
-      .then((data) => setWorkerData(data))
-      .catch((error) => console.error(error));
+    fetchData();
   }, []);
 
   React.useLayoutEffect(() => {
@@ -66,4 +73,3 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreenClient;
-
