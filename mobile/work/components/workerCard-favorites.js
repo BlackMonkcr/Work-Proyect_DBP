@@ -1,9 +1,14 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
+import React, {useState} from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Modal } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import PerfilAccountWorkerView from '../components/perfilAccountWorkerView.js';
+
+var ColorGlobal = '#2f43dd';
 
 const WorkerCardFavorites = ({ id, name, occupation, description, color, keyProfilePicture}) => {
-  
+    const [showVerMas, setShowVerMas] = useState(false);
+    const [workerDataView, setWorkerDataView] = useState({});
+    ColorGlobal=color;
     if (description.length > 40) {
         description = description.substring(0, 40) + '...';
     }
@@ -13,6 +18,27 @@ const WorkerCardFavorites = ({ id, name, occupation, description, color, keyProf
             backgroundColor: color,
         }
     });
+
+    const fetchData = async () => {
+        try {
+          const response = await fetch(`https://work.up.railway.app/api/v1/worker/perfilById?id=${id}`, {
+            method: 'GET',
+          });
+          const data = await response.json();
+          setWorkerDataView(data);
+          setShowVerMas(true);
+        } catch (error) {
+          console.error(error);
+        }
+    };
+
+    const verMas = () => {
+        fetchData();
+    }
+
+    const handleVerMasClose = () => {
+        setShowVerMas(false);
+    }
   
     return (
     <View style={[styles.container, stylestemp.containercolor]}>
@@ -35,17 +61,36 @@ const WorkerCardFavorites = ({ id, name, occupation, description, color, keyProf
         </View>
 
       <View style={styles.buttons}>
-        <TouchableHighlight
+        <TouchableOpacity
             style={styles.button}
         >
             <Text style={styles.buttonText}>Solicitar</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
 
-        <TouchableHighlight
+        <TouchableOpacity
             style={[styles.button, styles.secondaryButton]}
+            onPress={verMas}
         >
             <Text style={styles.buttonTextSecondary}>Ver más...</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
+
+        <Modal
+            transparent={true}
+            visible={showVerMas}
+            onRequestClose={() => setShowVerMas(false)}
+        >
+            <PerfilAccountWorkerView
+                name={workerDataView.name}
+                email={workerDataView.email}
+                phone={workerDataView.phone}
+                occupation={workerDataView.occupation}
+                hourPrice={(workerDataView.hourPrice == 0)? 'Price not specified' : workerDataView.hourPrice}
+                description={(workerDataView.description == null || workerDataView.description == '') ? 'No description' : workerDataView.description}
+                keyProfilePicture={workerDataView.keyProfilePicture}
+                color = {color}
+                onClose={handleVerMasClose}
+            />
+        </Modal>
       </View>
     </View>
   );

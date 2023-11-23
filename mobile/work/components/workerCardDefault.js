@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
 import { MaterialCommunityIcons,FontAwesome } from '@expo/vector-icons';
 
 var ColorGlobal = '#2f43dd';
@@ -62,6 +62,25 @@ const WorkerCardDefault = ({ id, name, occupation, description, color, keyProfil
         setStarPressed(!starPressed);
     }
 
+    const fetchAddHistory = async () => {
+        try {
+            console.log(clientData.id);
+            console.log(id);
+            const response = await fetch(`https://work.up.railway.app/api/v1/client/history_workers?id=${clientData.id}&worker=${id}`, {
+                method: 'POST',
+                ContentType: 'application/json',
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const addHistoy = async () => {
+        await fetchData();
+        await fetchAddHistory();
+        Alert.alert("Solicitud enviada", "Revisa tu pestaña \"Mensajes\" para contactar al trabajador");
+    }
+
   return (
     <View style={[styles.container, stylestemp.containercolor]}>
         <View style={styles.info}>
@@ -85,6 +104,7 @@ const WorkerCardDefault = ({ id, name, occupation, description, color, keyProfil
       <View style={styles.buttons}>
         <TouchableOpacity
             style={styles.button}
+            onPress={addHistoy}
         >
             <Text style={styles.buttonText}>Solicitar</Text>
         </TouchableOpacity>

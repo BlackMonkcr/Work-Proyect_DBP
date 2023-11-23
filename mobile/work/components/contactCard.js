@@ -2,29 +2,39 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Linking} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const ContactCard = ({ name, rating, location, occupation, phoneNumber }) => {
+var ColorGlobal = '#2f43dd';
+
+const ContactCard = ({ name, occupation, phone, color }) => {
     
+    ColorGlobal=color;
+
     const openWhatsApp = () => {
         // Reemplaza '1234567890' con el número de teléfono al que deseas enviar el mensaje
-        Linking.openURL(`https://wa.me/989606008`);
+        Linking.openURL(`https://wa.me/+51${phone}`);
       };
 
+    const stylestemp = StyleSheet.create({
+        containercolor: {
+            backgroundColor: color,
+        }
+    });
+
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, stylestemp.containercolor]}>
             <View style={styles.info}>
                 <View style={styles.infoData}>
                     <View>
                         <Text style={styles.name}>{name}</Text>
                     </View>
                     <View style={styles.attributes}>
-                        <Text style={[styles.locationText, styles.ratingText]}>{location}, {rating}</Text>
-                        <MaterialCommunityIcons name="star" size={14} color="#FDE52F" />
+                        <Text style={[styles.locationText, styles.ratingText]}>{occupation}</Text>
+                        <MaterialCommunityIcons name="briefcase-variant" size={14} color="#ededed" />
                     </View>
                     <View>
                         <Text style={styles.occupationText}>{occupation}</Text>
                     </View>
                     <View >
-                        <Text style={styles.ratingText}>Contacto: {phoneNumber}</Text>
+                        <Text style={styles.ratingText}>Contacto: {phone}</Text>
                     </View>
                 </View>
                 <View style={styles.photoPerfil}>
@@ -42,7 +52,6 @@ const styles = StyleSheet.create({
         width: '90%',
         height: 160,
         borderRadius: 10,
-        backgroundColor: '#36AAB5',
         margin: 20,
         padding: 20,
         shadowColor: 'black',

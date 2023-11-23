@@ -1,50 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 
-const ProfileScreen = () => {
-  const userProfile = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    phoneNumber: '123-456-7890',
-    servicesContracted: ['Service A', 'Service B', 'Service C'],
-    favoriteServices: ['Service X', 'Service Y', 'Service Z'],
-    profileImage: 'https://placekitten.com/200/200', // URL de la imagen de perfil
-  };
+const ProfileScreen = ({name, email, keyProfilePicture}) => {
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <Image source={{ uri: userProfile.profileImage }} style={styles.profileImage} />
-        <Text style={styles.name}>{userProfile.name}</Text>
+        <Image source={{ uri: `https://unavatar.io/${keyProfilePicture}` }} style={styles.profileImage} />
+        <Text style={styles.name}>{name}</Text>
       </View>
       <View style={styles.body}>
         <View style={styles.attribute}>
           <Text style={styles.headerInfo}>Email: </Text>
-          <Text style={styles.bodyInfo}>{userProfile.email}</Text>
-        </View>
-        <View style={styles.attribute}>
-          <Text style={styles.headerInfo}>Phone Number: </Text>
-          <Text style={styles.bodyInfo}>{userProfile.phoneNumber}</Text>
-        </View>
-        <View style={styles.attribute}>
-          <Text style={styles.headerInfo}>Services Contracted: </Text>
-          <View style={styles.skillsContainer}>
-            {userProfile.servicesContracted.map((service, index) => (
-              <Text key={index} style={styles.skill}>
-                {service}
-              </Text>
-            ))}
-          </View>
-        </View>
-        <View style={styles.attribute}>
-          <Text style={styles.headerInfo}>Favorite Services: </Text>
-          <View style={styles.skillsContainer}>
-            {userProfile.favoriteServices.map((service, index) => (
-              <Text key={index} style={styles.skill}>
-                {service}
-              </Text>
-            ))}
-          </View>
+          <Text style={styles.bodyInfo}>{email}</Text>
         </View>
       </View>
     </ScrollView>

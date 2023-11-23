@@ -85,7 +85,7 @@ const NavBarClient = ({route}) => {
             tabBarLabel: 'Profile',
           }}
         >
-          {() => <ProfileScreen/>}
+          {() => <ProfileScreen username={username}/>}
         </Tab.Screen>
 
         <Tab.Screen
@@ -94,7 +94,7 @@ const NavBarClient = ({route}) => {
             tabBarLabel: 'History',
           }}
         >
-          {() => <HistoryScreen/>}
+          {() => <HistoryScreen username={username}/>}
         </Tab.Screen>
 
         <Tab.Screen
@@ -103,7 +103,7 @@ const NavBarClient = ({route}) => {
             tabBarLabel: 'Messages',
           }}
         >
-          {() => <MessagesScreen/>}
+          {() => <MessagesScreen username={username}/>}
         </Tab.Screen>
       </Tab.Navigator>
   );

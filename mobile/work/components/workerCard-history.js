@@ -2,32 +2,38 @@ import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const WorkerCardHistory = ({ name, rating, location, occupation, phoneNumber }) => {
+const WorkerCardHistory = ({ id, name, occupation, phone, color, keyProfilePicture }) => {
     
-  return (
-    <View style={styles.container}>
-        <View style={styles.info}>
-            <View style={styles.infoData}>
+    const stylestemp = StyleSheet.create({
+        containercolor: {
+            backgroundColor: color,
+        }
+    });
+
+    return (
+        <View style={[styles.container, stylestemp.backgroundColor]}>
+            <View style={styles.info}>
+                <View style={styles.infoData}>
+                    <View>
+                        <Text style={styles.name}>{name}</Text>
+                    </View>
+                    <View style={styles.attributes}>
+                        <Text style={[styles.locationText, styles.ratingText]}>occupation</Text>
+                        <MaterialCommunityIcons name="briefcase-variant" size={14} color="#ededed" />
+                    </View>
+                    <View>
+                        <Text style={styles.occupationText}>{occupation}</Text>
+                    </View>
+                    <View >
+                        <Text style={styles.ratingText}>Contacto: {phone}</Text>
+                    </View>
+                </View>
                 <View>
-                    <Text style={styles.name}>{name}</Text>
+                    <Image src={`https://unavatar.io/${keyProfilePicture}`} style={styles.photoPerfil}/>
                 </View>
-                <View style={styles.attributes}>
-                    <Text style={[styles.locationText, styles.ratingText]}>{location}, {rating}</Text>
-                    <MaterialCommunityIcons name="star" size={14} color="#FDE52F" />
-                </View>
-                <View>
-                    <Text style={styles.occupationText}>{occupation}</Text>
-                </View>
-                <View >
-                    <Text style={styles.ratingText}>Contacto: {phoneNumber}</Text>
-                </View>
-            </View>
-            <View>
-                <Image src={"https://unavatar.io/elon"} style={styles.photoPerfil}/>
             </View>
         </View>
-    </View>
-  );
+    );
 };
 
 const styles = StyleSheet.create({

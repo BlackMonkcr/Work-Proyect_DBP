@@ -9,15 +9,24 @@ const Favorites = ({ username }) => {
 
   const [clientData, setClientData] = useState({});
   const [favorites, setFavorites] = useState([]);
+  const [loading, setLoading] = useState(true); // Nuevo estado para indicar carga
+
   const colors = ['#3837F5', '#3672F5', '#36AAB5', '#7436F5'];
 
   const fetchData = async () => {
     try {
+      setLoading(true); // Establecer carga a true cuando se inicia la solicitud
       const response = await fetch(`https://work.up.railway.app/api/v1/client/perfil?email=${username}`, {
         method: 'GET',
       });
+
+      if (!response.ok) {
+        throw new Error(`Error en la solicitud: ${response.statusText}`);
+      }
+
       const data = await response.json();
       setClientData(data);
+      setLoading(false); // Establecer carga a false cuando los datos se han cargado
     } catch (error) {
       console.error(error);
     }
@@ -28,6 +37,11 @@ const Favorites = ({ username }) => {
       const response = await fetch(`https://work.up.railway.app/api/v1/client/favorite_workers/all?id=${clientData.id}`, {
         method: 'GET',
       });
+
+      if (!response.ok) {
+        throw new Error(`Error en la solicitud: ${response.statusText}`);
+      }
+
       const data = await response.json();
       setFavorites(data.workers);
     } catch (error) {
@@ -35,18 +49,17 @@ const Favorites = ({ username }) => {
     }
   };
 
-  const waitFetch = async () => {
-    await fetchData();
-    await fetchFavorites();
-  };
-
   useEffect(() => {
     if (isFocused) {
-      waitFetch();
+      fetchData();
     }
   }, [isFocused]);
 
-  useEffect(() => {}, [favorites]);
+  useEffect(() => {
+    if (!loading) {
+      fetchFavorites();
+    }
+  }, [loading]);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -75,6 +88,7 @@ const Favorites = ({ username }) => {
     </ScrollView>
   );
 };
+
 
 const styles = StyleSheet.create({
   title: {
