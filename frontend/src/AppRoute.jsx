@@ -13,9 +13,10 @@ import Services from "./pages/services";
 import Plans from "./pages/plans";
 import Profile from "./pages/profile";
 import Questions from "./pages/Questions";
-import HistoryWorkers from "./pages/HistoryWorkers";
+import HistoryClient from "./pages/HistoryWorkers";
 import FavoritosPage from "./pages/FavoritosPage";
 import MessageClient from "./pages/MessageClient";
+
 
 export default function App() {
     return (
@@ -32,7 +33,7 @@ export default function App() {
                 <Route path="/plans" element={<Plans/>} />
                 <Route path="/profile" element={<Profile/>} />
                 <Route path="/questions" element={<Questions/>} />
-                <Route path="/historyWorkers" element={<HistoryWorkers/>} />
+                <Route path="/historyWorkers" element={<HistoryClient/>} />
                 <Route path="/favoritosWorkers" element={<FavoritosPage/>} />
                 <Route path="/messageClient" element={<MessageClient/>} />
             </Routes>

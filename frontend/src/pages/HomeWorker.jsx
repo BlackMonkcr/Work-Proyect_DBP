@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "../css/Home.css";
-import MainCardHomeWorker from "../components/mainCardHome-worker";
 
+import MainCardHomeWorker from "../components/mainCardHome-worker";
 import NavBarInfo from "../components/NavBarInfo";
 import NavBarWorker from "../components/navbarWorker";
 //import { ProfileWorker } from "../components/profileWorker";
