@@ -1,5 +1,6 @@
 package com.example.workpryct_dbp.Application;
 
+import com.example.workpryct_dbp.DTO.response.PlansView;
 import com.example.workpryct_dbp.Services.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,8 +23,8 @@ public class PlanController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Plan>> getAllPlans() {
-        return new ResponseEntity<>(planService.getAllPlans(), HttpStatus.OK);
+    public ResponseEntity<PlansView> getAllPlans() {
+        return new ResponseEntity<>(new PlansView(planService.getAllPlans()), HttpStatus.OK);
     } // Returns all plans
 
     @GetMapping
