@@ -2,27 +2,35 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const WorkerCardFavorites = ({ name, rating, occupation, location, phoneNumber}) => {
-  return (
-    <View style={[styles.container]}>
+const WorkerCardFavorites = ({ id, name, occupation, description, color, keyProfilePicture}) => {
+  
+    if (description.length > 40) {
+        description = description.substring(0, 40) + '...';
+    }
+
+    const stylestemp = StyleSheet.create({
+        containercolor: {
+            backgroundColor: color,
+        }
+    });
+  
+    return (
+    <View style={[styles.container, stylestemp.containercolor]}>
         <View style={styles.info}>
             <View style={styles.infoData}>
                 <View>
                     <Text style={styles.name}>{name}</Text>
                 </View>
                 <View style={styles.attributes}>
-                    <Text style={[styles.locationText, styles.ratingText]}>{location}, {rating}</Text>
-                    <MaterialCommunityIcons name="star" size={14} color="#F4C903" />
-                </View>
-                <View>
-                    <Text style={styles.occupationText}>{occupation}</Text>
+                    <Text style={[styles.locationText, styles.ratingText]}>{occupation}</Text>
+                    <MaterialCommunityIcons name="briefcase-variant" size={14} color="#ededed" />
                 </View>
                 <View >
-                    <Text style={styles.ratingText}>Contacto: {phoneNumber}</Text>
+                    <Text style={styles.ratingText}>Description: {description}</Text>
                 </View>
             </View>
             <View>
-                <Image src={"https://unavatar.io/elon"} style={styles.photoPerfil}/>
+                <Image src={`https://unavatar.io/${keyProfilePicture}`} style={styles.photoPerfil}/>
             </View>
         </View>
 

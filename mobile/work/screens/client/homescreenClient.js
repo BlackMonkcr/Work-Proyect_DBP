@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import WorkerCardDefault from '../../components/workerCardDefault';
 
 const HomeScreenClient = ({username}) => {
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
   const [workerData, setWorkerData] = useState([]);
   const colors = ['#3837F5', '#3672F5', '#36AAB5', '#7436F5'];
 
@@ -21,8 +22,10 @@ const HomeScreenClient = ({username}) => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (isFocused) {
+      fetchData();
+    }
+  }, [isFocused]);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -39,10 +42,13 @@ const HomeScreenClient = ({username}) => {
         {workerData.map((worker, index) => (
           <WorkerCardDefault
             key={worker.id}
+            id={worker.id}
             name={worker.name}
-            rating={worker.rating}
-            description={worker.description}
+            occupation={worker.occupation}
+            description={(worker.description == null || worker.description == '') ? 'No description' : worker.description}
             color={colors[index % colors.length]}
+            keyProfilePicture={worker.keyProfilePicture}
+            client={username}
           />
         ))}
       </View>

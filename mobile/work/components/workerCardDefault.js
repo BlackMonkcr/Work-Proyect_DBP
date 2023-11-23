@@ -4,8 +4,9 @@ import { MaterialCommunityIcons,FontAwesome } from '@expo/vector-icons';
 
 var ColorGlobal = '#2f43dd';
 
-const WorkerCardDefault = ({ name, occupation, description, color, keyProfilePicture }) => {
+const WorkerCardDefault = ({ id, name, occupation, description, color, keyProfilePicture, client }) => {
     const [starPressed, setStarPressed] = useState(false);
+    let clientData = {};
 
     ColorGlobal=color;
     if (description.length > 40) {
@@ -18,7 +19,46 @@ const WorkerCardDefault = ({ name, occupation, description, color, keyProfilePic
         }
     });
 
-    const addFavorite = () => {
+    const fetchData = async () => {
+        try {
+            const response = await fetch(`https://work.up.railway.app/api/v1/client/perfil?email=${client}`, {
+                method: 'GET',
+            });
+            clientData = await response.json();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const fetchAddFavorite = async () => {
+        try {
+            const response = await fetch(`https://work.up.railway.app/api/v1/client/favorite_workers?id=${clientData.id}&worker=${id}`, {
+                method: 'POST',
+                ContentType: 'application/json',
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const fetchDeleteFavorite = async () => {
+        try {
+            const response = await fetch(`https://work.up.railway.app/api/v1/client/favorite_workers?id=${clientData.id}&worker=${id}`, {
+                method: 'DELETE',
+                ContentType: 'application/json',
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const addFavorite = async () => {
+        await fetchData();
+        if (starPressed) {
+            fetchDeleteFavorite();
+        } else {
+            fetchAddFavorite();
+        }
         setStarPressed(!starPressed);
     }
 

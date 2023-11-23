@@ -76,7 +76,7 @@ const NavBarClient = ({route}) => {
             tabBarLabel: 'Favorites',
           }}
         >
-          {() => <FavoritesScreen/>}
+          {() => <FavoritesScreen username={username}/>}
         </Tab.Screen>
 
         <Tab.Screen
