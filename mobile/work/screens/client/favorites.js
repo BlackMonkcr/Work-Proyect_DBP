@@ -82,6 +82,7 @@ const Favorites = ({ username }) => {
             description={(worker.description == null || worker.description == '') ? 'No description' : worker.description}
             color={colors[index % colors.length]}
             keyProfilePicture={worker.keyProfilePicture}
+            client={username}
           />
         ))}
       </View>

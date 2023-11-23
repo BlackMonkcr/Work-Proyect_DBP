@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 
-const ProfileScreenView = ({ name, email, phone, occupation, hourPrice, description, keyProfilePicture, color}) => {
+const ProfileScreenView = ({ name, email, occupation, hourPrice, description, keyProfilePicture, color}) => {
     
     const stylesTemp = StyleSheet.create({
         headerColor: { 
@@ -20,10 +20,6 @@ const ProfileScreenView = ({ name, email, phone, occupation, hourPrice, descript
             <View style={styles.attribute}>
             <Text style={styles.headerInfo}>Email: </Text>
             <Text style={styles.bodyInfo}>{email}</Text>
-            </View>
-            <View style={styles.attribute}>
-            <Text style={styles.headerInfo}>Phone Number: </Text>
-            <Text style={styles.bodyInfo}>{phone}</Text>
             </View>
             <View style={styles.attribute}>
                 <Text style={styles.headerInfo}>Description: </Text>

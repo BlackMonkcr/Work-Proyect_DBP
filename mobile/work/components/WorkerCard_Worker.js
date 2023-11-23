@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Modal } from 'react-native';
-import { MaterialCommunityIcons,FontAwesome } from '@expo/vector-icons';
+import { MaterialCommunityIcons,FontAwesome, Feather} from '@expo/vector-icons';
 import PerfilAccountWorkerView from '../components/perfilAccountWorkerView.js';
 
 var ColorGlobal = '#2f43dd';
@@ -71,10 +71,16 @@ const WorkerCardForWorker = ({ id, name, occupation, description, color, keyProf
                 visible={showVerMas}
                 onRequestClose={() => setShowVerMas(false)}
             >
+                <TouchableOpacity
+                    style={styles.popup}
+                    onPress={handleVerMasClose}
+                >
+                    <Text style={styles.buttonTextSalir}>Salir</Text>
+                    <Feather name="x" size={24} color="#666" style={styles.buttonTextSalir} />
+                </TouchableOpacity>
                 <PerfilAccountWorkerView
                     name={workerDataView.name}
                     email={workerDataView.email}
-                    phone={workerDataView.phone}
                     occupation={workerDataView.occupation}
                     hourPrice={(workerDataView.hourPrice == 0)? 'Price not specified' : workerDataView.hourPrice}
                     description={(workerDataView.description == null || workerDataView.description == '') ? 'No description' : workerDataView.description}
@@ -89,9 +95,14 @@ const WorkerCardForWorker = ({ id, name, occupation, description, color, keyProf
 
 const styles = StyleSheet.create({
     popup: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: '#fff',
+        backgroundColor: 'transparent',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        gap: 10,
+        padding: 10,
+        marginRight: 10,
     },
     container: {
         width: '90%',
@@ -146,8 +157,16 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: '#5271FF',
+        fontSize: 14,
         textAlign: 'center',
         fontWeight: 'bold',
+    },
+    buttonTextSalir: {
+        color: '#666',
+        fontSize: 18,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginTop: 10,
     },
     info: {
         display: 'flex',

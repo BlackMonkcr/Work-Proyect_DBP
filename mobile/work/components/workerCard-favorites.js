@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Modal } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Modal, Alert } from 'react-native';
+import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import PerfilAccountWorkerView from '../components/perfilAccountWorkerView.js';
 
 var ColorGlobal = '#2f43dd';
 
-const WorkerCardFavorites = ({ id, name, occupation, description, color, keyProfilePicture}) => {
+const WorkerCardFavorites = ({ id, name, occupation, description, color, keyProfilePicture, client }) => {
     const [showVerMas, setShowVerMas] = useState(false);
     const [workerDataView, setWorkerDataView] = useState({});
+    let clientData = {};
+
     ColorGlobal=color;
     if (description.length > 40) {
         description = description.substring(0, 40) + '...';
@@ -32,12 +34,42 @@ const WorkerCardFavorites = ({ id, name, occupation, description, color, keyProf
         }
     };
 
+    const fetchDataClient = async () => {
+        try {
+            const response = await fetch(`https://work.up.railway.app/api/v1/client/perfil?email=${client}`, {
+                method: 'GET',
+            });
+            clientData = await response.json();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     const verMas = () => {
         fetchData();
     }
 
     const handleVerMasClose = () => {
         setShowVerMas(false);
+    }
+    
+    const fetchAddHistory = async () => {
+        try {
+            console.log(clientData.id);
+            console.log(id);
+            const response = await fetch(`https://work.up.railway.app/api/v1/client/history_workers?id=${clientData.id}&worker=${id}`, {
+                method: 'POST',
+                ContentType: 'application/json',
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const addHistoy = async () => {
+        await fetchDataClient();
+        await fetchAddHistory();
+        Alert.alert("Solicitud enviada", "Revisa tu pestaña \"Mensajes\" para contactar al trabajador");
     }
   
     return (
@@ -63,6 +95,7 @@ const WorkerCardFavorites = ({ id, name, occupation, description, color, keyProf
       <View style={styles.buttons}>
         <TouchableOpacity
             style={styles.button}
+            onPress={addHistoy}
         >
             <Text style={styles.buttonText}>Solicitar</Text>
         </TouchableOpacity>
@@ -79,6 +112,13 @@ const WorkerCardFavorites = ({ id, name, occupation, description, color, keyProf
             visible={showVerMas}
             onRequestClose={() => setShowVerMas(false)}
         >
+            <TouchableOpacity
+                    style={styles.popup}
+                    onPress={handleVerMasClose}
+                >
+                    <Text style={styles.buttonTextSalir}>Salir</Text>
+                    <Feather name="x" size={24} color="#666" style={styles.buttonTextSalir} />
+                </TouchableOpacity>
             <PerfilAccountWorkerView
                 name={workerDataView.name}
                 email={workerDataView.email}
@@ -97,6 +137,16 @@ const WorkerCardFavorites = ({ id, name, occupation, description, color, keyProf
 };
 
 const styles = StyleSheet.create({
+    popup: {
+        backgroundColor: 'transparent',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        gap: 10,
+        padding: 10,
+        marginRight: 10,
+    },
     container: {
         width: '90%',
         height: 195,
@@ -166,6 +216,13 @@ const styles = StyleSheet.create({
         color: '#555',
         textAlign: 'center',
         fontWeight: 'bold',
+    },
+    buttonTextSalir: {
+        color: '#666',
+        fontSize: 18,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginTop: 10,
     },
     buttonTextSecondary: {
         color: '#ededed',
