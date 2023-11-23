@@ -9,6 +9,7 @@ function WorkerHighlight({ worker }) {
                 <div className="container ">
                     <div className="row ">
                         <div className="col-12 mt-5">
+                            
                             <MainCardHome title={"Trabajador Destacado de la semana"} subtitle={"Frankie Ruiz"} body={"San Borja 4.9"} description={"Descripción sobre el trabajador"} />
                         </div>
                         <div className="col-12">
