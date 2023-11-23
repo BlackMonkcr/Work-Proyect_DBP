@@ -28,24 +28,21 @@ function SignupWorker() {
 
 
     try {
-      const response = await fetch(`https://work.up.railway.app/api/v1/auth/signup`, {
+      const response = await fetch(`https://work.up.railway.app/api/v1/auth/signupWorker`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           name: name,
-          username: username,
-          password: password,
-          phoneNumber: phoneNumber,
           email: email,
           password: password,
+          phoneNumber: phoneNumber,
           occupation: occupation,
-          national_id: national_id
         }),
       });
 
-      const data = await response.text();
+      const data = await response.json();
 
       if (response.ok) {
         setIsSignUpWorker(true);
