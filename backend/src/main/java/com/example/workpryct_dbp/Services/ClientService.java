@@ -1,5 +1,8 @@
 package com.example.workpryct_dbp.Services;
 
+import com.example.workpryct_dbp.DTO.response.PerfilClient;
+import com.example.workpryct_dbp.DTO.response.PerfilWorker;
+import com.example.workpryct_dbp.Domain.Role;
 import com.example.workpryct_dbp.Domain.User;
 import com.example.workpryct_dbp.Domain.Client;
 import com.example.workpryct_dbp.Domain.Worker;
@@ -124,6 +127,15 @@ public class ClientService {
             }
             clientRepository.save(client);
             return client;
+        }
+        return null;
+    } // False if not found
+
+    public PerfilClient getPerfilClient(String email) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isPresent() && userOptional.get().getRole() == Role.CLIENT) {
+            Client client = userOptional.get().getClient();
+            return new PerfilClient(client);
         }
         return null;
     } // False if not found

@@ -1,6 +1,8 @@
 package com.example.workpryct_dbp.Application;
 
 import com.example.workpryct_dbp.DTO.request.ClientRequest;
+import com.example.workpryct_dbp.DTO.response.PerfilClient;
+import com.example.workpryct_dbp.DTO.response.PerfilWorker;
 import com.example.workpryct_dbp.DTO.response.WorkerMiniPreview;
 import com.example.workpryct_dbp.Services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,4 +124,13 @@ public class ClientController {
             return new ResponseEntity<>(clientService.deleteAllFavoriteWorkers(id), HttpStatus.OK);
         }
     } // Returns updated client
+
+    @GetMapping("/perfil")
+    public ResponseEntity<PerfilClient> getPerfilWorker(@RequestParam String email) {
+        if (clientService.getPerfilClient(email) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(clientService.getPerfilClient(email), HttpStatus.OK);
+        }
+    } // Returns worker by user_id
 }
