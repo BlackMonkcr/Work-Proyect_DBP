@@ -11,7 +11,7 @@ import HomeClient from "./pages/HomeClient";
 import HomeWorker from "./pages/HomeWorker";
 import Services from "./pages/services";
 import Plans from "./pages/plans";
-import Profile from "./pages/Profile";
+import Profile from "./pages/profile";
 import Questions from "./pages/Questions";
 import HistoryWorkers from "./pages/HistoryWorkers";
 import FavoritosPage from "./pages/FavoritosPage";
