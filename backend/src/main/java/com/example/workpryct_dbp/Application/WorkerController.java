@@ -88,4 +88,13 @@ public class WorkerController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     } // Deletes worker
+
+    @GetMapping("/history_clients/all")
+    public ResponseEntity<?> getHistoryClients(@RequestParam Long id) {
+        if (workerService.getWorkerById(id).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(workerService.getHistoryWorkers(id), HttpStatus.OK);
+        }
+    } // Returns history clients
 }

@@ -1,13 +1,10 @@
 package com.example.workpryct_dbp.Services;
 
-import com.example.workpryct_dbp.DTO.request.EditPerfilWorker;
+import com.example.workpryct_dbp.DTO.request.*;
 import com.example.workpryct_dbp.DTO.response.PerfilWorker;
-import com.example.workpryct_dbp.DTO.response.WorkerInformation;
+import com.example.workpryct_dbp.DTO.response.*;
 import com.example.workpryct_dbp.DTO.response.WorkersInformation;
-import com.example.workpryct_dbp.Domain.Img;
-import com.example.workpryct_dbp.Domain.Role;
-import com.example.workpryct_dbp.Domain.User;
-import com.example.workpryct_dbp.Domain.Worker;
+import com.example.workpryct_dbp.Domain.*;
 import com.example.workpryct_dbp.Infrastructure.ClientRepository;
 import com.example.workpryct_dbp.Infrastructure.ImgRepository;
 import com.example.workpryct_dbp.Infrastructure.WorkerRepository;
@@ -124,5 +121,19 @@ public class WorkerService {
             return true;
         }
         return false;
+    } // False if not found
+
+    public historysClient getHistoryWorkers(Long id) {
+        Optional<Worker> workerOptional = workerRepository.findById(id);
+        if (workerOptional.isPresent()) {
+            Worker worker = workerOptional.get();
+            Set<Client> historys = worker.getHistory_clients();
+            List<historyClient> workerRequestList = new ArrayList<>();
+            for (Client client : historys) {
+                workerRequestList.add(new historyClient(client));
+            }
+            return new historysClient(workerRequestList);
+        }
+        return null;
     } // False if not found
 }
