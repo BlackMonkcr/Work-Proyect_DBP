@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import { View, Text, StyleSheet, Image, ScrollView,TouchableOpacity,TextInput } from 'react-native';
 
+
 const ProfileScreen = ({ name, email, phone, occupation, hourPrice, description, keyProfilePicture, plan}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedDescription, setEditedDescription] = useState(description || '');
@@ -80,7 +81,7 @@ const ProfileScreen = ({ name, email, phone, occupation, hourPrice, description,
           {isEditing ? (
             <TextInput
               style={styles.editablePrice}
-              value={editedHourPrice}
+              value={(editedHourPrice == null)? 0.0 : editedHourPrice.toString()}
               onChangeText={setEditedHourPrice}
               keyboardType="numeric"
             />
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 30,
     backgroundColor: '#4433E0',
-      height: '%',
+      height: '35%',
       shadowColor: '#2F43DD',  // Color del borde desenfocado
       shadowOffset: { width: 4, height: 4 },
       shadowOpacity: 0.5,
