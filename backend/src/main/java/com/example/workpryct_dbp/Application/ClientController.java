@@ -148,4 +148,13 @@ public class ClientController {
             return new ResponseEntity<>(clientService.getPerfilClient(email), HttpStatus.OK);
         }
     } // Returns worker by user_id
+
+    @GetMapping("/ProfilePicture")
+    public ResponseEntity<Img> getProfilePicture(@RequestParam Long id) {
+        if (clientService.getClientById(id).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(clientService.getProfilePicture(id), HttpStatus.OK);
+        }
+    } // Returns worker by user_id
 }

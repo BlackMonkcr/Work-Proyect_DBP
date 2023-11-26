@@ -1,10 +1,7 @@
 package com.example.workpryct_dbp.Services;
 
 import com.example.workpryct_dbp.DTO.response.*;
-import com.example.workpryct_dbp.Domain.Role;
-import com.example.workpryct_dbp.Domain.User;
-import com.example.workpryct_dbp.Domain.Client;
-import com.example.workpryct_dbp.Domain.Worker;
+import com.example.workpryct_dbp.Domain.*;
 import com.example.workpryct_dbp.Infrastructure.ClientRepository;
 import com.example.workpryct_dbp.Infrastructure.WorkerRepository;
 import com.example.workpryct_dbp.Infrastructure.UserRepository;
@@ -165,6 +162,15 @@ public class ClientService {
         if (userOptional.isPresent() && userOptional.get().getRole() == Role.CLIENT) {
             Client client = userOptional.get().getClient();
             return new PerfilClient(client);
+        }
+        return null;
+    } // False if not found
+
+    public Img getProfilePicture(Long id) {
+        Optional<Client> clientOptional = clientRepository.findById(id);
+        if (clientOptional.isPresent()) {
+            Client client = clientOptional.get();
+            return client.getUser().getProfile_picture();
         }
         return null;
     } // False if not found

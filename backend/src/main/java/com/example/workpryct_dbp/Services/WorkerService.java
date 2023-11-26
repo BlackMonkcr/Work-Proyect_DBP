@@ -136,4 +136,13 @@ public class WorkerService {
         }
         return null;
     } // False if not found
+
+    public Img getProfilePicture(Long id) {
+        Optional<Worker> workerOptional = workerRepository.findById(id);
+        if (workerOptional.isPresent()) {
+            Worker worker = workerOptional.get();
+            return worker.getUser().getProfile_picture();
+        }
+        return null;
+    } // False if not found
 }

@@ -25,13 +25,7 @@ public class PerfilWorker {
         this.occupation = worker.getOccupation();
         this.description = worker.getDescription();
         this.hourPrice = worker.getHour_price();
-        this.keyProfilePicture = worker.getUser().getName();
-        for (int i = 0; i < this.keyProfilePicture.length(); i++) {
-            if (this.keyProfilePicture.charAt(i) == ' ') {
-                this.keyProfilePicture = this.keyProfilePicture.substring(0, i) + this.keyProfilePicture.substring(i + 1);
-                i--;
-            }
-        }
+        this.keyProfilePicture = worker.getUser().getProfile_picture().getUrl();
         if (worker.getPlan() == null) {
             this.plan = "Free";
         } else {

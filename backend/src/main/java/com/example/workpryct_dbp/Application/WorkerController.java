@@ -97,4 +97,13 @@ public class WorkerController {
             return new ResponseEntity<>(workerService.getHistoryWorkers(id), HttpStatus.OK);
         }
     } // Returns history clients
+
+    @GetMapping("/profilePicture")
+    public ResponseEntity<Img> getProfilePicture(@RequestParam Long id) {
+        if (workerService.getWorkerById(id).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(workerService.getProfilePicture(id), HttpStatus.OK);
+        }
+    } // Returns profile picture
 }
