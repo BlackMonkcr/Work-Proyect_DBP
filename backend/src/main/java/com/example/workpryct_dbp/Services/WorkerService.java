@@ -1,10 +1,10 @@
 package com.example.workpryct_dbp.Services;
 
-import com.example.workpryct_dbp.DTO.response.WorkerInformation;
+import com.example.workpryct_dbp.DTO.request.*;
+import com.example.workpryct_dbp.DTO.response.PerfilWorker;
+import com.example.workpryct_dbp.DTO.response.*;
 import com.example.workpryct_dbp.DTO.response.WorkersInformation;
-import com.example.workpryct_dbp.Domain.Img;
-import com.example.workpryct_dbp.Domain.User;
-import com.example.workpryct_dbp.Domain.Worker;
+import com.example.workpryct_dbp.Domain.*;
 import com.example.workpryct_dbp.Infrastructure.ClientRepository;
 import com.example.workpryct_dbp.Infrastructure.ImgRepository;
 import com.example.workpryct_dbp.Infrastructure.WorkerRepository;
@@ -91,5 +91,49 @@ public class WorkerService {
             workersInformation.add(new WorkerInformation(workers.get(i)));
         }
         return new WorkersInformation(workersInformation);
+    } // False if not found
+
+    public PerfilWorker getPerfilWorker(String email) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isPresent() && userOptional.get().getRole() == Role.WORKER) {
+            Worker worker = userOptional.get().getWorker();
+            return new PerfilWorker(worker);
+        }
+        return null;
+    } // False if not found
+
+    public PerfilWorker getPerfilWorkerById(Long id) {
+        Optional<Worker> workerOptional = workerRepository.findById(id);
+        if (workerOptional.isPresent()) {
+            Worker worker = workerOptional.get();
+            return new PerfilWorker(worker);
+        }
+        return null;
+    } // False if not found
+
+    public boolean patchPerfilWorker(String email, EditPerfilWorker perfilWorker) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isPresent() && userOptional.get().getRole() == Role.WORKER) {
+            Worker worker = userOptional.get().getWorker();
+            worker.setDescription(perfilWorker.getDescription());
+            worker.setHour_price(perfilWorker.getHourPrice());
+            workerRepository.save(worker);
+            return true;
+        }
+        return false;
+    } // False if not found
+
+    public historysClient getHistoryWorkers(Long id) {
+        Optional<Worker> workerOptional = workerRepository.findById(id);
+        if (workerOptional.isPresent()) {
+            Worker worker = workerOptional.get();
+            Set<Client> historys = worker.getHistory_clients();
+            List<historyClient> workerRequestList = new ArrayList<>();
+            for (Client client : historys) {
+                workerRequestList.add(new historyClient(client));
+            }
+            return new historysClient(workerRequestList);
+        }
+        return null;
     } // False if not found
 }

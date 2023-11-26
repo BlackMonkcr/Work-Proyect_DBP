@@ -1,7 +1,10 @@
 package com.example.workpryct_dbp.Application;
 
 import com.example.workpryct_dbp.DTO.request.ClientRequest;
+import com.example.workpryct_dbp.DTO.response.PerfilClient;
+import com.example.workpryct_dbp.DTO.response.PerfilWorker;
 import com.example.workpryct_dbp.DTO.response.WorkerMiniPreview;
+import com.example.workpryct_dbp.DTO.response.WorkersInformation;
 import com.example.workpryct_dbp.Services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -64,6 +67,24 @@ public class ClientController {
         }
     } // Deletes client
 
+    @GetMapping("/history_workers/all")
+    public ResponseEntity<?> getHistoryWorkers(@RequestParam Long id) {
+        if (clientService.getClientById(id).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(clientService.getHistoryWorkers(id), HttpStatus.OK);
+        }
+    } // Returns history workers
+
+    @PostMapping("/history_workers")
+    public ResponseEntity<?> addHistoryWorker(@RequestParam Long id, @RequestParam Long worker) {
+        if (clientService.getClientById(id).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(clientService.addHistoryWorker(id, worker), HttpStatus.OK);
+        }
+    } // Returns updated client
+
     @GetMapping("/favorite_workers/all")
     public ResponseEntity<?> getFavoriteWorkers(@RequestParam Long id) {
         if (clientService.getClientById(id).isEmpty()) {
@@ -78,12 +99,8 @@ public class ClientController {
         if (clientService.getClientById(id).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            Set<Worker> workers = clientService.getFavoriteWorkers(id);
-            Set<WorkerMiniPreview> workerMiniPreviews = new HashSet<>();
-            for (int i = 0; i < limit && i < workers.size(); i++) {
-                workerMiniPreviews.add(new WorkerMiniPreview(workers.toArray(new Worker[0])[i]));
-            }
-            return new ResponseEntity<>(workerMiniPreviews, HttpStatus.OK);
+            WorkersInformation workers = clientService.getFavoriteWorkers(id);
+            return new ResponseEntity<>(workers, HttpStatus.OK);
         }
     } // Returns favorite worker
 
@@ -122,4 +139,13 @@ public class ClientController {
             return new ResponseEntity<>(clientService.deleteAllFavoriteWorkers(id), HttpStatus.OK);
         }
     } // Returns updated client
+
+    @GetMapping("/perfil")
+    public ResponseEntity<PerfilClient> getPerfilWorker(@RequestParam String email) {
+        if (clientService.getPerfilClient(email) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(clientService.getPerfilClient(email), HttpStatus.OK);
+        }
+    } // Returns worker by user_id
 }

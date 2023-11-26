@@ -1,5 +1,6 @@
 package com.example.workpryct_dbp.Application;
 
+import com.example.workpryct_dbp.DTO.request.EditPerfilWorker;
 import com.example.workpryct_dbp.DTO.request.WorkerRequest;
 import com.example.workpryct_dbp.DTO.response.PerfilWorker;
 import com.example.workpryct_dbp.DTO.response.WorkersInformation;
@@ -43,11 +44,20 @@ public class WorkerController {
     } // Returns worker by id
 
     @GetMapping("/perfil")
-    public ResponseEntity<PerfilWorker> getPerfilWorker(@RequestParam Long worker_id) {
-        if (workerService.getWorkerById(worker_id).isEmpty()) {
+    public ResponseEntity<PerfilWorker> getPerfilWorker(@RequestParam String email) {
+        if (workerService.getPerfilWorker(email) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(new PerfilWorker(workerService.getWorkerById(worker_id).get()), HttpStatus.OK);
+            return new ResponseEntity<>(workerService.getPerfilWorker(email), HttpStatus.OK);
+        }
+    } // Returns worker by user_id
+
+    @GetMapping("/perfilById")
+    public ResponseEntity<PerfilWorker> getPerfilWorkerById(@RequestParam Long id) {
+        if (workerService.getPerfilWorkerById(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(workerService.getPerfilWorkerById(id), HttpStatus.OK);
         }
     } // Returns worker by user_id
 
@@ -58,6 +68,17 @@ public class WorkerController {
         return new ResponseEntity<>(workerService.createWorker(user, worker), HttpStatus.CREATED);
     } // Returns created worker
 
+    @PatchMapping
+    public ResponseEntity<HttpStatus> PatchWorkerDescription_hp(@RequestParam String email,
+                                                                @RequestBody EditPerfilWorker editPerfilWorker) {
+
+        if (workerService.patchPerfilWorker(email, editPerfilWorker)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    } // Returns updated worker
+
     @DeleteMapping
     public ResponseEntity<?> deleteWorker(@RequestParam Long id) {
         if (workerService.getWorkerById(id).isEmpty()) {
@@ -67,4 +88,13 @@ public class WorkerController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     } // Deletes worker
+
+    @GetMapping("/history_clients/all")
+    public ResponseEntity<?> getHistoryClients(@RequestParam Long id) {
+        if (workerService.getWorkerById(id).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(workerService.getHistoryWorkers(id), HttpStatus.OK);
+        }
+    } // Returns history clients
 }

@@ -1,5 +1,7 @@
 package com.example.workpryct_dbp.Services;
 
+import com.example.workpryct_dbp.DTO.response.*;
+import com.example.workpryct_dbp.Domain.Role;
 import com.example.workpryct_dbp.Domain.User;
 import com.example.workpryct_dbp.Domain.Client;
 import com.example.workpryct_dbp.Domain.Worker;
@@ -10,6 +12,7 @@ import com.example.workpryct_dbp.Infrastructure.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -68,11 +71,15 @@ public class ClientService {
         return false;
     } // False if not found
 
-    public Set<Worker> getFavoriteWorkers(Long id) {
+    public WorkersInformation getFavoriteWorkers(Long id) {
         Optional<Client> clientOptional = clientRepository.findById(id);
         if (clientOptional.isPresent()) {
             Client client = clientOptional.get();
-            return client.getFavorite_workers();
+            List<WorkerInformation> workerInformationList = new ArrayList<>();
+            for (Worker worker : client.getFavorite_workers()) {
+                workerInformationList.add(new WorkerInformation(worker));
+            }
+            return new WorkersInformation(workerInformationList);
         }
         return null;
     } // False if not found
@@ -124,6 +131,40 @@ public class ClientService {
             }
             clientRepository.save(client);
             return client;
+        }
+        return null;
+    } // False if not found
+
+    public WorkersRequest getHistoryWorkers(Long id) {
+        Optional<Client> clientOptional = clientRepository.findById(id);
+        if (clientOptional.isPresent()) {
+            Client client = clientOptional.get();
+            List<WorkerRequest> workerRequestList = new ArrayList<>();
+            for (Worker worker : client.getHistory_workers()) {
+                workerRequestList.add(new WorkerRequest(worker));
+            }
+            return new WorkersRequest(workerRequestList);
+        }
+        return null;
+    } // False if not found
+
+    public Client addHistoryWorker(Long id, Long worker_id) {
+        Optional<Client> clientOptional = clientRepository.findById(id);
+        Optional<Worker> workerOptional = workerRepository.findById(worker_id);
+        if (clientOptional.isPresent() && workerOptional.isPresent()) {
+            Client client = clientOptional.get();
+            client.getHistory_workers().add(workerOptional.get());
+            clientRepository.save(client);
+            return client;
+        }
+        return null;
+    } // False if not found
+
+    public PerfilClient getPerfilClient(String email) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isPresent() && userOptional.get().getRole() == Role.CLIENT) {
+            Client client = userOptional.get().getClient();
+            return new PerfilClient(client);
         }
         return null;
     } // False if not found

@@ -36,6 +36,14 @@ public class Client {
     )
     private Set<Worker> favorite_workers = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(
+        name = "history_workers",
+        joinColumns = @JoinColumn(name = "client_id"),
+        inverseJoinColumns = @JoinColumn(name = "worker_id")
+    )
+    private Set<Worker> history_workers = new HashSet<>();
+
     @PrePersist
     public void prePersist() {
         this.favorite_workers = new HashSet<>();

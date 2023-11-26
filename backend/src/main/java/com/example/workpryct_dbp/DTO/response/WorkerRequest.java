@@ -1,30 +1,29 @@
 package com.example.workpryct_dbp.DTO.response;
 
 import com.example.workpryct_dbp.Domain.Worker;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter
 @Setter
-public class PerfilWorker {
+@AllArgsConstructor
+@NoArgsConstructor
+public class WorkerRequest {
     private Long id;
     private String name;
-    private String email;
-    private Long phone;
     private String occupation;
+    private Long phone;
     private String description;
-    private double hourPrice;
     private String keyProfilePicture;
-    private String plan;
-
-    public PerfilWorker(Worker worker) {
+    public WorkerRequest(Worker worker) {
         this.id = worker.getWorker_id();
         this.name = worker.getUser().getName();
-        this.email = worker.getUser().getEmail();
-        this.phone = worker.getPhone();
         this.occupation = worker.getOccupation();
+        this.phone = worker.getPhone();
         this.description = worker.getDescription();
-        this.hourPrice = worker.getHour_price();
         this.keyProfilePicture = worker.getUser().getName();
         for (int i = 0; i < this.keyProfilePicture.length(); i++) {
             if (this.keyProfilePicture.charAt(i) == ' ') {
@@ -32,12 +31,5 @@ public class PerfilWorker {
                 i--;
             }
         }
-        if (worker.getPlan() == null) {
-            this.plan = "Free";
-        } else {
-            this.plan = worker.getPlan().getName();
-        }
     }
-
-    public PerfilWorker() {}
 }
