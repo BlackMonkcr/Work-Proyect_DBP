@@ -25,7 +25,7 @@ public class PerfilWorker {
         this.occupation = worker.getOccupation();
         this.description = worker.getDescription();
         this.hourPrice = worker.getHour_price();
-        this.keyProfilePicture = worker.getUser().getProfile_picture().getUrl();
+        this.keyProfilePicture = (worker.getUser().getProfile_picture() == null) ? null : worker.getUser().getProfile_picture().getUrl();
         if (worker.getPlan() == null) {
             this.plan = "Free";
         } else {

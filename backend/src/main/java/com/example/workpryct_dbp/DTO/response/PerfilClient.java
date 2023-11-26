@@ -17,7 +17,7 @@ public class PerfilClient {
         this.id = client.getClient_id();
         this.name = client.getUser().getName();
         this.email = client.getUser().getEmail();
-        this.keyProfilePicture = client.getUser().getProfile_picture().getUrl();
+        this.keyProfilePicture = (client.getUser().getProfile_picture() == null) ? null : client.getUser().getProfile_picture().getUrl();
     }
 
     public PerfilClient() {}
