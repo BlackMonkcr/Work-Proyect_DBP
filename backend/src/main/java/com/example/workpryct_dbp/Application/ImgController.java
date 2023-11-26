@@ -43,9 +43,14 @@ public class ImgController {
         }
     } // Returns Img by url
 
-    @PostMapping
-    public ResponseEntity<Img> createImg_profilePicture(@RequestBody Img img, @RequestParam Long user_id) {
-        return new ResponseEntity<>(imgService.createImage_ProfilePicture(user_id, img), HttpStatus.CREATED);
+    @PostMapping("/profile_picture_worker")
+    public ResponseEntity<Img> createImg_profilePictureWorker(@RequestBody Img img, @RequestParam Long worker_id) {
+        return new ResponseEntity<>(imgService.createImage_ProfilePictureWorker(worker_id, img), HttpStatus.CREATED);
+    } // Returns created profile_picture
+
+    @PostMapping("/profile_picture_client")
+    public ResponseEntity<Img> createImg_profilePictureClient(@RequestBody Img img, @RequestParam Long client_id) {
+        return new ResponseEntity<>(imgService.createImage_ProfilePictureClient(client_id, img), HttpStatus.CREATED);
     } // Returns created profile_picture
 
     @PostMapping("/upload")

@@ -3,6 +3,7 @@ package com.example.workpryct_dbp.Services;
 import com.example.workpryct_dbp.Domain.Img;
 import com.example.workpryct_dbp.Domain.User;
 import com.example.workpryct_dbp.Domain.Worker;
+import com.example.workpryct_dbp.Infrastructure.ClientRepository;
 import com.example.workpryct_dbp.Infrastructure.ImgRepository;
 import com.example.workpryct_dbp.Infrastructure.UserRepository;
 
@@ -18,16 +19,19 @@ import java.util.Set;
 public class ImgService {
     private final ImgRepository imgRepository;
     private final UserRepository userRepository;
+    private final ClientRepository clientRepository;
 
     private final WorkerRepository workerRepository;
 
     @Autowired
     public ImgService(ImgRepository imgRepository,
                        UserRepository userRepository,
-                       WorkerRepository workerRepository) {
+                       WorkerRepository workerRepository,
+                       ClientRepository clientRepository) {
         this.imgRepository = imgRepository;
         this.userRepository = userRepository;
         this.workerRepository = workerRepository;
+        this.clientRepository = clientRepository;
     }
 
     public List<Img> getAllImg() {
@@ -42,14 +46,23 @@ public class ImgService {
         return imgRepository.findByUrl(url);
     } // Optional Img search by Url
 
-    public Img createImage_ProfilePicture(Long user_id, Img img) {
-        User userUpload = userRepository.findById(user_id).orElseThrow();
+    public Img createImage_ProfilePictureWorker(Long worker_id, Img img) {
+        User userUpload = workerRepository.findById(worker_id).orElseThrow().getUser();
         img.setUser(userUpload);
         imgRepository.save(img);
         userUpload.setProfile_picture(img);
         userRepository.save(userUpload);
         return img;
     } // Returns created Img
+
+    public Img createImage_ProfilePictureClient(Long client_id, Img img) {
+        User userUpload = clientRepository.findById(client_id).orElseThrow().getUser();
+        img.setUser(userUpload);
+        imgRepository.save(img);
+        userUpload.setProfile_picture(img);
+        userRepository.save(userUpload);
+        return img;
+    }
 
     public Img addWorkerPicture(Long worker_id, Img img) {
         Worker workerUpload = workerRepository.findById(worker_id).orElseThrow();
