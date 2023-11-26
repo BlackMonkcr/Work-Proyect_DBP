@@ -34,6 +34,7 @@ public class SecurityConfiguration {
                         .requestMatchers("api/v1/worker/**").permitAll()
                         .requestMatchers("api/v1/plan/**").permitAll()
                         .requestMatchers("api/v1/subscription/**").permitAll()
+                        .requestMatchers("api/v1/img/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
