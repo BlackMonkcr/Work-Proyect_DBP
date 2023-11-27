@@ -13,9 +13,10 @@ import Services from "./pages/services";
 import Plans from "./pages/plans";
 import Profile from "./pages/profile";
 import Questions from "./pages/Questions";
-import HistoryClient from "./pages/HistoryWorkers";
+import History from "./pages/History";
 import FavoritosPage from "./pages/FavoritosPage";
 import MessageClient from "./pages/MessageClient";
+import HelpClient from "./pages/help";
 
 
 export default function App() {
@@ -33,9 +34,11 @@ export default function App() {
                 <Route path="/plans" element={<Plans/>} />
                 <Route path="/profile" element={<Profile/>} />
                 <Route path="/questions" element={<Questions/>} />
-                <Route path="/historyWorkers" element={<HistoryClient/>} />
-                <Route path="/favoritosWorkers" element={<FavoritosPage/>} />
-                <Route path="/messageClient" element={<MessageClient/>} />
+                <Route path="/history" element={<History/>} />
+                <Route path="/favorites" element={<FavoritosPage/>} />
+                <Route path="/message" element={<MessageClient/>} />
+                <Route path="/help" element={<HelpClient/>} />
+
             </Routes>
             <NotificationContainer />
         </BrowserRouter>

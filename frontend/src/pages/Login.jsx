@@ -95,7 +95,7 @@ function Login() {
                                 <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value) } className="input-field"/>
                             </div>
                             <button type="submit" className="btn-login">
-                                Log In
+                            <a href="/homeClient">Log In</a>
                             </button>
                         </form>
                         <div>
@@ -103,7 +103,7 @@ function Login() {
                                 Don't have an account yet?
                             </p>
                             <button to="/signup" className="login-button">
-                                <a href="/signUp">Sign Up</a>
+                                <a href="/homeClient">Sign Up</a>
                             </button>
                         </div>
                     </div>

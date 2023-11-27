@@ -132,13 +132,12 @@ function SignupWorker() {
                 className="input-field"
               />
             </div>
-            <button type="submit" className="btn-register">
-              Sign Up
+            <button type="submit" className="btn-register"><a href='/homeWorker'>Sign Up</a>
             </button>
           </form>
           <div>
             <p className="register-prompt">Do you have an account?</p>
-            <button className="login-button"><a href='/login'>Login</a></button>
+            <button className="login-button"><a href='/loginWorker'>Login</a></button>
           </div>
         </div>
         <div className="register-img">

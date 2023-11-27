@@ -22,4 +22,4 @@ function NavWorkersPreview({favoriteWorkers, historyWorkers}) {
     )
 }
 
-export default NavWorkersPreview
+export default NavWorkersPreview;

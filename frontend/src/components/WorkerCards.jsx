@@ -1,110 +1,33 @@
 import React from 'react';
 
-const WorkerCards = () => {
+const WorkerCards = ({ workers }) => {
   const cardStyle = {
-    width: '18rem', // Ancho de la tarjeta
-    margin: '10px', // Espacio entre tarjetas
+    width: '18rem',
+    margin: '10px',
   };
 
   const imageStyle = {
-    maxWidth: '100%', // Ajuste de la imagen
+    maxWidth: '100%',
     height: 'auto',
   };
+
+  const displayedWorkers = workers.slice(0, 8);
 
   return (
     <div className="container d-flex justify-content-center">
       <div className="row">
-        <div className="col-sm-6 col-md-4 col-lg-3 mb-3"> {/* Ajusta el tamaño de la columna para el diseño responsivo */}
-          <div className="card" style={cardStyle}>
-            <img src="..." className="card-img-top" alt="Worker Image" style={imageStyle} />
-            <div className="card-body">
-              <h5 className="card-title">Nombre del Trabajador 1</h5>
-              <p className="card-text">Dirección del Trabajador 1</p>
-              <p className="card-text">Valoración: 4.5</p>
-              <a href="#" className="btn btn-primary btn-sm">Ver más...</a>
+        {displayedWorkers.map((worker, index) => (
+          <div key={index} className="col-sm-6 col-md-4 col-lg-3 mb-3">
+            <div className="card" style={cardStyle}>
+              <img src={`https://unavatar.io/${worker.keyProfilePicture}`} className="card-img-top" alt={`Worker Image ${index}`} style={imageStyle} />
+              <div className="card-body">
+                <h5 className="card-title">{worker.name}</h5>
+                <p className="card-text">{worker.occupation}</p>
+                <p className="card-text">Contacto: {worker.phone}</p>
+              </div>
             </div>
           </div>
-        </div>
-        {/* Replica esta estructura para las otras siete tarjetas */}
-        <div className="col-sm-6 col-md-4 col-lg-3 mb-3"> {/* Ajusta el tamaño de la columna para el diseño responsivo */}
-          <div className="card" style={cardStyle}>
-            <img src="..." className="card-img-top" alt="Worker Image" style={imageStyle} />
-            <div className="card-body">
-              <h5 className="card-title">Nombre del Trabajador 1</h5>
-              <p className="card-text">Dirección del Trabajador 1</p>
-              <p className="card-text">Valoración: 4.5</p>
-              <a href="#" className="btn btn-primary btn-sm">Ver más...</a>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-3 mb-3"> {/* Ajusta el tamaño de la columna para el diseño responsivo */}
-          <div className="card" style={cardStyle}>
-            <img src="..." className="card-img-top" alt="Worker Image" style={imageStyle} />
-            <div className="card-body">
-              <h5 className="card-title">Nombre del Trabajador 1</h5>
-              <p className="card-text">Dirección del Trabajador 1</p>
-              <p className="card-text">Valoración: 4.5</p>
-              <a href="#" className="btn btn-primary btn-sm">Ver más...</a>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-3 mb-3"> {/* Ajusta el tamaño de la columna para el diseño responsivo */}
-          <div className="card" style={cardStyle}>
-            <img src="..." className="card-img-top" alt="Worker Image" style={imageStyle} />
-            <div className="card-body">
-              <h5 className="card-title">Nombre del Trabajador 1</h5>
-              <p className="card-text">Dirección del Trabajador 1</p>
-              <p className="card-text">Valoración: 4.5</p>
-              <a href="#" className="btn btn-primary btn-sm">Ver más...</a>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-3 mb-3"> {/* Ajusta el tamaño de la columna para el diseño responsivo */}
-          <div className="card" style={cardStyle}>
-            <img src="..." className="card-img-top" alt="Worker Image" style={imageStyle} />
-            <div className="card-body">
-              <h5 className="card-title">Nombre del Trabajador 1</h5>
-              <p className="card-text">Dirección del Trabajador 1</p>
-              <p className="card-text">Valoración: 4.5</p>
-              <a href="#" className="btn btn-primary btn-sm">Ver más...</a>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-3 mb-3"> {/* Ajusta el tamaño de la columna para el diseño responsivo */}
-          <div className="card" style={cardStyle}>
-            <img src="..." className="card-img-top" alt="Worker Image" style={imageStyle} />
-            <div className="card-body">
-              <h5 className="card-title">Nombre del Trabajador 1</h5>
-              <p className="card-text">Dirección del Trabajador 1</p>
-              <p className="card-text">Valoración: 4.5</p>
-              <a href="#" className="btn btn-primary btn-sm">Ver más...</a>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-3 mb-3"> {/* Ajusta el tamaño de la columna para el diseño responsivo */}
-          <div className="card" style={cardStyle}>
-            <img src="..." className="card-img-top" alt="Worker Image" style={imageStyle} />
-            <div className="card-body">
-              <h5 className="card-title">Nombre del Trabajador 1</h5>
-              <p className="card-text">Dirección del Trabajador 1</p>
-              <p className="card-text">Valoración: 4.5</p>
-              <a href="#" className="btn btn-primary btn-sm">Ver más...</a>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-3 mb-3"> {/* Ajusta el tamaño de la columna para el diseño responsivo */}
-          <div className="card" style={cardStyle}>
-            <img src="..." className="card-img-top" alt="Worker Image" style={imageStyle} />
-            <div className="card-body">
-              <h5 className="card-title">Nombre del Trabajador 1</h5>
-              <p className="card-text">Dirección del Trabajador 1</p>
-              <p className="card-text">Valoración: 4.5</p>
-              <a href="#" className="btn btn-primary btn-sm">Ver más...</a>
-            </div>
-          </div>
-        </div>
-        
-        {/* Repite lo mismo para las otras seis tarjetas */}
+        ))}
       </div>
     </div>
   );
