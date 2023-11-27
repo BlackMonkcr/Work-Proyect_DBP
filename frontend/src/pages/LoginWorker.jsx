@@ -61,7 +61,7 @@ function LoginWorker() {
                 className="input-field"
               />
             </div>
-            <button type="submit" className="btn-login">Log In</button>
+            <button type="submit" className="btn-login"><a href='/homeWorker'>Login</a></button>
           </form>
           <div>
             <p className="login-prompt">Don't have an account yet?</p>

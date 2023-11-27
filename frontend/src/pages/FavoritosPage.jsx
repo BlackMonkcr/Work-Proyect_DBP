@@ -1,44 +1,62 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
-import NavWorkersPreview from "../components/NavWorkersPreview";
 import NavBarInfo from "../components/NavBarInfo";
-import CardFavoritos from "../components/CardFavoritos";
+import MainCardHomeWorker from "../components/mainCardHome-worker";
 
 function FavoritosPage() {
-    const [users, setUsers] = useState([]);
-
-    const fetchData = async () => {
-        try {
-            const response = await fetch('http://work.up.railway.app/api/v1/client/favorite_workers?id=1&limit=8');
-            if (!response.ok) {
-                throw new Error(`Error en la solicitud: ${response.statusText}`);
-            }
-            const data = await response.json();
-            setUsers(data);
-            // Establecer el primer trabajador como destacado (puedes ajustar la lógica según tus necesidades)
-            if (data.length > 0) {
-                setHighlightedWorker(data[0]);
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    };
+    const [favorites, setFavorites] = useState([]);
 
     useEffect(() => {
-        fetchData();
+        const storedFavorites = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key.includes('worker_')) {
+                const worker = JSON.parse(localStorage.getItem(key));
+                storedFavorites.push(worker);
+            }
+        }
+        setFavorites(storedFavorites);
     }, []);
+
+    const removeFromFavorites = (workerId) => {
+        const updatedFavorites = favorites.filter(favorite => favorite.id !== workerId);
+        setFavorites(updatedFavorites);
+        localStorage.removeItem(`worker_${workerId}`);
+    };
 
     return (
         <>
             <NavBar />
-            <NavWorkersPreview favoriteWorkers={users} historyWorkers={users} />
-            <NavBarInfo title="Home Client" />
-            {/* Integra el componente CardFavoritos aquí para mostrar las tarjetas */}
-            <CardFavoritos />
+            <NavBarInfo title="Favoritos" />
+            <div className="worker-highlight py-0 modificacion-worked mt-5">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12 mt-5">
+                            {favorites.map((worker) => (
+                                <div key={worker.id}>
+                                    <MainCardHomeWorker
+                                        id={worker.id}
+                                        name={worker.name}
+                                        occupation={worker.occupation}
+                                        description={worker.description}
+                                        keyProfilePicture={worker.keyProfilePicture}
+                                    />
+                                    <button onClick={() => removeFromFavorites(worker.id)}>Quitar de Favoritos</button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
 
 export default FavoritosPage;
+
+
+
+
+
 
 

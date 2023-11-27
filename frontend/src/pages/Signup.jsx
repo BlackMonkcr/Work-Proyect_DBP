@@ -77,8 +77,8 @@ function Signup() {
                             <div>
                                 <input type="text" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} className="input-field"/>
                             </div>
-                            <button type="submit" className="btn-register">
-                                Sign Up
+                            <button type="submit" className="btn-register"><a href="/homeClient">Sign Up</a>
+                               
                             </button>
                         </form>
                         <div>

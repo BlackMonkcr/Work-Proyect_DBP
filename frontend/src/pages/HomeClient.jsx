@@ -10,7 +10,7 @@ import MainCardHomeWorker from "../components/mainCardHome-worker"; // Importa e
 function HomeClient() {
     const [users, setUsers] = useState([]);
     const [highlightedWorker, setHighlightedWorker] = useState(null);
-    const [recommendedWorkers, setRecommendedWorkers] = useState([]); // Nuevo estado para los trabajadores recomendados
+    const [recommendedWorkers, setRecommendedWorkers] = useState([]);
 
     useEffect(() => {
         Axios({
@@ -29,9 +29,6 @@ function HomeClient() {
             });
 
         // Lógica para obtener los trabajadores recomendados
-        // Por ejemplo, podrías utilizar una llamada a la API similar a la de HomeWorker
-        // Aquí incluirías la lógica para obtener los trabajadores recomendados y actualizar el estado `recommendedWorkers`
-        // Ejemplo ficticio:
         Axios.get("https://work.up.railway.app/api/v1/worker/homeCards?limit=10")
             .then((response) => {
                 setRecommendedWorkers(response.data.workers);
@@ -46,21 +43,25 @@ function HomeClient() {
             <NavBar />
             <WorkerClientHighlight worker={highlightedWorker} />
             <NavWorkersPreview favoriteWorkers={users} historyWorkers={users} />
-            
-            {/* Mostrar los trabajadores recomendados debajo del componente de trabajador destacado */}
-            <div className="recommended-workers">
-                {recommendedWorkers.map((worker) => (
-                    <MainCardHomeWorker
-                        key={worker.id}
-                        id={worker.id}
-                        name={worker.name}
-                        occupation={worker.occupation}
-                        description={worker.description}
-                        keyProfilePicture={worker.keyProfilePicture}
-                    />
-                ))}
+    
+            {/* Mostrar los trabajadores recomendados */}
+            <div className="worker-highlight py-0 modificacion-worked mt-3"> {/* Ajustar el valor de mt-5 */}
+                <div className="container">
+                    <div className="row">
+                        {recommendedWorkers.map((worker) => (
+                            <MainCardHomeWorker
+                                key={worker.id}
+                                id={worker.id}
+                                name={worker.name}
+                                occupation={worker.occupation}
+                                description={worker.description}
+                                keyProfilePicture={worker.keyProfilePicture}
+                            />
+                        ))}
+                    </div>
+                </div>
             </div>
-
+    
             <NavBarInfo title="Home Client" />
         </>
     );
